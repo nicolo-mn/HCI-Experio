@@ -1,190 +1,26 @@
 <template>
-  	<div :class="$style.chat">
-    		<div :class="$style.notchHeight" />
-    		<div :class="$style.titoloPagina">
-      			<b :class="$style.paola">Paola</b>
-      			<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			<img :class="$style.binSvgrepoCom2Icon" alt="" />
+  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[1.5rem] text-black font-urbanist">
+    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
+    		<div class="absolute top-[3.375rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem]">
+      			<b class="absolute top-[1.063rem] left-[3.25rem]">Paola</b>
+      			<img class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain" alt="" />
+      			<img class="absolute top-[1.625rem] left-[21.813rem] w-[1.875rem] h-[1.875rem]" alt="" />
     		</div>
-    		<div :class="$style.rectangleParent">
-      			<div :class="$style.groupChild" />
-      			<div :class="$style.ciaoQuantoTempo">Ciao, quanto tempo ci vuole<br/>per visitare tutto?</div>
+    		<div class="absolute top-[9.563rem] left-[4.375rem] w-[20.063rem] h-[4.688rem]">
+      			<div class="absolute top-[0rem] left-[0rem] shadow-[0px_4px_8.12px_#662c00] rounded-[20.31px] bg-goldenrod w-[20.063rem] h-[4.688rem]" />
+      			<div class="absolute top-[0rem] left-[0.938rem] flex items-center w-[18.375rem] h-[4.688rem]">Ciao, quanto tempo ci vuole<br/>per visitare tutto?</div>
       			</div>
-      			<div :class="$style.rectangleGroup">
-        				<div :class="$style.groupItem" />
-        				<div :class="$style.grazieMille">Grazie mille!</div>
+      			<div class="absolute top-[21.438rem] left-[15.063rem] w-[9.375rem] h-[3.25rem]">
+        				<div class="absolute top-[0rem] left-[0rem] shadow-[0px_4px_8.12px_#662c00] rounded-[20.31px] bg-goldenrod w-[9.375rem] h-[3.25rem]" />
+        				<div class="absolute top-[0rem] left-[0.501rem] flex items-center w-[8.588rem] h-[3.25rem]">Grazie mille!</div>
       			</div>
-      			<div :class="$style.rectangleContainer">
-        				<div :class="$style.groupInner" />
-        				<div :class="$style.circa2Ore">Circa 2 ore! Secondo me è bellissimo la mattina</div>
+      			<div class="absolute top-[15.375rem] left-[0.875rem] w-[20.063rem] h-[4.938rem]">
+        				<div class="absolute top-[0rem] left-[0rem] shadow-[0px_4px_8.12px_#662c00] rounded-[20.31px] bg-goldenrod w-[20.063rem] h-[4.938rem]" />
+        				<div class="absolute top-[0rem] left-[0.938rem] flex items-center w-[18.375rem] h-[4.938rem]">Circa 2 ore! Secondo me è bellissimo la mattina</div>
       			</div>
-      			<div :class="$style.chatChild" />
-      			<div :class="$style.scriviUnMessaggio">Scrivi un messaggio...</div>
-      			<div :class="$style.chatItem" />
-      			<img :class="$style.sendSvgrepoCom1Icon" alt="" />
+      			<div class="absolute top-[50.75rem] left-[0.875rem] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] rounded-[10px] bg-white border-darkslategray border-solid border-[3px] box-border w-[20.063rem] h-[3.125rem]" />
+      			<div class="absolute top-[51.563rem] left-[1.813rem] text-[1.25rem]">Scrivi un messaggio...</div>
+      			<div class="absolute top-[50.75rem] left-[21.313rem] rounded-[50%] bg-darkslategray w-[3.125rem] h-[3.125rem]" />
+      			<img class="absolute top-[50.875rem] left-[21.125rem] w-[3.125rem] h-[3.125rem]" alt="" />
     		</div>
     		</template>
-    		<style  module>.chat {
-      			width: 100%;
-      			height: 874px;
-      			position: relative;
-      			background-color: #faf9f6;
-      			overflow: hidden;
-      			text-align: left;
-      			font-size: 24px;
-      			color: #000;
-      			font-family: Urbanist;
-    		}
-      			.notchHeight {
-        				position: absolute;
-        				top: 0px;
-        				left: 0px;
-        				width: 402px;
-        				height: 54px;
-        				overflow: hidden;
-      			}
-      			.titoloPagina {
-        				position: absolute;
-        				top: 54px;
-        				left: 0px;
-        				border-bottom: 1px solid #000;
-        				box-sizing: border-box;
-        				width: 402px;
-        				height: 81px;
-        				overflow: hidden;
-        				font-size: 40px;
-      			}
-      			.paola {
-        				position: absolute;
-        				top: 17px;
-        				left: 52px;
-      			}
-      			.keyboardArrowRightIcon {
-        				position: absolute;
-        				top: 31px;
-        				left: 14px;
-        				width: 30px;
-        				height: 30px;
-        				object-fit: contain;
-      			}
-      			.binSvgrepoCom2Icon {
-        				position: absolute;
-        				top: 26px;
-        				left: 349px;
-        				width: 30px;
-        				height: 30px;
-      			}
-      			.rectangleParent {
-        				position: absolute;
-        				top: 153px;
-        				left: 70px;
-        				width: 321px;
-        				height: 75px;
-      			}
-      			.groupChild {
-        				position: absolute;
-        				top: 0px;
-        				left: 0px;
-        				box-shadow: 0px 4px 8.12px #662c00;
-        				border-radius: 20.31px;
-        				background-color: rgba(242, 201, 76, 0.8);
-        				width: 321px;
-        				height: 75px;
-      			}
-      			.ciaoQuantoTempo {
-        				position: absolute;
-        				top: 0px;
-        				left: 15px;
-        				display: flex;
-        				align-items: center;
-        				width: 294px;
-        				height: 75px;
-      			}
-      			.rectangleGroup {
-        				position: absolute;
-        				top: 343px;
-        				left: 241px;
-        				width: 150px;
-        				height: 52px;
-      			}
-      			.groupItem {
-        				position: absolute;
-        				top: 0px;
-        				left: 0px;
-        				box-shadow: 0px 4px 8.12px #662c00;
-        				border-radius: 20.31px;
-        				background-color: rgba(242, 201, 76, 0.8);
-        				width: 150px;
-        				height: 52px;
-      			}
-      			.grazieMille {
-        				position: absolute;
-        				top: 0px;
-        				left: 8.01px;
-        				display: flex;
-        				align-items: center;
-        				width: 137.4px;
-        				height: 52px;
-      			}
-      			.rectangleContainer {
-        				position: absolute;
-        				top: 246px;
-        				left: 14px;
-        				width: 321px;
-        				height: 79px;
-      			}
-      			.groupInner {
-        				position: absolute;
-        				top: 0px;
-        				left: 0px;
-        				box-shadow: 0px 4px 8.12px #662c00;
-        				border-radius: 20.31px;
-        				background-color: rgba(242, 201, 76, 0.8);
-        				width: 321px;
-        				height: 79px;
-      			}
-      			.circa2Ore {
-        				position: absolute;
-        				top: 0px;
-        				left: 15px;
-        				display: flex;
-        				align-items: center;
-        				width: 294px;
-        				height: 79px;
-      			}
-      			.chatChild {
-        				position: absolute;
-        				top: 812px;
-        				left: 14px;
-        				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        				border-radius: 10px;
-        				background-color: #fff;
-        				border: 3px solid #1a5e63;
-        				box-sizing: border-box;
-        				width: 321px;
-        				height: 50px;
-      			}
-      			.scriviUnMessaggio {
-        				position: absolute;
-        				top: 825px;
-        				left: 29px;
-        				font-size: 20px;
-      			}
-      			.chatItem {
-        				position: absolute;
-        				top: 812px;
-        				left: 341px;
-        				border-radius: 50%;
-        				background-color: #1a5e63;
-        				width: 50px;
-        				height: 50px;
-      			}
-      			.sendSvgrepoCom1Icon {
-        				position: absolute;
-        				top: 814px;
-        				left: 338px;
-        				width: 50px;
-        				height: 50px;
-      			}
-    		
-    		</style>

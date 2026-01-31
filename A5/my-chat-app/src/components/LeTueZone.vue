@@ -1,162 +1,39 @@
+
+<script setup lang="ts">
+  	import { useRouter } from "vue-router";
+  	import arrowLeft from '../assets/icons-all/arrow-left.svg';
+  	const router = useRouter();
+  	
+  	function onRectangleClick() {
+    		router.push("/home");
+  	}
+
+    function onBackClick() {
+        router.back();
+    }
+</script>
+
 <template>
-  	<div :class="$style.letuezone">
-    		<div :class="$style.notchHeight" />
-    		<img :class="$style.titoloIcon" alt="" />
-    		<div :class="$style.titolo">
-      			<div :class="$style.titoloChild" />
-      			<b :class="$style.parigi">Parigi</b>
-      			<img :class="$style.binSvgrepoCom1Icon" alt="" />
+  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[0.601rem] text-dimgray font-urbanist">
+    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden shrink-0" />
+    		<img class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem] shrink-0" alt="" />
+    		<div class="absolute top-[16.938rem] left-[6.063rem] w-[13rem] h-[2.744rem] shrink-0">
+      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[3.43px] bg-white border-darkslategray border-solid border-[1.4px] box-border" />
+      			<b class="absolute h-[31.21%] w-[81.83%] top-[34.4%] left-[5.94%] tracking-[0.07px] leading-[0.858rem] inline-block">Parigi</b>
+      			<img class="absolute w-[9.62%] top-[0.75rem] right-[2.4%] left-[87.98%] max-w-full overflow-hidden h-[1.25rem]" alt="" />
     		</div>
-    		<div :class="$style.titolo2">
-      			<div :class="$style.titoloChild" />
-      			<b :class="$style.parigi">Cesena</b>
-      			<img :class="$style.binSvgrepoCom1Icon" alt="" />
+    		<div class="absolute top-[21.25rem] left-[6.063rem] w-[13rem] h-[2.744rem] shrink-0">
+      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[3.43px] bg-white border-darkslategray border-solid border-[1.4px] box-border" />
+      			<b class="absolute h-[31.21%] w-[81.83%] top-[34.4%] left-[5.94%] tracking-[0.07px] leading-[0.858rem] inline-block">Cesena</b>
+      			<img class="absolute w-[9.62%] top-[0.75rem] right-[2.4%] left-[87.98%] max-w-full overflow-hidden h-[1.25rem]" alt="" />
     		</div>
-    		<div :class="$style.titoloPagina">
-      			<b :class="$style.selezionaLeTue">Seleziona le tue zone</b>
+    		<div class="absolute top-[3.375rem] left-[-0.437rem] w-[25.125rem] h-[5.063rem] overflow-hidden shrink-0 text-center text-[2.25rem] text-black">
+      			<b class="absolute top-[1.063rem] left-[0.438rem] inline-block w-[25.125rem] shrink-0">Seleziona le tue zone</b>
+                <img :src="arrowLeft" class="absolute top-[1.5rem] left-[1.5rem] w-8 h-8 cursor-pointer" @click="onBackClick" />
     		</div>
-    		<div :class="$style.pubblica">
-      			<div :class="$style.pubblicaChild" @click="onRectangleClick" />
-      			<b :class="$style.avanti">Avanti</b>
+    		<div class="absolute top-[47.625rem] left-[3.063rem] w-[18.938rem] h-[4rem] shrink-0 text-center text-[1.125rem] text-white">
+      			<div class="absolute top-[0rem] left-[4.438rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
+      			<b class="absolute top-[1.375rem] left-[6.938rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Avanti</b>
     		</div>
   	</div>
 </template>
-<script setup lang="ts">
-  	
-  	
-  	function onRectangleClick() {
-    		// Add your code here
-  	}</script>
-<style  module>.letuezone {
-  	width: 100%;
-  	height: 874px;
-  	position: relative;
-  	background-color: #faf9f6;
-  	overflow: hidden;
-  	text-align: left;
-  	font-size: 9.61px;
-  	color: #565656;
-  	font-family: Urbanist;
-}
-  	.notchHeight {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		width: 402px;
-    		height: 54px;
-    		overflow: hidden;
-    		flex-shrink: 0;
-  	}
-  	.titoloIcon {
-    		position: absolute;
-    		top: 182px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-    		flex-shrink: 0;
-  	}
-  	.titolo {
-    		position: absolute;
-    		top: 271px;
-    		left: 97px;
-    		width: 208px;
-    		height: 43.9px;
-    		flex-shrink: 0;
-  	}
-  	.titoloChild {
-    		position: absolute;
-    		height: 100%;
-    		width: 100%;
-    		top: 0%;
-    		right: 0%;
-    		bottom: 0%;
-    		left: 0%;
-    		border-radius: 3.43px;
-    		background-color: #fff;
-    		border: 1.4px solid #1a5e63;
-    		box-sizing: border-box;
-  	}
-  	.parigi {
-    		position: absolute;
-    		height: 31.21%;
-    		width: 81.83%;
-    		top: 34.4%;
-    		left: 5.94%;
-    		letter-spacing: 0.07px;
-    		line-height: 13.73px;
-    		display: inline-block;
-  	}
-  	.binSvgrepoCom1Icon {
-    		position: absolute;
-    		width: 9.62%;
-    		top: 12px;
-    		right: 2.4%;
-    		left: 87.98%;
-    		max-width: 100%;
-    		overflow: hidden;
-    		height: 20px;
-  	}
-  	.titolo2 {
-    		position: absolute;
-    		top: 340px;
-    		left: 97px;
-    		width: 208px;
-    		height: 43.9px;
-    		flex-shrink: 0;
-  	}
-  	.titoloPagina {
-    		position: absolute;
-    		top: 54px;
-    		left: -7px;
-    		width: 402px;
-    		height: 81px;
-    		overflow: hidden;
-    		flex-shrink: 0;
-    		text-align: center;
-    		font-size: 36px;
-    		color: #000;
-  	}
-  	.selezionaLeTue {
-    		position: absolute;
-    		top: 17px;
-    		left: 7px;
-    		display: inline-block;
-    		width: 402px;
-    		flex-shrink: 0;
-  	}
-  	.pubblica {
-    		position: absolute;
-    		top: 762px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-    		flex-shrink: 0;
-    		text-align: center;
-    		font-size: 18px;
-    		color: #fff;
-  	}
-  	.pubblicaChild {
-    		position: absolute;
-    		top: 0px;
-    		left: 71px;
-    		box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
-    		border-radius: 5px;
-    		background-color: #1a5e63;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 161px;
-    		height: 64px;
-    		cursor: pointer;
-  	}
-  	.avanti {
-    		position: absolute;
-    		top: 22px;
-    		left: 111px;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-    		width: 81px;
-    		height: 20px;
-  	}
-
-</style>

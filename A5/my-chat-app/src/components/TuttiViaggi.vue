@@ -1,219 +1,84 @@
-<template>
-  	<div :class="$style.tuoiviaggi">
-    		<div :class="$style.cityFrame">
-      			<div :class="$style.chicago">
-        				<b :class="$style.newYork">Chicago</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.dublin">
-        				<b :class="$style.newYork">Dublin</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.rome">
-        				<b :class="$style.newYork">Rome</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.kyoto">
-        				<b :class="$style.newYork">Kyoto</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.milan" @click="onMilanContainerClick">
-        				<b :class="$style.newYork">Milan</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.tokyo">
-        				<b :class="$style.newYork">Tokyo</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.newyork">
-        				<b :class="$style.newYork">New York</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-      			<div :class="$style.paris">
-        				<b :class="$style.newYork">Paris</b>
-        				<img :class="$style.keyboardArrowRightIcon" alt="" />
-      			</div>
-    		</div>
-    		<img :class="$style.navbarIcon" alt="" />
-    		<div :class="$style.viaggi">
-      			<b :class="$style.iTuoiViaggi">I tuoi viaggi</b>
-      			<img :class="$style.vectorIcon" alt="" @click="onMilanContainerClick" />
-    		</div>
-    		<div :class="$style.notchHeight" />
-  	</div>
-</template>
-<script setup lang="ts">
-  	
-  	
-  	function onMilanContainerClick() {
-    		// Add your code here
-  	}</script>
-<style  module>.tuoiviaggi {
-  	width: 100%;
-  	height: 990px;
-  	position: relative;
-  	background-color: #faf9f6;
-  	overflow: hidden;
-  	text-align: left;
-  	font-size: 40px;
-  	color: #000;
-  	font-family: Urbanist;
-}
-  	.cityFrame {
-    		position: absolute;
-    		top: 154px;
-    		left: 8px;
-    		width: 386px;
-    		height: 807px;
-  	}
-  	.chicago {
-    		position: absolute;
-    		top: 104px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.keyboardArrowRightIcon {
-    		position: absolute;
-    		top: 22px;
-    		left: 330px;
-    		width: 30px;
-    		height: 30px;
-  	}
-  	.dublin {
-    		position: absolute;
-    		top: 520px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.rome {
-    		position: absolute;
-    		top: 208px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.kyoto {
-    		position: absolute;
-    		top: 624px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.milan {
-    		position: absolute;
-    		top: 728px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-    		cursor: pointer;
-  	}
-  	.tokyo {
-    		position: absolute;
-    		top: 312px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.newyork {
-    		position: absolute;
-    		top: 416px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.newYork {
-    		position: absolute;
-    		top: 14px;
-    		left: 27px;
-    		display: inline-block;
-    		width: 262px;
-    		height: 52px;
-  	}
-  	.paris {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		box-shadow: 0px 4px 4px 6px #1a5e63;
-    		border-radius: 10px;
-    		background-color: #f2c94c;
-    		width: 386px;
-    		height: 79px;
-    		overflow: hidden;
-  	}
-  	.navbarIcon {
-    		position: absolute;
-    		top: 802px;
-    		left: 0px;
-    		width: 402px;
-    		height: 74px;
-  	}
-  	.viaggi {
-    		position: absolute;
-    		top: 54px;
-    		left: 0px;
-    		width: 402px;
-    		height: 63px;
-    		overflow: hidden;
-    		text-align: center;
-  	}
-  	.iTuoiViaggi {
-    		position: absolute;
-    		top: 10px;
-    		left: -10px;
-    		display: inline-block;
-    		width: 262px;
-    		height: 44px;
-    		flex-shrink: 0;
-  	}
-  	.vectorIcon {
-    		position: absolute;
-    		width: 8.71%;
-    		top: calc(50% - 12.5px);
-    		right: 6.97%;
-    		left: 84.33%;
-    		max-width: 100%;
-    		overflow: hidden;
-    		height: 35px;
-    		cursor: pointer;
-    		flex-shrink: 0;
-  	}
-  	.notchHeight {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		width: 402px;
-    		height: 54px;
-    		overflow: hidden;
-  	}
+<script setup>
+import { useRouter } from 'vue-router'
+import houseIcon from '../assets/icons-all/house.svg'
+import planeIcon from '../assets/icons-all/plane-fill.svg'
+import personIcon from '../assets/icons-all/person.svg'
 
-</style>
+const router = useRouter()
+
+function onMilanContainerClick() {
+  router.push('/bacheca-viaggio-singolo')
+}
+
+function goToHome() {
+    router.push('/home')
+}
+
+function goToTrips() {
+    router.push('/tutti-viaggi')
+}
+
+function goToProfile() {
+    router.push('/profilo')
+}
+</script>
+
+<template>
+  <div class="w-full min-h-screen bg-whitesmoke overflow-y-auto">
+    <div class="w-1/3 min-w-[25.125rem] mx-auto h-[61.875rem] relative bg-whitesmoke text-left text-[2.5rem] text-black font-urbanist shadow-2xl">
+      <div class="absolute top-[9.625rem] left-[0.5rem] w-[24.125rem] h-[50.438rem]">
+        <div class="absolute top-[6.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Chicago</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[32.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Dublin</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[13rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Rome</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[39rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Kyoto</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[45.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden cursor-pointer" @click="onMilanContainerClick">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Milan</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[19.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Tokyo</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[26rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">New York</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
+          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Paris</b>
+          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
+        </div>
+      </div>
+      <img class="absolute top-[50.125rem] left-[0rem] w-[25.125rem] h-[4.625rem]" alt="" />
+      <div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[3.938rem] overflow-hidden text-center">
+        <b class="absolute top-[0.625rem] left-[-0.625rem] inline-block w-[16.375rem] h-[2.75rem] shrink-0">I tuoi viaggi</b>
+        <img class="absolute w-[8.71%] top-[calc(50%_-_12.5px)] right-[6.97%] left-[84.33%] max-w-full overflow-hidden h-[2.188rem] cursor-pointer shrink-0" alt="" @click="onMilanContainerClick" />
+      </div>
+      <div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
+
+      <!-- Fixed Navbar -->
+      <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-1/3 min-w-[25.125rem] h-[4.188rem] bg-darkslategray border-t border-gray-300 flex justify-around items-center z-50">
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToHome">
+          <img :src="houseIcon" alt="Home" class="w-full h-full object-contain filter brightness-0 invert" />
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToTrips">
+          <img :src="planeIcon" alt="Plane" class="w-full h-full object-contain filter brightness-0 invert" />
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToProfile">
+          <img :src="personIcon" alt="Profile" class="w-full h-full object-contain filter brightness-0 invert" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

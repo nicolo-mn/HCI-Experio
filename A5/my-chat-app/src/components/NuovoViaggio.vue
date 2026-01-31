@@ -1,30 +1,30 @@
 <template>
-  	<div :class="$style.nuovoViaggio">
-    		<div :class="$style.notchHeight" />
-    		<div :class="$style.titoloPagina">
-      			<b :class="$style.nuovoViaggio2">Nuovo Viaggio</b>
+  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[0.875rem] text-dimgray font-urbanist">
+    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
+    		<div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem] text-black">
+      			<b class="absolute top-[1.063rem] left-[4.313rem]">Nuovo Viaggio</b>
     		</div>
-    		<div :class="$style.titolo">
-      			<div :class="$style.titoloChild" />
-      			<b :class="$style.luogo">Luogo</b>
+    		<div class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
+      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border" />
+      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-num-0_1 leading-[1.25rem] inline-block">Luogo</b>
     		</div>
-    		<div :class="$style.titolo2">
-      			<div :class="$style.titoloChild" />
-      			<div :class="$style.arrivoParent">
-        				<b :class="$style.arrivo">Arrivo</b>
-        				<img :class="$style.vectorIcon" alt="" />
+    		<div class="absolute top-[16.313rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
+      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border" />
+      			<div class="absolute top-[0.75rem] left-[3.875rem] flex items-center justify-center p-[0.625rem] gap-[0.625rem]">
+        				<b class="relative tracking-num-0_1 leading-[1.25rem]">Arrivo</b>
+        				<img class="h-[1.25rem] w-[1.25rem] relative" alt="" />
       			</div>
-      			<div :class="$style.vectorParent">
-        				<img :class="$style.vectorIcon" alt="" />
-        				<b :class="$style.arrivo">Partenza</b>
+      			<div class="absolute top-[0.75rem] left-[9.688rem] flex items-center justify-center p-[0.625rem] gap-[0.625rem]">
+        				<img class="h-[1.25rem] w-[1.25rem] relative" alt="" />
+        				<b class="relative tracking-num-0_1 leading-[1.25rem]">Partenza</b>
       			</div>
-      			<div :class="$style.titoloInner" />
+      			<div class="absolute top-[0rem] left-[9.438rem] border-darkslategray border-solid border-r-[2px] box-border w-[0.125rem] h-[4rem]" />
     		</div>
-    		<div :class="$style.pubblica">
-      			<div :class="$style.pubblicaChild" />
-      			<b :class="$style.cancella">Cancella</b>
-      			<div :class="$style.pubblicaItem" @click="onRectangleClick" />
-      			<b :class="$style.salva">Salva</b>
+    		<div class="absolute top-[47.625rem] left-[0rem] w-[25.125rem] h-[4rem] text-center text-[1.125rem] text-white">
+      			<div class="absolute top-[0rem] left-[13.875rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-goldenrod border-goldenrod border-solid border-[2px] box-border w-[10.063rem] h-[4rem]" />
+      			<b class="absolute top-[1.375rem] left-[16.375rem] tracking-num-0_1 leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Cancella</b>
+      			<div class="absolute top-[0rem] left-[1.25rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
+      			<b class="absolute top-[1.375rem] left-[3.75rem] tracking-num-0_1 leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Salva</b>
     		</div>
   	</div>
 </template>
@@ -34,170 +34,3 @@
   	function onRectangleClick() {
     		// Add your code here
   	}</script>
-<style  module>.nuovoViaggio {
-  	width: 100%;
-  	height: 874px;
-  	position: relative;
-  	background-color: #faf9f6;
-  	overflow: hidden;
-  	text-align: left;
-  	font-size: 14px;
-  	color: #565656;
-  	font-family: Urbanist;
-}
-  	.notchHeight {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		width: 402px;
-    		height: 54px;
-    		overflow: hidden;
-  	}
-  	.titoloPagina {
-    		position: absolute;
-    		top: 54px;
-    		left: 0px;
-    		width: 402px;
-    		height: 81px;
-    		overflow: hidden;
-    		font-size: 40px;
-    		color: #000;
-  	}
-  	.nuovoViaggio2 {
-    		position: absolute;
-    		top: 17px;
-    		left: 69px;
-  	}
-  	.titolo {
-    		position: absolute;
-    		top: 182px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-  	}
-  	.titoloChild {
-    		position: absolute;
-    		height: 100%;
-    		width: 100%;
-    		top: 0%;
-    		right: 0%;
-    		bottom: 0%;
-    		left: 0%;
-    		border-radius: 5px;
-    		background-color: #fff;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-  	}
-  	.luogo {
-    		position: absolute;
-    		height: 31.25%;
-    		width: 81.85%;
-    		top: 34.38%;
-    		left: 5.94%;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-  	}
-  	.titolo2 {
-    		position: absolute;
-    		top: 261px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-  	}
-  	.arrivoParent {
-    		position: absolute;
-    		top: 12px;
-    		left: 62px;
-    		display: flex;
-    		align-items: center;
-    		justify-content: center;
-    		padding: 10px;
-    		gap: 10px;
-  	}
-  	.arrivo {
-    		position: relative;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-  	}
-  	.vectorIcon {
-    		height: 20px;
-    		width: 20px;
-    		position: relative;
-  	}
-  	.vectorParent {
-    		position: absolute;
-    		top: 12px;
-    		left: 155px;
-    		display: flex;
-    		align-items: center;
-    		justify-content: center;
-    		padding: 10px;
-    		gap: 10px;
-  	}
-  	.titoloInner {
-    		position: absolute;
-    		top: 0px;
-    		left: 151px;
-    		border-right: 2px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 2px;
-    		height: 64px;
-  	}
-  	.pubblica {
-    		position: absolute;
-    		top: 762px;
-    		left: 0px;
-    		width: 402px;
-    		height: 64px;
-    		text-align: center;
-    		font-size: 18px;
-    		color: #fff;
-  	}
-  	.pubblicaChild {
-    		position: absolute;
-    		top: 0px;
-    		left: 222px;
-    		box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
-    		border-radius: 5px;
-    		background-color: #f2c94c;
-    		border: 2px solid #f2c94c;
-    		box-sizing: border-box;
-    		width: 161px;
-    		height: 64px;
-  	}
-  	.cancella {
-    		position: absolute;
-    		top: 22px;
-    		left: 262px;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-    		width: 81px;
-    		height: 20px;
-  	}
-  	.pubblicaItem {
-    		position: absolute;
-    		top: 0px;
-    		left: 20px;
-    		box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
-    		border-radius: 5px;
-    		background-color: #1a5e63;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 161px;
-    		height: 64px;
-    		cursor: pointer;
-  	}
-  	.salva {
-    		position: absolute;
-    		top: 22px;
-    		left: 60px;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-    		width: 81px;
-    		height: 20px;
-  	}
-
-</style>

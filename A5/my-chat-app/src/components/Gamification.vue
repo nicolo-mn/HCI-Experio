@@ -1,229 +1,42 @@
 <template>
-  	<div :class="$style.gamification">
-    		<div :class="$style.titoloPagina">
-      			<b :class="$style.premi">Premi</b>
-      			<img :class="$style.keyboardArrowRightIcon" alt="" />
+  	<div class="w-full h-[68.375rem] relative bg-whitesmoke overflow-hidden text-left text-[2.5rem] text-black font-urbanist">
+    		<div class="absolute top-[3.375rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[5.063rem] overflow-hidden">
+      			<b class="absolute top-[1.063rem] left-[3.25rem]">Premi</b>
+      			<img class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain" alt="" />
     		</div>
-    		<div :class="$style.sfondoBachecaParent">
-      			<div :class="$style.sfondoBacheca" />
-      			<div :class="$style.oro">
-        				<div :class="$style.oroChild" />
-        				<img :class="$style.goldMedalIcon" alt="" />
-        				<b :class="$style.consigliRicevuti">100 consigli ricevuti</b>
+    		<div class="absolute top-[9.875rem] left-[0.688rem] w-[23.688rem] h-[53.688rem] text-center text-[0.938rem]">
+      			<div class="absolute top-[0rem] left-[0rem] shadow-[0px_0px_4px_4px_#662c00] bg-saddlebrown w-[23.688rem] h-[53.688rem]" />
+      			<div class="absolute top-[1.313rem] left-[1.875rem] rounded-num-4 w-[9.063rem] h-[11.5rem] overflow-hidden">
+        				<div class="absolute top-[0.563rem] left-[0.625rem] shadow-[0px_0px_4px_4px_#1a5e63] bg-goldenrod border-darkslategray border-solid border-[1px] box-border w-[7.813rem] h-[10.375rem]" />
+        				<img class="absolute top-[1.313rem] left-[1.938rem] [filter:drop-shadow(5.484486103057861px_5.484486103057861px_6.27px_rgba(0,_0,_0,_0.3))] w-[4.75rem] h-[6.344rem] object-contain" alt="" />
+        				<b class="absolute top-[8rem] left-[1.375rem] inline-block w-[6.313rem]">100 consigli ricevuti</b>
       			</div>
-      			<div :class="$style.bronzo">
-        				<div :class="$style.oroChild" />
-        				<img :class="$style.bronzeMedalIcon" alt="" />
-        				<b :class="$style.consigliRicevuti">25 consigli ricevuti</b>
+      			<div class="absolute top-[14.188rem] left-[1.875rem] rounded-num-4 w-[9.063rem] h-[11.5rem] overflow-hidden">
+        				<div class="absolute top-[0.563rem] left-[0.625rem] shadow-[0px_0px_4px_4px_#1a5e63] bg-goldenrod border-darkslategray border-solid border-[1px] box-border w-[7.813rem] h-[10.375rem]" />
+        				<img class="absolute top-[2.188rem] left-[2.438rem] [filter:drop-shadow(5.484486103057861px_5.484486103057861px_6.27px_rgba(0,_0,_0,_0.3))] w-[4.25rem] h-[5.65rem] object-contain" alt="" />
+        				<b class="absolute top-[8rem] left-[1.375rem] inline-block w-[6.313rem]">25 consigli ricevuti</b>
       			</div>
-      			<div :class="$style.argento">
-        				<div :class="$style.oroChild" />
-        				<b :class="$style.consigliRicevuti">50 consigli ricevuti</b>
-        				<img :class="$style.silverMedalIcon" alt="" />
+      			<div class="absolute top-[1.25rem] left-[12.75rem] rounded-num-4 w-[9.063rem] h-[11.5rem] overflow-hidden">
+        				<div class="absolute top-[0.563rem] left-[0.625rem] shadow-[0px_0px_4px_4px_#1a5e63] bg-goldenrod border-darkslategray border-solid border-[1px] box-border w-[7.813rem] h-[10.375rem]" />
+        				<b class="absolute top-[8rem] left-[1.375rem] inline-block w-[6.313rem]">50 consigli ricevuti</b>
+        				<img class="absolute top-[2rem] left-[2.375rem] [filter:drop-shadow(5.484486103057861px_5.484486103057861px_6.27px_rgba(0,_0,_0,_0.3))] w-[4.313rem] h-[6rem] object-contain" alt="" />
       			</div>
-      			<div :class="$style.bronzodonati">
-        				<div :class="$style.oroChild" />
-        				<b :class="$style.consigliRicevuti">25 consigli donati</b>
-        				<img :class="$style.award4Icon" alt="" />
+      			<div class="absolute top-[40rem] left-[1.875rem] rounded-num-4 w-[9.063rem] h-[11.5rem] overflow-hidden">
+        				<div class="absolute top-[0.563rem] left-[0.625rem] shadow-[0px_0px_4px_4px_#1a5e63] bg-goldenrod border-darkslategray border-solid border-[1px] box-border w-[7.813rem] h-[10.375rem]" />
+        				<b class="absolute top-[8rem] left-[1.375rem] inline-block w-[6.313rem]">25 consigli donati</b>
+        				<img class="absolute top-[3.125rem] left-[1.438rem] [filter:drop-shadow(5.484486103057861px_5.484486103057861px_6.27px_rgba(0,_0,_0,_0.3))] w-[6.25rem] h-[3.075rem] object-contain" alt="" />
       			</div>
-      			<div :class="$style.oroDonati">
-        				<div :class="$style.oroChild" />
-        				<b :class="$style.consigliRicevuti">100 consigli donati</b>
-        				<img :class="$style.trophyCupIcon" alt="" />
+      			<div class="absolute top-[27.063rem] left-[1.875rem] rounded-num-4 w-[9.063rem] h-[11.5rem] overflow-hidden">
+        				<div class="absolute top-[0.563rem] left-[0.625rem] shadow-[0px_0px_4px_4px_#1a5e63] bg-goldenrod border-darkslategray border-solid border-[1px] box-border w-[7.813rem] h-[10.375rem]" />
+        				<b class="absolute top-[8rem] left-[1.375rem] inline-block w-[6.313rem]">100 consigli donati</b>
+        				<img class="absolute top-[0.563rem] left-[2.188rem] [filter:drop-shadow(5.484486103057861px_5.484486103057861px_6.27px_rgba(0,_0,_0,_0.3))] w-[4.688rem] h-[7.013rem]" alt="" />
       			</div>
-      			<div :class="$style.oroDonati2">
-        				<div :class="$style.oroChild" />
-        				<b :class="$style.consigliRicevuti">50 consigli donati</b>
-        				<img :class="$style.award5Icon" alt="" />
+      			<div class="absolute top-[27.063rem] left-[12.813rem] rounded-num-4 w-[9.063rem] h-[11.5rem] overflow-hidden">
+        				<div class="absolute top-[0.563rem] left-[0.625rem] shadow-[0px_0px_4px_4px_#1a5e63] bg-goldenrod border-darkslategray border-solid border-[1px] box-border w-[7.813rem] h-[10.375rem]" />
+        				<b class="absolute top-[8rem] left-[1.375rem] inline-block w-[6.313rem]">50 consigli donati</b>
+        				<img class="absolute top-[3rem] left-[1.438rem] [filter:drop-shadow(5.484486103057861px_5.484486103057861px_6.27px_rgba(0,_0,_0,_0.3))] w-[6.25rem] h-[3.075rem] object-contain" alt="" />
       			</div>
     		</div>
-    		<div :class="$style.notchHeight" />
+    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
   	</div>
 </template>
-<style  module>.gamification {
-  	width: 100%;
-  	height: 1094px;
-  	position: relative;
-  	background-color: #faf9f6;
-  	overflow: hidden;
-  	text-align: left;
-  	font-size: 40px;
-  	color: #000;
-  	font-family: Urbanist;
-}
-  	.titoloPagina {
-    		position: absolute;
-    		top: 54px;
-    		left: 0px;
-    		border-bottom: 1px solid #000;
-    		box-sizing: border-box;
-    		width: 402px;
-    		height: 81px;
-    		overflow: hidden;
-  	}
-  	.premi {
-    		position: absolute;
-    		top: 17px;
-    		left: 52px;
-  	}
-  	.keyboardArrowRightIcon {
-    		position: absolute;
-    		top: 31px;
-    		left: 14px;
-    		width: 30px;
-    		height: 30px;
-    		object-fit: contain;
-  	}
-  	.sfondoBachecaParent {
-    		position: absolute;
-    		top: 158px;
-    		left: 11px;
-    		width: 379px;
-    		height: 859px;
-    		text-align: center;
-    		font-size: 15px;
-  	}
-  	.sfondoBacheca {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		box-shadow: 0px 0px 4px 4px #662c00;
-    		background-color: #9c621b;
-    		width: 379px;
-    		height: 859px;
-  	}
-  	.oro {
-    		position: absolute;
-    		top: 21px;
-    		left: 30px;
-    		border-radius: 4px;
-    		width: 145px;
-    		height: 184px;
-    		overflow: hidden;
-  	}
-  	.oroChild {
-    		position: absolute;
-    		top: 9px;
-    		left: 10px;
-    		box-shadow: 0px 0px 4px 4px #1a5e63;
-    		background-color: rgba(242, 201, 76, 0.8);
-    		border: 1px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 125px;
-    		height: 166px;
-  	}
-  	.goldMedalIcon {
-    		position: absolute;
-    		top: 21px;
-    		left: 31px;
-    		filter: drop-shadow(5.484486103057861px 5.484486103057861px 6.27px rgba(0, 0, 0, 0.3));
-    		width: 76px;
-    		height: 101.5px;
-    		object-fit: contain;
-  	}
-  	.consigliRicevuti {
-    		position: absolute;
-    		top: 128px;
-    		left: 22px;
-    		display: inline-block;
-    		width: 101px;
-  	}
-  	.bronzo {
-    		position: absolute;
-    		top: 227px;
-    		left: 30px;
-    		border-radius: 4px;
-    		width: 145px;
-    		height: 184px;
-    		overflow: hidden;
-  	}
-  	.bronzeMedalIcon {
-    		position: absolute;
-    		top: 35px;
-    		left: 39px;
-    		filter: drop-shadow(5.484486103057861px 5.484486103057861px 6.27px rgba(0, 0, 0, 0.3));
-    		width: 68px;
-    		height: 90.4px;
-    		object-fit: contain;
-  	}
-  	.argento {
-    		position: absolute;
-    		top: 20px;
-    		left: 204px;
-    		border-radius: 4px;
-    		width: 145px;
-    		height: 184px;
-    		overflow: hidden;
-  	}
-  	.silverMedalIcon {
-    		position: absolute;
-    		top: 32px;
-    		left: 38px;
-    		filter: drop-shadow(5.484486103057861px 5.484486103057861px 6.27px rgba(0, 0, 0, 0.3));
-    		width: 69px;
-    		height: 96px;
-    		object-fit: contain;
-  	}
-  	.bronzodonati {
-    		position: absolute;
-    		top: 640px;
-    		left: 30px;
-    		border-radius: 4px;
-    		width: 145px;
-    		height: 184px;
-    		overflow: hidden;
-  	}
-  	.award4Icon {
-    		position: absolute;
-    		top: 50px;
-    		left: 23px;
-    		filter: drop-shadow(5.484486103057861px 5.484486103057861px 6.27px rgba(0, 0, 0, 0.3));
-    		width: 100px;
-    		height: 49.2px;
-    		object-fit: contain;
-  	}
-  	.oroDonati {
-    		position: absolute;
-    		top: 433px;
-    		left: 30px;
-    		border-radius: 4px;
-    		width: 145px;
-    		height: 184px;
-    		overflow: hidden;
-  	}
-  	.trophyCupIcon {
-    		position: absolute;
-    		top: 9px;
-    		left: 35px;
-    		filter: drop-shadow(5.484486103057861px 5.484486103057861px 6.27px rgba(0, 0, 0, 0.3));
-    		width: 75px;
-    		height: 112.2px;
-  	}
-  	.oroDonati2 {
-    		position: absolute;
-    		top: 433px;
-    		left: 205px;
-    		border-radius: 4px;
-    		width: 145px;
-    		height: 184px;
-    		overflow: hidden;
-  	}
-  	.award5Icon {
-    		position: absolute;
-    		top: 48px;
-    		left: 23px;
-    		filter: drop-shadow(5.484486103057861px 5.484486103057861px 6.27px rgba(0, 0, 0, 0.3));
-    		width: 100px;
-    		height: 49.2px;
-    		object-fit: contain;
-  	}
-  	.notchHeight {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		width: 402px;
-    		height: 54px;
-    		overflow: hidden;
-  	}
-
-</style>

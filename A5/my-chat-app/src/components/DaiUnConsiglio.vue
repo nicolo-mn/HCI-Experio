@@ -1,202 +1,43 @@
-<template>
-  	<div :class="$style.daiunconsiglio">
-    		<div :class="$style.notchHeight" />
-    		<div :class="$style.titoloPagina">
-      			<b :class="$style.consigliaAPaola">Consiglia a Paola</b>
-      			<img :class="$style.keyboardArrowRightIcon" alt="" />
-    		</div>
-    		<div :class="$style.titolo">
-      			<div :class="$style.titoloChild" />
-      			<b :class="$style.titolo2">Titolo</b>
-    		</div>
-    		<div :class="$style.descrizione">
-      			<div :class="$style.descrizioneChild" />
-      			<b :class="$style.descrizione2">Descrizione</b>
-    		</div>
-    		<div :class="$style.immagine">
-      			<div :class="$style.immagineChild" />
-      			<b :class="$style.aggiungiImmagini">Aggiungi Immagini</b>
-      			<img :class="$style.imageIcon" alt="" />
-    		</div>
-    		<div :class="$style.pubblica">
-      			<div :class="$style.pubblicaChild" @click="onRectangleClick" />
-      			<b :class="$style.pubblica2">Pubblica</b>
-    		</div>
-  	</div>
-</template>
 <script setup lang="ts">
-  	
+  	import { useRouter } from 'vue-router'
+    import arrowLeft from '../assets/icons-all/arrow-left.svg'
+
+    const router = useRouter()
   	
   	function onRectangleClick() {
-    		// Add your code here
-  	}</script>
-<style  module>.daiunconsiglio {
-  	width: 100%;
-  	height: 874px;
-  	position: relative;
-  	background-color: #faf9f6;
-  	overflow: hidden;
-  	text-align: left;
-  	font-size: 14px;
-  	color: #565656;
-  	font-family: Urbanist;
-}
-  	.notchHeight {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		width: 402px;
-    		height: 54px;
-    		overflow: hidden;
-  	}
-  	.titoloPagina {
-    		position: absolute;
-    		top: 54px;
-    		left: 0px;
-    		width: 402px;
-    		height: 81px;
-    		overflow: hidden;
-    		font-size: 40px;
-    		color: #000;
-  	}
-  	.consigliaAPaola {
-    		position: absolute;
-    		top: 17px;
-    		left: 52px;
-  	}
-  	.keyboardArrowRightIcon {
-    		position: absolute;
-    		top: 31px;
-    		left: 14px;
-    		width: 30px;
-    		height: 30px;
-    		object-fit: contain;
-  	}
-  	.titolo {
-    		position: absolute;
-    		top: 182px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-  	}
-  	.titoloChild {
-    		position: absolute;
-    		height: 100%;
-    		width: 100%;
-    		top: 0%;
-    		right: 0%;
-    		bottom: 0%;
-    		left: 0%;
-    		border-radius: 5px;
-    		background-color: #fff;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-  	}
-  	.titolo2 {
-    		position: absolute;
-    		height: 31.25%;
-    		width: 81.85%;
-    		top: 34.38%;
-    		left: 5.94%;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-  	}
-  	.descrizione {
-    		position: absolute;
-    		top: 261px;
-    		left: 49px;
-    		width: 303px;
-    		height: 158px;
-  	}
-  	.descrizioneChild {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		border-radius: 5px;
-    		background-color: #fff;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 303px;
-    		height: 158px;
-  	}
-  	.descrizione2 {
-    		position: absolute;
-    		top: 14px;
-    		left: 17px;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-    		width: 248px;
-    		height: 20px;
-  	}
-  	.immagine {
-    		position: absolute;
-    		top: 437px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-  	}
-  	.immagineChild {
-    		position: absolute;
-    		top: 0px;
-    		left: 0px;
-    		border-radius: 5px;
-    		background-color: #fff;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 303px;
-    		height: 64px;
-  	}
-  	.aggiungiImmagini {
-    		position: absolute;
-    		top: 22px;
-    		left: 18px;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-    		width: 248px;
-    		height: 20px;
-  	}
-  	.imageIcon {
-    		position: absolute;
-    		top: 18px;
-    		left: 254px;
-    		width: 24px;
-    		height: 24px;
-  	}
-  	.pubblica {
-    		position: absolute;
-    		top: 762px;
-    		left: 49px;
-    		width: 303px;
-    		height: 64px;
-    		text-align: center;
-    		font-size: 18px;
-    		color: #fff;
-  	}
-  	.pubblicaChild {
-    		position: absolute;
-    		top: 0px;
-    		left: 71px;
-    		box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
-    		border-radius: 5px;
-    		background-color: #1a5e63;
-    		border: 2px solid #1a5e63;
-    		box-sizing: border-box;
-    		width: 161px;
-    		height: 64px;
-    		cursor: pointer;
-  	}
-  	.pubblica2 {
-    		position: absolute;
-    		top: 22px;
-    		left: 111px;
-    		letter-spacing: 0.1px;
-    		line-height: 20px;
-    		display: inline-block;
-    		width: 81px;
-    		height: 20px;
+    		router.push('/home')
   	}
 
-</style>
+    function onBackClick() {
+        router.back()
+    }
+</script>
+
+<template>
+  	<div class="w-full min-h-screen bg-whitesmoke overflow-y-auto">
+        <div class="w-1/3 min-w-[25.125rem] mx-auto h-[54.625rem] relative bg-whitesmoke text-left text-[0.875rem] text-dimgray font-urbanist shadow-2xl">
+    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
+    		<div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem] text-black">
+      			<b class="absolute top-[1.063rem] left-[3.25rem]">Consiglia a Paola</b>
+      			<img :src="arrowLeft" class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Back" @click="onBackClick" />
+    		</div>
+    		<div class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
+      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border" />
+      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-[0.1px] leading-[1.25rem] inline-block">Titolo</b>
+    		</div>
+    		<div class="absolute top-[16.313rem] left-[3.063rem] w-[18.938rem] h-[9.875rem]">
+      			<div class="absolute top-[0rem] left-[0rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border w-[18.938rem] h-[9.875rem]" />
+      			<b class="absolute top-[0.875rem] left-[1.063rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[15.5rem] h-[1.25rem]">Descrizione</b>
+    		</div>
+    		<div class="absolute top-[27.313rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
+      			<div class="absolute top-[0rem] left-[0rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border w-[18.938rem] h-[4rem]" />
+      			<b class="absolute top-[1.375rem] left-[1.125rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[15.5rem] h-[1.25rem]">Aggiungi Immagini</b>
+      			<img class="absolute top-[1.125rem] left-[15.875rem] w-[1.5rem] h-[1.5rem]" alt="" />
+    		</div>
+    		<div class="absolute top-[47.625rem] left-[3.063rem] w-[18.938rem] h-[4rem] text-center text-[1.125rem] text-white">
+      			<div class="absolute top-[0rem] left-[4.438rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
+      			<b class="absolute top-[1.375rem] left-[6.938rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Pubblica</b>
+    		</div>
+        </div>
+  	</div>
+</template>

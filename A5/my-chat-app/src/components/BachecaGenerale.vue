@@ -1,220 +1,92 @@
+<script setup>
+import { useRouter } from 'vue-router'
+import houseIcon from '../assets/icons-all/house.svg'
+import planeIcon from '../assets/icons-all/plane.svg'
+import personIcon from '../assets/icons-all/person-fill.svg'
+import arrowLeft from '../assets/icons-all/arrow-left.svg'
+
+const router = useRouter()
+
+function onBackClick() {
+    router.back()
+}
+
+function goToHome() {
+    router.push('/home')
+}
+
+function goToTrips() {
+    router.push('/tutti-viaggi')
+}
+
+function goToProfile() {
+    router.push('/profilo')
+}
+</script>
+
 <template>
-  	<div :class="$style.bachecaGenerale">
-    		<div :class="$style.bachecaGeneraleChild" />
-    		<div :class="$style.notchHeight" />
-    		<div :class="$style.bachecaParent">
-      			<b :class="$style.bacheca">Bacheca</b>
-      			<img :class="$style.keyboardArrowRightIcon" alt="" />
-    		</div>
-    		<div :class="$style.post">
-      			<div :class="$style.postChild" />
-      			<div :class="$style.karlsruheCastle">Karlsruhe Castle</div>
-      			<div :class="$style.karlsruhe">Karlsruhe</div>
-      			<img :class="$style.image4Icon" alt="" />
-      			<img :class="$style.image3Icon" alt="" />
-      			<div :class="$style.marco">@Marco</div>
-    		</div>
-    		<div :class="$style.post2">
-      			<div :class="$style.postChild" />
-      			<div :class="$style.karlsruheCastle">Karlsruhe Castle</div>
-      			<div :class="$style.karlsruhe">Karlsruhe</div>
-      			<img :class="$style.image4Icon" alt="" />
-      			<img :class="$style.image3Icon" alt="" />
-      			<div :class="$style.marco">@Paola</div>
-    		</div>
-    		<div :class="$style.post3">
-      			<div :class="$style.postChild" />
-      			<div :class="$style.duomoDiMilano">Duomo di<br/> Milano</div>
-        				<div :class="$style.karlsruhe">Milan</div>
-        				<img :class="$style.image4Icon" alt="" />
-        				<div :class="$style.marco">@Giovanni</div>
-        				<img :class="$style.image3Icon" alt="" />
-      			</div>
-      			<div :class="$style.post4">
-        				<div :class="$style.postChild" />
-        				<div :class="$style.galleriaVittorioEmanuele">Galleria Vittorio<br/> Emanuele II</div>
-          					<div :class="$style.karlsruhe">Milan</div>
-          					<img :class="$style.image4Icon" alt="" />
-          					<div :class="$style.marco">@Ludovica</div>
-          					<img :class="$style.image3Icon" alt="" />
-        				</div>
-        				<div :class="$style.post5">
-          					<div :class="$style.postChild" />
-          					<div :class="$style.muroDiBerlino">Muro di Berlino</div>
-          					<div :class="$style.karlsruhe">Germany</div>
-          					<img :class="$style.image4Icon" alt="" />
-          					<img :class="$style.image3Icon" alt="" />
-          					<div :class="$style.marco">@Ernst</div>
-        				</div>
-        				<img :class="$style.navbarIcon" alt="" />
-      			</div>
-      			</template>
-      			<style  module>.bachecaGenerale {
-        				width: 100%;
-        				height: 874px;
-        				position: relative;
-        				background-color: #faf9f6;
-        				overflow-y: auto;
-        				text-align: center;
-        				font-size: 15px;
-        				color: #000;
-        				font-family: Urbanist;
-      			}
-        				.bachecaGeneraleChild {
-          					position: absolute;
-          					top: 121px;
-          					left: 12px;
-          					background-color: #9c621b;
-          					border: 7px solid #662c00;
-          					box-sizing: border-box;
-          					width: 378px;
-          					height: 721px;
-        				}
-        				.notchHeight {
-          					position: absolute;
-          					top: 0px;
-          					left: 0px;
-          					width: 402px;
-          					height: 54px;
-          					overflow: hidden;
-        				}
-        				.bachecaParent {
-          					position: absolute;
-          					top: 54px;
-          					right: 0px;
-          					width: 402px;
-          					height: 63px;
-          					overflow: hidden;
-          					font-size: 40px;
-        				}
-        				.bacheca {
-          					position: absolute;
-          					top: 6px;
-          					left: 41px;
-          					flex-shrink: 0;
-        				}
-        				.keyboardArrowRightIcon {
-          					position: absolute;
-          					top: 17px;
-          					left: 11px;
-          					width: 30px;
-          					height: 30px;
-          					object-fit: contain;
-          					flex-shrink: 0;
-        				}
-        				.post {
-          					position: absolute;
-          					top: 144px;
-          					left: 216px;
-          					width: 158px;
-          					height: 210px;
-        				}
-        				.postChild {
-          					position: absolute;
-          					top: 0px;
-          					left: 0px;
-          					box-shadow: 0px 0px 4px 4px #662c00;
-          					border-radius: 10px;
-          					background-color: rgba(242, 201, 76, 0.8);
-          					width: 158px;
-          					height: 210px;
-        				}
-        				.karlsruheCastle {
-          					position: absolute;
-          					top: 149px;
-          					left: 6px;
-          					font-size: 20px;
-          					font-weight: 600;
-        				}
-        				.karlsruhe {
-          					position: absolute;
-          					top: 117px;
-          					left: 43px;
-          					display: inline-block;
-          					width: 79px;
-          					height: 14px;
-        				}
-        				.image4Icon {
-          					position: absolute;
-          					top: 111px;
-          					left: 33px;
-          					width: 20px;
-          					height: 20px;
-          					object-fit: cover;
-        				}
-        				.image3Icon {
-          					position: absolute;
-          					top: 13px;
-          					left: 11px;
-          					border-radius: 4.2px;
-          					width: 136px;
-          					height: 85px;
-          					object-fit: cover;
-        				}
-        				.marco {
-          					position: absolute;
-          					top: 192px;
-          					left: 40px;
-          					text-decoration: underline;
-          					display: inline-block;
-          					width: 77.3px;
-        				}
-        				.post2 {
-          					position: absolute;
-          					top: 144px;
-          					left: 27px;
-          					width: 158px;
-          					height: 210px;
-        				}
-        				.post3 {
-          					position: absolute;
-          					top: 379px;
-          					left: 216px;
-          					width: 158px;
-          					height: 210px;
-        				}
-        				.duomoDiMilano {
-          					position: absolute;
-          					top: 143px;
-          					left: 36px;
-          					font-size: 20px;
-          					font-weight: 600;
-        				}
-        				.post4 {
-          					position: absolute;
-          					top: 379px;
-          					left: 27px;
-          					width: 158px;
-          					height: 210px;
-        				}
-        				.galleriaVittorioEmanuele {
-          					position: absolute;
-          					top: 144px;
-          					left: 8px;
-          					font-size: 20px;
-          					font-weight: 600;
-        				}
-        				.post5 {
-          					position: absolute;
-          					top: 614px;
-          					left: 27px;
-          					width: 158px;
-          					height: 210px;
-        				}
-        				.muroDiBerlino {
-          					position: absolute;
-          					top: 149px;
-          					left: 11px;
-          					font-size: 20px;
-          					font-weight: 600;
-        				}
-        				.navbarIcon {
-          					position: absolute;
-          					top: 806px;
-          					left: 0px;
-          					width: 402px;
-          					height: 67px;
-        				}
-      			
-      			</style>
-                
+  <div class="w-full min-h-screen bg-whitesmoke overflow-y-auto">
+    <div class="w-1/3 min-w-[25.125rem] mx-auto h-[54.625rem] relative bg-whitesmoke text-center text-[0.938rem] text-black font-urbanist shadow-2xl">
+      <div class="absolute top-[7.563rem] left-[0.75rem] bg-saddlebrown-100 border-saddlebrown-200 border-solid border-[7px] box-border w-[23.625rem] h-[45.063rem]" />
+      <div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
+      <div class="absolute top-[3.375rem] right-[0rem] w-[25.125rem] h-[3.938rem] overflow-hidden text-[2.5rem]">
+        <b class="absolute top-[0.375rem] left-[2.563rem] shrink-0">Bacheca</b>
+        <img :src="arrowLeft" class="absolute top-[1.063rem] left-[0.688rem] w-[1.875rem] h-[1.875rem] object-contain shrink-0 cursor-pointer" alt="Back" @click="onBackClick" />
+      </div>
+      <div class="absolute top-[9rem] left-[13.5rem] w-[9.875rem] h-[13.125rem]">
+        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_0px_4px_4px_#662c00] rounded-num-10 bg-goldenrod w-[9.875rem] h-[13.125rem]" />
+        <div class="absolute top-[9.313rem] left-[0.375rem] text-[1.25rem] font-semibold">Karlsruhe Castle</div>
+        <div class="absolute top-[7.313rem] left-[2.688rem] inline-block w-[4.938rem] h-[0.875rem]">Karlsruhe</div>
+        <img class="absolute top-[6.938rem] left-[2.063rem] w-[1.25rem] h-[1.25rem] object-cover" alt="" />
+        <img class="absolute top-[0.813rem] left-[0.688rem] rounded-num-4_2 w-[8.5rem] h-[5.313rem] object-cover" alt="" />
+        <div class="absolute top-[12rem] left-[2.5rem] [text-decoration:underline] inline-block w-[4.831rem]">@Marco</div>
+      </div>
+      <div class="absolute top-[9rem] left-[1.688rem] w-[9.875rem] h-[13.125rem]">
+        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_0px_4px_4px_#662c00] rounded-num-10 bg-goldenrod w-[9.875rem] h-[13.125rem]" />
+        <div class="absolute top-[9.313rem] left-[0.375rem] text-[1.25rem] font-semibold">Karlsruhe Castle</div>
+        <div class="absolute top-[7.313rem] left-[2.688rem] inline-block w-[4.938rem] h-[0.875rem]">Karlsruhe</div>
+        <img class="absolute top-[6.938rem] left-[2.063rem] w-[1.25rem] h-[1.25rem] object-cover" alt="" />
+        <img class="absolute top-[0.813rem] left-[0.688rem] rounded-num-4_2 w-[8.5rem] h-[5.313rem] object-cover" alt="" />
+        <div class="absolute top-[12rem] left-[2.5rem] [text-decoration:underline] inline-block w-[4.831rem]">@Paola</div>
+      </div>
+      <div class="absolute top-[23.688rem] left-[13.5rem] w-[9.875rem] h-[13.125rem]">
+        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_0px_4px_4px_#662c00] rounded-num-10 bg-goldenrod w-[9.875rem] h-[13.125rem]" />
+        <div class="absolute top-[8.938rem] left-[2.25rem] text-[1.25rem] font-semibold">Duomo di<br/> Milano</div>
+        <div class="absolute top-[7.313rem] left-[2.688rem] inline-block w-[4.938rem] h-[0.875rem]">Milan</div>
+        <img class="absolute top-[6.938rem] left-[2.063rem] w-[1.25rem] h-[1.25rem] object-cover" alt="" />
+        <div class="absolute top-[12rem] left-[2.5rem] [text-decoration:underline] inline-block w-[4.831rem]">@Giovanni</div>
+        <img class="absolute top-[0.813rem] left-[0.688rem] rounded-num-4_2 w-[8.5rem] h-[5.313rem] object-cover" alt="" />
+      </div>
+      <div class="absolute top-[23.688rem] left-[1.688rem] w-[9.875rem] h-[13.125rem]">
+        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_0px_4px_4px_#662c00] rounded-num-10 bg-goldenrod w-[9.875rem] h-[13.125rem]" />
+        <div class="absolute top-[9rem] left-[0.5rem] text-[1.25rem] font-semibold">Galleria Vittorio<br/> Emanuele II</div>
+        <div class="absolute top-[7.313rem] left-[2.688rem] inline-block w-[4.938rem] h-[0.875rem]">Milan</div>
+        <img class="absolute top-[6.938rem] left-[2.063rem] w-[1.25rem] h-[1.25rem] object-cover" alt="" />
+        <div class="absolute top-[12rem] left-[2.5rem] [text-decoration:underline] inline-block w-[4.831rem]">@Ludovica</div>
+        <img class="absolute top-[0.813rem] left-[0.688rem] rounded-num-4_2 w-[8.5rem] h-[5.313rem] object-cover" alt="" />
+      </div>
+      <div class="absolute top-[38.375rem] left-[1.688rem] w-[9.875rem] h-[13.125rem]">
+        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_0px_4px_4px_#662c00] rounded-num-10 bg-goldenrod w-[9.875rem] h-[13.125rem]" />
+        <div class="absolute top-[9.313rem] left-[0.688rem] text-[1.25rem] font-semibold">Muro di Berlino</div>
+        <div class="absolute top-[7.313rem] left-[2.688rem] inline-block w-[4.938rem] h-[0.875rem]">Germany</div>
+        <img class="absolute top-[6.938rem] left-[2.063rem] w-[1.25rem] h-[1.25rem] object-cover" alt="" />
+        <img class="absolute top-[0.813rem] left-[0.688rem] rounded-num-4_2 w-[8.5rem] h-[5.313rem] object-cover" alt="" />
+        <div class="absolute top-[12rem] left-[2.5rem] [text-decoration:underline] inline-block w-[4.831rem]">@Ernst</div>
+      </div>
+      <img class="absolute top-[50.375rem] left-[0rem] w-[25.125rem] h-[4.188rem]" alt="" />
+      
+      <!-- Fixed Navbar -->
+      <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-1/3 min-w-[25.125rem] h-[4.188rem] bg-darkslategray border-t border-gray-300 flex justify-around items-center z-50">
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToHome">
+          <img :src="houseIcon" alt="Home" class="w-full h-full object-contain filter brightness-0 invert" />
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToTrips">
+          <img :src="planeIcon" alt="Plane" class="w-full h-full object-contain filter brightness-0 invert" />
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToProfile">
+          <img :src="personIcon" alt="Profile" class="w-full h-full object-contain filter brightness-0 invert" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
