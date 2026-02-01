@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-const STORE_KEY = 'hci_app_store_v1'
+const STORE_KEY = 'hci_app_store_v4'
 
 // Initial seed data
 const SEED_DATA = {
@@ -89,6 +89,32 @@ const SEED_DATA = {
             departure: '2024-03-20',
             user: 'Ludovica'
         }
+    ],
+    messages: [
+        {
+            id: 1,
+            text: 'Ciao, quanto tempo ci vuole\nper visitare tutto?',
+            sender: 'Paola',
+            receiver: 'Giovanni',
+            isMine: false,
+            timestamp: Date.now() - 100000
+        },
+        {
+            id: 2,
+            text: 'Circa 2 ore! Secondo me è bellissimo la mattina',
+            sender: 'Paola',
+            receiver: 'Giovanni',
+            isMine: false,
+            timestamp: Date.now() - 50000
+        },
+        {
+            id: 3,
+            text: 'Grazie mille!',
+            sender: 'Giovanni',
+            receiver: 'Paola',
+            isMine: true,
+            timestamp: Date.now()
+        }
     ]
 }
 
@@ -99,6 +125,9 @@ export const store = reactive({
         currentUser: null,
         advices: [],
         trips: [],
+        advices: [],
+        trips: [],
+        messages: [],
         currentNotification: null
     },
 
@@ -110,7 +139,9 @@ export const store = reactive({
                 this.state.users = parsed.users || []
                 this.state.currentUser = parsed.currentUser || null
                 this.state.advices = parsed.advices || []
+                this.state.advices = parsed.advices || []
                 this.state.trips = parsed.trips || []
+                this.state.messages = parsed.messages || []
             } catch (e) {
                 console.error('Failed to parse store data', e)
                 this.seed()
@@ -120,15 +151,17 @@ export const store = reactive({
         }
 
         // Auto-login Paola if no user is logged in (optional, for testing)
-        // if (!this.state.currentUser) {
-        //    this.login('Paola')
-        // }
+        if (!this.state.currentUser) {
+            this.login('Giovanni')
+        }
     },
 
     seed() {
         this.state.users = [...SEED_DATA.users]
         this.state.advices = [...SEED_DATA.advices]
+        this.state.advices = [...SEED_DATA.advices]
         this.state.trips = [...SEED_DATA.trips]
+        this.state.messages = [...SEED_DATA.messages]
         // Default no current user on first seed, or we can default to Paola
         // this.state.currentUser = this.state.users[0]
         this.save()
@@ -294,5 +327,45 @@ export const store = reactive({
         // Case insensitive match
         const loc = location.toLowerCase()
         return this.state.advices.filter(a => a.location.toLowerCase() === loc)
+    },
+
+    // Message Methods
+    sendMessage(text, receiver) {
+        if (!this.state.currentUser) throw new Error('Must be logged in')
+
+        const newMessage = {
+            id: Date.now(),
+            text: text,
+            sender: this.state.currentUser.username,
+            receiver: receiver,
+            timestamp: Date.now()
+        }
+
+        this.state.messages.push(newMessage)
+        this.save()
+        return newMessage
+    },
+
+    getMessages(otherUser) {
+        if (!this.state.currentUser) return []
+        const myName = this.state.currentUser.username
+
+        return this.state.messages.filter(m =>
+            (m.sender === myName && m.receiver === otherUser) ||
+            (m.sender === otherUser && m.receiver === myName)
+        ).sort((a, b) => a.timestamp - b.timestamp)
+    },
+
+    getChatUsers() {
+        if (!this.state.currentUser) return []
+        const myName = this.state.currentUser.username
+        const chatUsers = new Set()
+
+        this.state.messages.forEach(m => {
+            if (m.sender === myName) chatUsers.add(m.receiver)
+            if (m.receiver === myName) chatUsers.add(m.sender)
+        })
+
+        return Array.from(chatUsers)
     }
 })

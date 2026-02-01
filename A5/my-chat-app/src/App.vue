@@ -3,6 +3,9 @@ import { computed } from 'vue'
 import { store } from './services/store'
 
 const notification = computed(() => store.state.currentNotification)
+
+// Initialize store to load data from localStorage
+store.init()
 </script>
 
 <template>

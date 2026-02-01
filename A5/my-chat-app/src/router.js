@@ -33,7 +33,7 @@ const routes = [
     { path: '/nuovo-viaggio', component: NuovoViaggio },
     { path: '/gamification', component: Gamification },
     { path: '/notifiche', component: Notifiche },
-    { path: '/chat', component: Chat },
+    { path: '/chat/:username', component: Chat },
 ]
 
 const router = createRouter({
