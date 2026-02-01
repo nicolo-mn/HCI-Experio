@@ -26,6 +26,10 @@ function goToTrips() {
 function goToProfile() {
     router.push('/profilo')
 }
+
+function goToChat() {
+    router.push('/chat')
+}
 </script>
 
 <template>
@@ -41,14 +45,14 @@ function goToProfile() {
       <!-- Content -->
       <div class="flex-1 overflow-y-auto w-full pb-[5rem]">
           <!-- Chat Item: Paola -->
-          <div class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" @click="onPersonaContainerClick">
+          <div class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" @click="goToChat">
              <div class="absolute top-1/2 -translate-y-1/2 left-[4.5rem] font-medium text-[1.125rem]">Paola</div>
              <div class="absolute top-1/2 -translate-y-1/2 left-[1rem] rounded-full bg-gainsboro w-[2.5rem] h-[2.5rem]" />
              <div class="absolute top-1/2 -translate-y-1/2 right-[1rem] w-[1rem] h-[1rem] bg-gray-300 rounded-full" /> 
           </div>
 
           <!-- Chat Item: Marco -->
-          <div class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative hover:bg-black/5 transition-colors">
+          <div class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" @click="goToChat">
             <div class="absolute top-1/2 -translate-y-1/2 left-[4.5rem] font-medium text-[1.125rem]">Marco</div>
             <div class="absolute top-1/2 -translate-y-1/2 left-[1rem] rounded-full bg-gainsboro w-[2.5rem] h-[2.5rem]" />
              <div class="absolute top-1/2 -translate-y-1/2 right-[1rem] w-[1rem] h-[1rem] bg-gray-300 rounded-full" />

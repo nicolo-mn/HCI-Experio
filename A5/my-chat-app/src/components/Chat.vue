@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
+import sendIcon from '../assets/icons-all/send.svg'
 
 const router = useRouter()
 
@@ -48,14 +49,18 @@ function onBackClick() {
         </div>
       </div>
       
-      </div>
+
       
       <!-- Input Area (Fixed at bottom of flex container) -->
       <div class="shrink-0 w-full px-4 pb-8 pt-2 bg-whitesmoke">
-         <div class="relative w-full h-[3.125rem]">
-             <div class="absolute top-[0rem] left-[0rem] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] rounded-[10px] bg-white border-darkslategray border-solid border-[3px] box-border w-[calc(100%-3.5rem)] h-[3.125rem]" />
-             <div class="absolute top-[0.8rem] left-[1rem] text-[1.25rem]">Scrivi un messaggio...</div>
-             <div class="absolute top-[0rem] right-[0rem] rounded-[50%] bg-darkslategray w-[3.125rem] h-[3.125rem]" />
+         <div class="relative w-full flex items-end gap-2">
+             <textarea 
+                class="shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] rounded-[10px] bg-white border-darkslategray border-solid border-[3px] box-border w-full h-[3.125rem] resize-none p-2 text-[1.25rem] font-urbanist focus:outline-none"
+                placeholder="Scrivi un messaggio..."></textarea>
+             
+             <button class="shrink-0 flex items-center justify-center rounded-[50%] bg-darkslategray w-[3.125rem] h-[3.125rem] cursor-pointer hover:opacity-90 transition-opacity">
+                <img :src="sendIcon" alt="Send" class="w-6 h-6 object-contain filter brightness-0 invert" />
+             </button>
          </div>
       </div>
 

@@ -9,9 +9,11 @@ import ListaChat from './components/ListaChat.vue'
 import BachecaGenerale from './components/BachecaGenerale.vue'
 import BachecaViaggioSingolo from './components/BachecaViaggioSingolo.vue'
 import ConsigliDati from './components/ConsigliDati.vue'
+import Consiglio from './components/Consiglio.vue'
 import NuovoViaggio from './components/NuovoViaggio.vue'
 import Gamification from './components/Gamification.vue'
 import Notifiche from './components/Notifiche.vue'
+import Chat from './components/Chat.vue'
 
 const routes = [
     { path: '/', component: SignUp },
@@ -24,9 +26,11 @@ const routes = [
     { path: '/bacheca-generale', component: BachecaGenerale },
     { path: '/bacheca-viaggio-singolo', component: BachecaViaggioSingolo },
     { path: '/consigli-dati', component: ConsigliDati },
+    { path: '/consiglio', component: Consiglio },
     { path: '/nuovo-viaggio', component: NuovoViaggio },
     { path: '/gamification', component: Gamification },
     { path: '/notifiche', component: Notifiche },
+    { path: '/chat', component: Chat },
 ]
 
 const router = createRouter({

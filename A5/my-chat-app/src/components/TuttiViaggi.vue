@@ -22,9 +22,8 @@ const cities = [
 ]
 
 function onCityClick(path) {
-  if (path) {
-    router.push(path)
-  }
+  // Always navigate to BachecaViaggioSingolo for now, regardless of the specific path
+  router.push('/bacheca-viaggio-singolo')
 }
 
 function goToHome() {
