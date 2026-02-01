@@ -1,36 +1,99 @@
+<script setup>
+import { useRouter } from 'vue-router'
+import arrowLeft from '../assets/icons-all/arrow-left.svg'
+
+const router = useRouter()
+
+function goBack() {
+    router.back()
+}
+
+function onSave() {
+    // Logic to save can go here
+    console.log("Salva clicked")
+    router.back()
+}
+
+function onCancel() {
+    router.back()
+}
+</script>
+
 <template>
-  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[0.875rem] text-dimgray font-urbanist">
-    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
-    		<div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem] text-black">
-      			<b class="absolute top-[1.063rem] left-[4.313rem]">Nuovo Viaggio</b>
-    		</div>
-    		<div class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-num-0_1 leading-[1.25rem] inline-block">Luogo</b>
-    		</div>
-    		<div class="absolute top-[16.313rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<div class="absolute top-[0.75rem] left-[3.875rem] flex items-center justify-center p-[0.625rem] gap-[0.625rem]">
-        				<b class="relative tracking-num-0_1 leading-[1.25rem]">Arrivo</b>
-        				<img class="h-[1.25rem] w-[1.25rem] relative" alt="" />
-      			</div>
-      			<div class="absolute top-[0.75rem] left-[9.688rem] flex items-center justify-center p-[0.625rem] gap-[0.625rem]">
-        				<img class="h-[1.25rem] w-[1.25rem] relative" alt="" />
-        				<b class="relative tracking-num-0_1 leading-[1.25rem]">Partenza</b>
-      			</div>
-      			<div class="absolute top-[0rem] left-[9.438rem] border-darkslategray border-solid border-r-[2px] box-border w-[0.125rem] h-[4rem]" />
-    		</div>
-    		<div class="absolute top-[47.625rem] left-[0rem] w-[25.125rem] h-[4rem] text-center text-[1.125rem] text-white">
-      			<div class="absolute top-[0rem] left-[13.875rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-goldenrod border-goldenrod border-solid border-[2px] box-border w-[10.063rem] h-[4rem]" />
-      			<b class="absolute top-[1.375rem] left-[16.375rem] tracking-num-0_1 leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Cancella</b>
-      			<div class="absolute top-[0rem] left-[1.25rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
-      			<b class="absolute top-[1.375rem] left-[3.75rem] tracking-num-0_1 leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Salva</b>
-    		</div>
-  	</div>
+  <div class="w-full h-screen bg-whitesmoke flex flex-col items-center font-urbanist overflow-hidden">
+      
+      <!-- Main Content Container: 100% width on mobile, 1/3 on md+ screens -->
+      <div class="w-full md:w-1/3 flex flex-col h-full bg-whitesmoke relative shadow-2xl">
+          
+          <!-- Header -->
+          <div class="w-full shrink-0 flex items-center px-5 py-6 mt-4 z-10">
+               <!-- Back Arrow -->
+              <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-80 mr-4" @click="goBack">
+                  <img :src="arrowLeft" class="w-6 h-6 object-contain" alt="Back" />
+              </div>
+              <b class="text-[2.5rem] leading-none text-black">Nuovo Viaggio</b>
+          </div>
+
+          <!-- Form Area -->
+          <div class="flex-1 w-full flex flex-col gap-6 px-5 md:px-10 pt-8 overflow-y-auto">
+              
+              <!-- Luogo Field -->
+               <div class="flex flex-col gap-2">
+                  <label class="text-[1.25rem] font-bold text-black tracking-wide">Luogo</label>
+                  <input 
+                      type="text" 
+                      placeholder="Inserisci luogo"
+                      class="w-full p-4 rounded-[10px] border-2 border-[#1a5e63] bg-white text-lg focus:outline-none focus:ring-2 focus:ring-[#1a5e63]"
+                  />
+              </div>
+
+               <!-- Dates Row -->
+               <div class="flex items-center justify-between gap-4 mt-4">
+                   <!-- Arrivo -->
+                   <div class="flex flex-col gap-2 flex-1 min-w-0">
+                        <label class="text-lg font-bold text-black flex items-center gap-2">
+                            Arrivo
+                        </label>
+                        <input 
+                            type="date"
+                            class="w-full p-3 rounded-[10px] border-2 border-[#1a5e63] bg-white text-base focus:outline-none"
+                        />
+                   </div>
+
+                   <!-- Divider -->
+                   <div class="h-[3rem] w-[2px] bg-[#1a5e63] self-end mb-2 opacity-50 flex-shrink-0"></div>
+
+                    <!-- Partenza -->
+                   <div class="flex flex-col gap-2 flex-1 min-w-0">
+                        <label class="text-lg font-bold text-black flex items-center gap-2">
+                            Partenza
+                        </label>
+                        <input 
+                            type="date"
+                            class="w-full p-3 rounded-[10px] border-2 border-[#1a5e63] bg-white text-base focus:outline-none"
+                        />
+                   </div>
+               </div>
+
+          </div>
+
+          <!-- Footer Actions -->
+          <div class="w-full shrink-0 pb-10 pt-4 px-10 flex flex-col gap-4 bg-whitesmoke">
+              <button 
+                  class="w-full py-4 rounded-[10px] bg-[#1a5e63] text-white text-xl font-bold shadow-md hover:opacity-90 transition-opacity"
+                  @click="onSave"
+              >
+                  Salva
+              </button>
+              
+               <button 
+                  class="w-full py-4 rounded-[10px] bg-goldenrod text-white text-xl font-bold shadow-md hover:opacity-90 transition-opacity"
+                  @click="onCancel"
+              >
+                  Cancella
+              </button>
+          </div>
+
+      </div>
+  </div>
 </template>
-<script setup lang="ts">
-  	
-  	
-  	function onRectangleClick() {
-    		// Add your code here
-  	}</script>

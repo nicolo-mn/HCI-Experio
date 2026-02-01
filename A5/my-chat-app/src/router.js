@@ -9,6 +9,7 @@ import ListaChat from './components/ListaChat.vue'
 import BachecaGenerale from './components/BachecaGenerale.vue'
 import BachecaViaggioSingolo from './components/BachecaViaggioSingolo.vue'
 import ConsigliDati from './components/ConsigliDati.vue'
+import NuovoViaggio from './components/NuovoViaggio.vue'
 
 const routes = [
     { path: '/', component: SignUp },
@@ -21,6 +22,7 @@ const routes = [
     { path: '/bacheca-generale', component: BachecaGenerale },
     { path: '/bacheca-viaggio-singolo', component: BachecaViaggioSingolo },
     { path: '/consigli-dati', component: ConsigliDati },
+    { path: '/nuovo-viaggio', component: NuovoViaggio },
 ]
 
 const router = createRouter({

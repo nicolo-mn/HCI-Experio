@@ -4,6 +4,7 @@ import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane-fill.svg'
 import personIcon from '../assets/icons-all/person.svg'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
+import plusIcon from '../assets/icons-all/plus.svg'
 
 const router = useRouter()
 
@@ -37,6 +38,10 @@ function goToTrips() {
 function goToProfile() {
     router.push('/profilo')
 }
+
+function goToNuovoViaggio() {
+    router.push('/nuovo-viaggio')
+}
 </script>
 
 <template>
@@ -44,8 +49,11 @@ function goToProfile() {
   <div class="w-full h-screen bg-whitesmoke flex flex-col items-center font-urbanist overflow-hidden">
       
     <!-- Header: Fixed at top (part of flex layout, not scrolling) -->
-    <div class="w-full md:w-1/3 shrink-0 flex items-end px-5 py-4 mt-4 bg-whitesmoke z-10">
+    <div class="w-full md:w-1/3 shrink-0 flex items-end justify-between px-5 py-4 mt-4 bg-whitesmoke z-10">
         <b class="text-[2.5rem] leading-none text-black">I tuoi viaggi</b>
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-80 pb-1" @click="goToNuovoViaggio">
+           <img :src="plusIcon" alt="Nuovo Viaggio" class="w-full h-full object-contain filter brightness-0" />
+        </div>
     </div>
 
     <!-- Scrollable Cities List -->
