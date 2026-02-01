@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+import { store } from '../services/store.js';
 import paolaImg from '../assets/icons-all/paola.svg'
 import gianniImg from '../assets/icons-all/gianni.svg'
 import suitcaseIcon from '../assets/icons-all/suitcase.svg'
@@ -8,6 +10,34 @@ import personIcon from '../assets/icons-all/person.svg'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+const suggestedUsers = computed(() => {
+    // If no currentUser or no zones selected, maybe show all or none? 
+    // Requirement: "a user should see only users that are planning trips in the areas (cities) they're expert in"
+    // Assuming if no zones selected, show nothing.
+    const myZones = store.state.currentUser?.zones || [];
+    
+    // Filter trips that match my zones
+    const relevantTrips = store.state.trips.filter(trip => 
+        myZones.some(zone => zone.toLowerCase() === trip.location.toLowerCase())
+    );
+
+    // Map to include user details
+    return relevantTrips.map(trip => {
+        const user = store.state.users.find(u => u.username === trip.user);
+        return {
+            tripId: trip.id,
+            trip: trip,
+            user: user || { name: 'Unknown', avatar: 'person', description: '' }
+        };
+    });
+});
+
+function getAvatar(avatarName) {
+    if (avatarName === 'paola') return paolaImg;
+    if (avatarName === 'gianni') return gianniImg;
+    return personIcon; // default
+}
 
 function onGroupContainerClick() {
 		router.push('/dai-un-consiglio')
@@ -37,28 +67,32 @@ function goToProfile() {
                 <b class="text-[2.5rem] leading-none text-black">Experio</b>
             </div>
             
-            <!-- Paola Card -->
-            <div class="relative w-full rounded-[20px] bg-goldenrod p-6 flex flex-col gap-4 text-black shadow-[0px_0px_10px_6px_#1a5e63]">
+            <!-- Dynamic Cards -->
+            <div 
+                v-for="item in suggestedUsers" 
+                :key="item.tripId"
+                class="relative w-full rounded-[20px] bg-goldenrod p-6 flex flex-col gap-4 text-black shadow-[0px_0px_10px_6px_#1a5e63]"
+            >
                 
                 <div class="flex items-center gap-4">
                     <!-- Avatar -->
-                    <img class="w-[6.5rem] h-[6.5rem] rounded-full object-cover shrink-0" :src="paolaImg" alt="Paola" />
+                    <img class="w-[6.5rem] h-[6.5rem] rounded-full object-cover shrink-0" :src="getAvatar(item.user.avatar)" :alt="item.user.name" />
                     
                     <div class="flex flex-col">
                         <!-- Name -->
-                        <div class="text-[3.25rem] font-twinkle-star leading-none">Paola</div>
+                        <div class="text-[3.25rem] font-twinkle-star leading-none">{{ item.user.name }}</div>
                         
                         <!-- Location -->
                         <div class="flex items-center gap-2 mt-1">
                             <img class="w-6 h-6" :src="suitcaseIcon" alt="Location" />
-                            <span class="text-[1.5rem] font-bold">Parigi</span>
+                            <span class="text-[1.5rem] font-bold">{{ item.trip.location }}</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Bio -->
                 <div class="text-[1.375rem] leading-tight">
-                    Sono molto appassionata di rocknroll, cerco qualche consilgio per visitare Parigi attraverso i concerti
+                    {{ item.user.description }}
                 </div>
 
                 <!-- Action Button -->
@@ -72,74 +106,12 @@ function goToProfile() {
                 </div>
             </div>
 
-            <!-- Gianni Card -->
-            <div class="relative w-full rounded-[20px] bg-goldenrod p-6 flex flex-col gap-4 text-black shadow-[0px_0px_10px_6px_#1a5e63]">
-                
-                <div class="flex items-center gap-4">
-                    <!-- Avatar -->
-                    <img class="w-[6.5rem] h-[6.5rem] rounded-full object-cover shrink-0" :src="gianniImg" alt="Gianni" />
-                    
-                    <div class="flex flex-col">
-                        <!-- Name -->
-                        <div class="text-[3.25rem] font-twinkle-star leading-none">Gianni</div>
-                        
-                        <!-- Location -->
-                        <div class="flex items-center gap-2 mt-1">
-                            <img class="w-6 h-6" :src="suitcaseIcon" alt="Location" />
-                            <span class="text-[1.5rem] font-bold">Parigi</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bio -->
-                <div class="text-[1.375rem] leading-tight">
-                    Cerco delle belle camminate stimolanti in mezzo alla natura o in esplorazione della città
-                </div>
-
-                <!-- Action Button -->
-                <div class="w-full flex justify-center mt-2">
-                    <button 
-                        class="w-[11.5rem] h-[2.8rem] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] rounded-[10px] bg-darkslategray border-dimgray border-solid border-[2px] box-border text-white font-urbanist font-bold text-[1rem] hover:opacity-90 transition-opacity cursor-pointer"
-                        @click="onGroupContainerClick"
-                    >
-                        Consiglia
-                    </button>
-                </div>
-            </div>
-
-            <!-- Test Card (Marco) -->
-            <div class="relative w-full rounded-[20px] bg-goldenrod p-6 flex flex-col gap-4 text-black shadow-[0px_0px_10px_6px_#1a5e63]">
-                
-                <div class="flex items-center gap-4">
-                    <!-- Avatar -->
-                    <img class="w-[6.5rem] h-[6.5rem] rounded-full object-cover shrink-0" :src="paolaImg" alt="Marco" />
-                    
-                    <div class="flex flex-col">
-                        <!-- Name -->
-                        <div class="text-[3.25rem] font-twinkle-star leading-none">Marco</div>
-                        
-                        <!-- Location -->
-                        <div class="flex items-center gap-2 mt-1">
-                            <img class="w-6 h-6" :src="suitcaseIcon" alt="Location" />
-                            <span class="text-[1.5rem] font-bold">Roma</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bio -->
-                <div class="text-[1.375rem] leading-tight">
-                    Vorrei scoprire i migliori ristoranti tradizionali e le piazzette nascoste del centro.
-                </div>
-
-                <!-- Action Button -->
-                <div class="w-full flex justify-center mt-2">
-                    <button 
-                        class="w-[11.5rem] h-[2.8rem] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] rounded-[10px] bg-darkslategray border-dimgray border-solid border-[2px] box-border text-white font-urbanist font-bold text-[1rem] hover:opacity-90 transition-opacity cursor-pointer"
-                        @click="onGroupContainerClick"
-                    >
-                        Consiglia
-                    </button>
-                </div>
+            <!-- Empty State -->
+            <div v-if="suggestedUsers.length === 0" class="text-center text-gray-500 mt-10">
+                <p>Nessun utente trovato per le tue zone selezionate.</p>
+                <button @click="router.push('/le-tue-zone')" class="text-darkslategray font-bold underline mt-2">
+                    Modifica le tue zone
+                </button>
             </div>
 
         </div>

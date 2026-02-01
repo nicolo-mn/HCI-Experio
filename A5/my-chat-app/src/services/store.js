@@ -33,7 +33,7 @@ const SEED_DATA = {
             id: 1,
             title: 'Duomo di Milano',
             description: 'Una visita imperdibile! Salite sulle terrazze.',
-            location: 'Milan',
+            location: 'Milano',
             sender: 'Giovanni',
             receiver: 'Paola', // Received by Paola
             image: '',
@@ -43,7 +43,7 @@ const SEED_DATA = {
             id: 2,
             title: 'Galleria Vittorio Emanuele II',
             description: 'Bellissima galleria dello shopping.',
-            location: 'Milan',
+            location: 'Milano',
             sender: 'Ludovica',
             receiver: 'Paola', // Received by Paola
             image: '',
@@ -51,7 +51,7 @@ const SEED_DATA = {
         },
         {
             id: 3,
-            title: 'Karlsruhe Castle',
+            title: 'Castello di Karlsruhe',
             description: 'Si tratta di un castello molto affascinante con all’interno un museo ed un grande parco attorno, perfetto per te che sei appassionata di passeggiate!!!',
             location: 'Karlsruhe',
             sender: 'Paola', // Sent by Paola (if we log in as Paola we see this in Consigli Donati)
@@ -63,7 +63,7 @@ const SEED_DATA = {
     trips: [
         {
             id: 1,
-            location: 'Milan',
+            location: 'Milano',
             arrival: '2023-12-01',
             departure: '2023-12-05',
             user: 'Paola'
@@ -74,6 +74,20 @@ const SEED_DATA = {
             arrival: '2024-01-10',
             departure: '2024-01-15',
             user: 'Paola'
+        },
+        {
+            id: 3,
+            location: 'Londra',
+            arrival: '2024-02-01',
+            departure: '2024-02-05',
+            user: 'Giovanni'
+        },
+        {
+            id: 4,
+            location: 'New York',
+            arrival: '2024-03-10',
+            departure: '2024-03-20',
+            user: 'Ludovica'
         }
     ]
 }
@@ -137,7 +151,9 @@ export const store = reactive({
             name: userData.name,
             email: userData.email,
             description: userData.description,
-            avatar: 'person-fill' // default icon
+            description: userData.description,
+            avatar: 'person-fill', // default icon
+            zones: []
         }
 
         this.state.users.push(newUser)
@@ -162,6 +178,9 @@ export const store = reactive({
                 this.state.currentUser.unlockedBadges = []
                 this.state.currentUser.hasUnreadBadges = false
             }
+            if (!this.state.currentUser.zones) {
+                this.state.currentUser.zones = []
+            }
             this.save()
             return true
         }
@@ -173,6 +192,13 @@ export const store = reactive({
         this.save()
     },
 
+    updateUserZones(zones) {
+        if (this.state.currentUser) {
+            this.state.currentUser.zones = zones
+            this.save()
+        }
+    },
+
     // Advice Methods
     createAdvice(adviceData) {
         if (!this.state.currentUser) throw new Error('Must be logged in')
@@ -181,7 +207,7 @@ export const store = reactive({
             id: Date.now(),
             title: adviceData.title,
             description: adviceData.description,
-            location: adviceData.location || 'Unknown', // We might need a field for this in the UI
+            location: adviceData.location || 'Sconosciuto', // We might need a field for this in the UI
             sender: this.state.currentUser.username,
             receiver: adviceData.receiver, // Target user
             image: adviceData.image || '',

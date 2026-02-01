@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { store } from '../services/store.js';
 import { useRouter } from "vue-router";
 import arrowLeft from '../assets/icons-all/arrow-left.svg';
 
@@ -30,6 +31,7 @@ function onBackClick() {
 }
 
 function onNextClick() {
+    store.updateUserZones(selectedZones.value);
     router.push("/home");
 }
 

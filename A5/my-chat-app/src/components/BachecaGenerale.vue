@@ -9,11 +9,11 @@ import positionPinIcon from '../assets/icons-all/location.svg'
 const router = useRouter()
 
 const cards = [
-    { id: 1, title: 'Karlsruhe Castle', location: 'Karlsruhe', user: '@Marco' },
-    { id: 2, title: 'Karlsruhe Castle', location: 'Karlsruhe', user: '@Paola' },
-    { id: 3, title: 'Duomo di Milano', location: 'Milan', user: '@Giovanni' },
-    { id: 4, title: 'Galleria V. Emanuele', location: 'Milan', user: '@Ludovica' },
-    { id: 5, title: 'Muro di Berlino', location: 'Germany', user: '@Ernst' }
+    { id: 1, title: 'Castello di Karlsruhe', location: 'Karlsruhe', user: '@Marco' },
+    { id: 2, title: 'Castello di Karlsruhe', location: 'Karlsruhe', user: '@Paola' },
+    { id: 3, title: 'Duomo di Milano', location: 'Milano', user: '@Giovanni' },
+    { id: 4, title: 'Galleria V. Emanuele', location: 'Milano', user: '@Ludovica' },
+    { id: 5, title: 'Muro di Berlino', location: 'Germania', user: '@Ernst' }
 ]
 
 function onBackClick() {
