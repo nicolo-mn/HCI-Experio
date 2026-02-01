@@ -33,7 +33,7 @@ function goToProfile() {
         <div class="w-full md:w-1/3 flex flex-col gap-6 px-5 mt-4">
             
             <!-- Header -->
-            <div class="w-full flex items-end">
+            <div class="w-full flex items-end py-4">
                 <b class="text-[2.5rem] leading-none text-black">Experio</b>
             </div>
             

@@ -1,55 +1,67 @@
+<script setup>
+import { useRouter } from 'vue-router'
+import arrowLeft from '../assets/icons-all/arrow-left.svg'
+
+const router = useRouter()
+
+function onBackClick() {
+    router.back()
+}
+</script>
+
 <template>
-  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[1.25rem] text-black font-urbanist">
-    		<div class="absolute top-[3.375rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem]">
-      			<b class="absolute top-[1.063rem] left-[3.25rem]">Notifiche</b>
-      			<img class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain" alt="" />
-    		</div>
-    		<div class="absolute top-[17.313rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[4.438rem] overflow-hidden">
-      			<div class="absolute top-[1.063rem] left-[2.813rem] inline-block w-[17.688rem] h-[3rem]">
-        				<span>
-          					<b class="font-urbanist">Ludovica </b>
-          					<span class="whitespace-pre-wrap text-[0.625rem] text-dimgray">ti ha dato  un nuovo consiglio </span>
-        				</span>
-        				<span class="whitespace-pre-wrap text-[0.625rem] text-dimgray">
-          					<span>1d</span>
-        				</span>
-      			</div>
-      			<div class="absolute top-[1.5rem] left-[0.438rem] rounded-[50%] bg-gainsboro w-[1.875rem] h-[1.875rem]" />
-      			<img class="absolute top-[1.5rem] left-[21.375rem] rounded-[4.2px] w-[2.938rem] h-[1.875rem] object-cover" alt="" />
-    		</div>
-    		<div class="absolute top-[12.875rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[4.438rem] overflow-hidden">
-      			<div class="absolute top-[1.063rem] left-[2.813rem] inline-block w-[17.688rem] h-[3rem]">
-        				<span>
-          					<span>
-            						<b class="font-urbanist">Marco </b>
-            						<span class="text-[0.625rem] text-dimgray">ti ha dato  un nuovo consiglio </span>
-          					</span>
-          					<span class="text-[0.625rem] text-dimgray">
-            						<span class="whitespace-pre-wrap">5</span>
-          					</span>
-        				</span>
-        				<span class="text-[0.625rem] text-dimgray">
-          					<span class="whitespace-pre-wrap">
-            						<span>h</span>
-          					</span>
-        				</span>
-      			</div>
-      			<div class="absolute top-[1.5rem] left-[0.438rem] rounded-[50%] bg-gainsboro w-[1.875rem] h-[1.875rem]" />
-      			<img class="absolute top-[1.625rem] left-[21.375rem] rounded-[4.2px] w-[2.938rem] h-[1.875rem] object-cover" alt="" />
-    		</div>
-    		<div class="absolute top-[8.438rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[4.438rem] overflow-hidden">
-      			<div class="absolute top-[1.063rem] left-[2.813rem] inline-block w-[17.688rem] h-[3rem]">
-        				<span>
-          					<b class="font-urbanist">Paola </b>
-          					<span class="whitespace-pre-wrap text-[0.625rem] text-dimgray">ti ha dato  un nuovo consiglio </span>
-        				</span>
-        				<span class="whitespace-pre-wrap text-[0.625rem] text-dimgray">
-          					<span>1h</span>
-        				</span>
-      			</div>
-      			<div class="absolute top-[1.5rem] left-[0.438rem] rounded-[50%] bg-gainsboro w-[1.875rem] h-[1.875rem]" />
-      			<img class="absolute top-[1.5rem] left-[21.438rem] rounded-[4.2px] w-[2.938rem] h-[1.875rem] object-cover" alt="" />
-    		</div>
-    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
-  	</div>
+  <div class="w-full h-screen bg-whitesmoke flex flex-col items-center font-urbanist overflow-hidden">
+    <!-- Main Content Container: 100% width on mobile, 1/3 on md+ screens -->
+    <div class="w-full md:w-1/3 flex flex-col h-full bg-whitesmoke relative shadow-2xl overflow-hidden">
+      
+       <!-- Header -->
+      <div class="shrink-0 flex items-center px-5 py-4 mt-4 bg-whitesmoke z-50">
+        <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer mr-4" alt="Back" @click="onBackClick" />
+        <b class="text-[2.5rem] leading-none text-black">Notifiche</b>
+      </div>
+      
+      <!-- Content -->
+      <div class="flex-1 overflow-y-auto w-full pb-[5rem]">
+        <!-- Notif 1 -->
+        <div class="relative w-full border-black border-solid border-b-[1px] box-border p-4 flex items-start gap-4 hover:bg-black/5 transition-colors cursor-pointer">
+             <div class="rounded-full bg-gainsboro w-[3rem] h-[3rem] shrink-0" />
+             <div class="flex-1">
+                <span class="block">
+                    <b class="font-urbanist">Paola </b>
+                    <span class="text-[0.9rem] text-dimgray">ti ha dato un nuovo consiglio</span>
+                </span>
+                <span class="text-[0.8rem] text-dimgray block mt-1">1h</span>
+             </div>
+             <div class="rounded-[4.2px] w-[3rem] h-[1.8rem] bg-gray-300 shrink-0" />
+        </div>
+
+        <!-- Notif 2 -->
+        <div class="relative w-full border-black border-solid border-b-[1px] box-border p-4 flex items-start gap-4 hover:bg-black/5 transition-colors cursor-pointer">
+             <div class="rounded-full bg-gainsboro w-[3rem] h-[3rem] shrink-0" />
+             <div class="flex-1">
+                <span class="block">
+                    <b class="font-urbanist">Marco </b>
+                    <span class="text-[0.9rem] text-dimgray">ti ha dato un nuovo consiglio</span>
+                </span>
+                <span class="text-[0.8rem] text-dimgray block mt-1">5h</span>
+             </div>
+             <div class="rounded-[4.2px] w-[3rem] h-[1.8rem] bg-gray-300 shrink-0" />
+        </div>
+
+         <!-- Notif 3 -->
+        <div class="relative w-full border-black border-solid border-b-[1px] box-border p-4 flex items-start gap-4 hover:bg-black/5 transition-colors cursor-pointer">
+             <div class="rounded-full bg-gainsboro w-[3rem] h-[3rem] shrink-0" />
+             <div class="flex-1">
+                <span class="block">
+                     <b class="font-urbanist">Ludovica </b>
+                    <span class="text-[0.9rem] text-dimgray">ti ha dato un nuovo consiglio</span>
+                </span>
+                <span class="text-[0.8rem] text-dimgray block mt-1">1d</span>
+             </div>
+             <div class="rounded-[4.2px] w-[3rem] h-[1.8rem] bg-gray-300 shrink-0" />
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </template>

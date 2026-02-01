@@ -26,7 +26,23 @@ function goToProfile() {
 }
 
 function onNotificationsIconClick() {
-    // Add your code here
+    router.push('/notifiche')
+}
+
+function goToGamification() {
+    router.push('/gamification')
+}
+
+function goToListaChat() {
+    router.push('/lista-chat')
+}
+
+function goToBachecaGenerale() {
+    router.push('/bacheca-generale')
+}
+
+function goToConsigliDati() {
+    router.push('/consigli-dati')
 }
 </script>
 
@@ -43,10 +59,10 @@ function onNotificationsIconClick() {
                 <span class="text-[1.875rem] font-bold text-black">Chiara</span>
             </div>
             <div class="flex items-center gap-2">
-                 <img :src="chatIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity filter brightness-0" alt="Chat" />
-                 <img :src="gamificationCupIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity" alt="Gamification" />
+                 <img :src="chatIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity filter brightness-0" alt="Chat" @click="goToListaChat" />
+                 <img :src="gamificationCupIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity" alt="Gamification" @click="goToGamification" />
                  <img :src="notificationsIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity" alt="Notifications" @click="onNotificationsIconClick" />
-                 <img :src="settingsIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity" alt="Settings" @click="onNotificationsIconClick" />
+                 <img :src="settingsIcon" class="w-[1.7rem] h-[1.7rem] cursor-pointer hover:opacity-70 transition-opacity" alt="Settings" />
             </div>
         </div>
 
@@ -60,7 +76,7 @@ function onNotificationsIconClick() {
 
         <!-- Section: La mia bacheca -->
         <div class="flex flex-col gap-1 mt-1">
-            <div class="flex items-center gap-2 mb-1 px-2">
+            <div class="flex items-center gap-2 mb-1 px-2 cursor-pointer hover:opacity-80" @click="goToBachecaGenerale">
                  <span class="text-[1.5rem] font-semibold text-black">La mia bacheca</span>
                  <!-- Arrow Right -->
                  <img :src="arrowLeft" class="w-[1.2rem] h-[1.2rem] object-contain transform rotate-180" alt="Go" />
@@ -110,7 +126,7 @@ function onNotificationsIconClick() {
 
         <!-- Section: Consigli donati -->
         <div class="flex flex-col gap-1 mt-2">
-             <div class="flex items-center gap-2 mb-1 px-2">
+             <div class="flex items-center gap-2 mb-1 px-2 cursor-pointer hover:opacity-80" @click="goToConsigliDati">
                  <span class="text-[1.5rem] font-semibold text-black">Consigli donati</span>
                  <img :src="arrowLeft" class="w-[1.2rem] h-[1.2rem] object-contain transform rotate-180" alt="Go" />
             </div>

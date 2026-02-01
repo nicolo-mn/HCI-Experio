@@ -29,36 +29,47 @@ function goToProfile() {
 </script>
 
 <template>
-  <div class="w-full min-h-screen bg-whitesmoke overflow-y-auto">
-    <div class="w-1/3 min-w-[25.125rem] mx-auto h-[70.688rem] relative bg-whitesmoke text-left text-[1.5rem] text-black font-urbanist shadow-2xl">
-      <div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
-      <div class="absolute top-[3.375rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem]">
-        <b class="absolute top-[1.063rem] left-[3.25rem]">Messaggi</b>
-        <img :src="arrowLeft" class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Back" @click="onBackClick" />
-      </div>
-      <div class="absolute top-[8.5rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[4.438rem] overflow-hidden cursor-pointer" @click="onPersonaContainerClick">
-        <div class="absolute top-[calc(50%_-_8.5px)] left-[calc(50%_-_146px)] font-medium inline-block w-[18.75rem] h-[1.125rem]">Paola</div>
-        <div class="absolute top-[calc(50%_-_14.5px)] left-[0.938rem] rounded-[50%] bg-gainsboro w-[1.875rem] h-[1.875rem]" />
-        <img class="absolute top-[1.313rem] left-[22.5rem] w-[1.875rem] h-[1.875rem]" alt="" />
-      </div>
-      <div class="absolute top-[12.938rem] left-[0rem] border-black border-solid border-b-[1px] box-border w-[25.125rem] h-[4.438rem] overflow-hidden">
-        <div class="absolute top-[calc(50%_-_8.5px)] left-[calc(50%_-_146px)] font-medium inline-block w-[18.75rem] h-[1.125rem]">Marco</div>
-        <div class="absolute top-[calc(50%_-_14.5px)] left-[0.938rem] rounded-[50%] bg-gainsboro w-[1.875rem] h-[1.875rem]" />
-        <img class="absolute top-[1.313rem] left-[22.5rem] w-[1.875rem] h-[1.875rem]" alt="" />
+  <div class="w-full h-screen bg-whitesmoke flex flex-col items-center font-urbanist overflow-hidden">
+    <div class="w-full md:w-1/3 flex flex-col h-full bg-whitesmoke relative shadow-2xl overflow-hidden">
+      
+      <!-- Header -->
+      <div class="shrink-0 flex items-center px-5 py-4 mt-4 bg-whitesmoke z-50">
+        <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer mr-4" alt="Back" @click="onBackClick" />
+        <b class="text-[2.5rem] leading-none text-black">Messaggi</b>
       </div>
       
-      <!-- Fixed Navbar -->
-      <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-1/3 min-w-[25.125rem] h-[4.188rem] bg-darkslategray border-t border-gray-300 flex justify-around items-center z-50">
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToHome">
-          <img :src="houseIcon" alt="Home" class="w-full h-full object-contain filter brightness-0 invert" />
-        </div>
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToTrips">
-          <img :src="planeIcon" alt="Plane" class="w-full h-full object-contain filter brightness-0 invert" />
-        </div>
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToProfile">
-          <img :src="personIcon" alt="Profile" class="w-full h-full object-contain filter brightness-0 invert" />
-        </div>
+      <!-- Content -->
+      <div class="flex-1 overflow-y-auto w-full pb-[5rem]">
+          <!-- Chat Item: Paola -->
+          <div class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" @click="onPersonaContainerClick">
+             <div class="absolute top-1/2 -translate-y-1/2 left-[4.5rem] font-medium text-[1.125rem]">Paola</div>
+             <div class="absolute top-1/2 -translate-y-1/2 left-[1rem] rounded-full bg-gainsboro w-[2.5rem] h-[2.5rem]" />
+             <div class="absolute top-1/2 -translate-y-1/2 right-[1rem] w-[1rem] h-[1rem] bg-gray-300 rounded-full" /> 
+          </div>
+
+          <!-- Chat Item: Marco -->
+          <div class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative hover:bg-black/5 transition-colors">
+            <div class="absolute top-1/2 -translate-y-1/2 left-[4.5rem] font-medium text-[1.125rem]">Marco</div>
+            <div class="absolute top-1/2 -translate-y-1/2 left-[1rem] rounded-full bg-gainsboro w-[2.5rem] h-[2.5rem]" />
+             <div class="absolute top-1/2 -translate-y-1/2 right-[1rem] w-[1rem] h-[1rem] bg-gray-300 rounded-full" />
+          </div>
       </div>
+
+    </div>
+    
+    <!-- Fixed Navbar -->
+    <div class="fixed bottom-0 left-0 w-full h-[4.188rem] bg-darkslategray border-t border-gray-300 flex justify-center z-50">
+        <div class="w-full md:w-1/3 flex justify-around items-center h-full">
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToHome">
+              <img :src="houseIcon" alt="Home" class="w-full h-full object-contain filter brightness-0 invert" />
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToTrips">
+              <img :src="planeIcon" alt="Plane" class="w-full h-full object-contain filter brightness-0 invert" />
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToProfile">
+              <img :src="personIcon" alt="Profile" class="w-full h-full object-contain filter brightness-0 invert" />
+            </div>
+        </div>
     </div>
   </div>
 </template>

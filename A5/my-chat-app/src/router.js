@@ -10,6 +10,8 @@ import BachecaGenerale from './components/BachecaGenerale.vue'
 import BachecaViaggioSingolo from './components/BachecaViaggioSingolo.vue'
 import ConsigliDati from './components/ConsigliDati.vue'
 import NuovoViaggio from './components/NuovoViaggio.vue'
+import Gamification from './components/Gamification.vue'
+import Notifiche from './components/Notifiche.vue'
 
 const routes = [
     { path: '/', component: SignUp },
@@ -23,6 +25,8 @@ const routes = [
     { path: '/bacheca-viaggio-singolo', component: BachecaViaggioSingolo },
     { path: '/consigli-dati', component: ConsigliDati },
     { path: '/nuovo-viaggio', component: NuovoViaggio },
+    { path: '/gamification', component: Gamification },
+    { path: '/notifiche', component: Notifiche },
 ]
 
 const router = createRouter({
