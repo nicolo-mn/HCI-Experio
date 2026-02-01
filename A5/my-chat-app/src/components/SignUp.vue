@@ -1,33 +1,25 @@
 <template>
-  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[0.875rem] text-dimgray font-urbanist">
-    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
-    		<div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem] text-black">
-      			<b class="absolute top-[1.063rem] left-[3.25rem]">Registrazione</b>
-      			<img class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain" alt="" />
-    		</div>
-    		<div class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-num-5 bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-num-0_1 leading-[1.25rem] inline-block">Username</b>
-    		</div>
-    		<div class="absolute top-[16.313rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-num-5 bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-num-0_1 leading-[1.25rem] inline-block">Nome</b>
-    		</div>
-    		<div class="absolute top-[32.063rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-num-5 bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-num-0_1 leading-[1.25rem] inline-block">Email</b>
-    		</div>
-    		<div class="absolute top-[37rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-num-5 bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-num-0_1 leading-[1.25rem] inline-block">Password</b>
-    		</div>
-    		<div class="absolute top-[47.625rem] left-[3.063rem] w-[18.938rem] h-[4rem] text-center text-[1.125rem] text-white">
-      			<div class="absolute top-[0rem] left-[4.438rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-num-5 bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
-      			<b class="absolute top-[1.375rem] left-[6.938rem] tracking-num-0_1 leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Registrati</b>
-    		</div>
-    		<div class="absolute top-[21.25rem] left-[3.063rem] w-[18.938rem] h-[9.875rem]">
-      			<div class="absolute top-[0rem] left-[0rem] rounded-num-5 bg-white border-darkslategray border-solid border-[2px] box-border w-[18.938rem] h-[9.875rem]" />
-      			<b class="absolute top-[0.875rem] left-[1.063rem] tracking-num-0_1 leading-[1.25rem] inline-block w-[15.5rem] h-[1.25rem]">Descrivi te stesso/a, i tuoi hobby, cosa cerchi quando viaggi (Verrà utilizzato dagli altri utenti per darti consigli)</b>
+  	<div class="min-h-screen w-full flex items-center justify-center bg-whitesmoke font-urbanist">
+    		<div class="w-full md:w-1/3 flex flex-col gap-6 p-5">
+      			<div class="flex items-center gap-4 mb-4">
+					<b class="text-[2.5rem] text-black">Registrazione</b>
+      			</div>
+      			
+      			<input class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border pl-[1.5rem] font-bold placeholder-dimgray outline-none text-[0.875rem] text-dimgray" placeholder="Username" type="text" />
+      			
+      			<input class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border pl-[1.5rem] font-bold placeholder-dimgray outline-none text-[0.875rem] text-dimgray" placeholder="Nome" type="text" />
+      			
+      			<textarea class="w-full h-[9.875rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border p-[1rem] font-bold placeholder-dimgray outline-none resize-none font-urbanist text-[0.875rem] text-dimgray" placeholder="Descrivi te stesso/a, i tuoi hobby, cosa cerchi quando viaggi (Verrà utilizzato dagli altri utenti per darti consigli)"></textarea>
+      			
+      			<input class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border pl-[1.5rem] font-bold placeholder-dimgray outline-none text-[0.875rem] text-dimgray" placeholder="Email" type="email" />
+      			
+      			<input class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border pl-[1.5rem] font-bold placeholder-dimgray outline-none text-[0.875rem] text-dimgray" placeholder="Password" type="password" />
+      			
+      			<div class="w-full h-[4rem] mt-4">
+					<button class="w-full h-full shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border cursor-pointer flex items-center justify-center font-bold tracking-num-0_1 leading-[1.25rem] text-[1.125rem] text-white hover:opacity-90 transition-opacity" @click="onRectangleClick">
+						Registrati
+					</button>
+      			</div>
     		</div>
   	</div>
 </template>

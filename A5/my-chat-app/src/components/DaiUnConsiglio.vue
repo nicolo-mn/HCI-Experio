@@ -1,43 +1,67 @@
-<script setup lang="ts">
-  	import { useRouter } from 'vue-router'
-    import arrowLeft from '../assets/icons-all/arrow-left.svg'
+<script setup>
+import { useRouter } from 'vue-router'
+import arrowLeft from '../assets/icons-all/arrow-left.svg'
+import imageIcon from '../assets/icons-all/image.svg'
 
-    const router = useRouter()
-  	
-  	function onRectangleClick() {
-    		router.push('/home')
-  	}
+const router = useRouter()
 
-    function onBackClick() {
-        router.back()
-    }
+function onPublishClick() {
+    router.push('/home')
+}
+
+function onBackClick() {
+    router.back()
+}
 </script>
 
 <template>
-  	<div class="w-full min-h-screen bg-whitesmoke overflow-y-auto">
-        <div class="w-1/3 min-w-[25.125rem] mx-auto h-[54.625rem] relative bg-whitesmoke text-left text-[0.875rem] text-dimgray font-urbanist shadow-2xl">
-    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
-    		<div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[5.063rem] overflow-hidden text-[2.5rem] text-black">
-      			<b class="absolute top-[1.063rem] left-[3.25rem]">Consiglia a Paola</b>
-      			<img :src="arrowLeft" class="absolute top-[1.938rem] left-[0.875rem] w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Back" @click="onBackClick" />
+  	<div class="min-h-screen w-full flex flex-col items-center bg-whitesmoke font-urbanist pt-2">
+    		<div class="w-full md:w-1/3 flex flex-col gap-6 p-5 relative">
+                
+                <!-- Header -->
+      			<div class="flex items-center gap-4 mb-4 relative">
+                    <img 
+                        :src="arrowLeft" 
+                        class="w-8 h-8 cursor-pointer hover:opacity-70 transition-opacity" 
+                        @click="onBackClick" 
+                        alt="Back"
+                    />
+					<b class="text-[2.5rem] leading-tight text-black">Consiglia a Paola</b>
+      			</div>
+
+                <!-- Title Input -->
+                <div class="w-full">
+                    <input 
+                        class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border pl-[1.5rem] font-bold placeholder-dimgray outline-none text-[0.875rem] text-dimgray" 
+                        placeholder="Titolo" 
+                        type="text" 
+                    />
+                </div>
+
+                <!-- Description Textarea -->
+                <div class="w-full">
+                    <textarea 
+                        class="w-full h-[9.875rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border p-[1rem] font-bold placeholder-dimgray outline-none resize-none font-urbanist text-[0.875rem] text-dimgray" 
+                        placeholder="Descrizione"
+                    ></textarea>
+                </div>
+
+                <!-- Add Images Section -->
+                <div class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border flex items-center px-[1.5rem] cursor-pointer hover:bg-gray-50 transition-colors gap-4">
+                    <span class="font-bold text-dimgray text-[0.875rem] flex-1">Aggiungi Immagini</span>
+                    <img :src="imageIcon" class="w-6 h-6 object-contain" alt="Add Image" />
+                </div>
+      			
+                <!-- Publish Button -->
+      			<div class="w-full h-[4rem] mt-auto">
+					<button 
+                        class="w-full h-full shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border cursor-pointer flex items-center justify-center font-bold tracking-[0.1px] leading-[1.25rem] text-[1.125rem] text-white hover:opacity-90 transition-opacity" 
+                        @click="onPublishClick"
+                    >
+						Pubblica
+					</button>
+      			</div>
+
     		</div>
-    		<div class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border" />
-      			<b class="absolute h-[31.25%] w-[81.85%] top-[34.38%] left-[5.94%] tracking-[0.1px] leading-[1.25rem] inline-block">Titolo</b>
-    		</div>
-    		<div class="absolute top-[16.313rem] left-[3.063rem] w-[18.938rem] h-[9.875rem]">
-      			<div class="absolute top-[0rem] left-[0rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border w-[18.938rem] h-[9.875rem]" />
-      			<b class="absolute top-[0.875rem] left-[1.063rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[15.5rem] h-[1.25rem]">Descrizione</b>
-    		</div>
-    		<div class="absolute top-[27.313rem] left-[3.063rem] w-[18.938rem] h-[4rem]">
-      			<div class="absolute top-[0rem] left-[0rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border w-[18.938rem] h-[4rem]" />
-      			<b class="absolute top-[1.375rem] left-[1.125rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[15.5rem] h-[1.25rem]">Aggiungi Immagini</b>
-      			<img class="absolute top-[1.125rem] left-[15.875rem] w-[1.5rem] h-[1.5rem]" alt="" />
-    		</div>
-    		<div class="absolute top-[47.625rem] left-[3.063rem] w-[18.938rem] h-[4rem] text-center text-[1.125rem] text-white">
-      			<div class="absolute top-[0rem] left-[4.438rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
-      			<b class="absolute top-[1.375rem] left-[6.938rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Pubblica</b>
-    		</div>
-        </div>
   	</div>
 </template>

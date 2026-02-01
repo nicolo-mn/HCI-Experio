@@ -1,39 +1,137 @@
+<script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from "vue-router";
+import arrowLeft from '../assets/icons-all/arrow-left.svg';
 
-<script setup lang="ts">
-  	import { useRouter } from "vue-router";
-  	import arrowLeft from '../assets/icons-all/arrow-left.svg';
-  	const router = useRouter();
-  	
-  	function onRectangleClick() {
-    		router.push("/home");
-  	}
+const router = useRouter();
 
-    function onBackClick() {
-        router.back();
-    }
+// State
+const availableZones = ref([
+    'Parigi', 'Cesena', 'Roma', 'Milano', 'Londra', 'New York', 'Tokyo', 'Berlino', 
+    'Madrid', 'Barcellona', 'Amsterdam', 'Vienna'
+]);
+const selectedZones = ref([]);
+const searchQuery = ref('');
+const isDropdownOpen = ref(false);
+const inputRef = ref(null);
+
+// Computed
+const filteredZones = computed(() => {
+    const query = searchQuery.value.toLowerCase();
+    return availableZones.value.filter(z => 
+        z.toLowerCase().includes(query) && 
+        !selectedZones.value.includes(z)
+    );
+});
+
+// Methods
+function onBackClick() {
+    router.back();
+}
+
+function onNextClick() {
+    router.push("/home");
+}
+
+function selectZone(zone) {
+    selectedZones.value.push(zone);
+    searchQuery.value = '';
+    inputRef.value?.focus();
+}
+
+function removeZone(zone) {
+    selectedZones.value = selectedZones.value.filter(z => z !== zone);
+}
+
+function handleInputFocus() {
+    isDropdownOpen.value = true;
+}
+
+function handleInputBlur() {
+    // Delay closing to allow click event on dropdown items
+    setTimeout(() => {
+        isDropdownOpen.value = false;
+    }, 200);
+}
 </script>
 
 <template>
-  	<div class="w-full h-[54.625rem] relative bg-whitesmoke overflow-hidden text-left text-[0.601rem] text-dimgray font-urbanist">
-    		<div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden shrink-0" />
-    		<img class="absolute top-[11.375rem] left-[3.063rem] w-[18.938rem] h-[4rem] shrink-0" alt="" />
-    		<div class="absolute top-[16.938rem] left-[6.063rem] w-[13rem] h-[2.744rem] shrink-0">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[3.43px] bg-white border-darkslategray border-solid border-[1.4px] box-border" />
-      			<b class="absolute h-[31.21%] w-[81.83%] top-[34.4%] left-[5.94%] tracking-[0.07px] leading-[0.858rem] inline-block">Parigi</b>
-      			<img class="absolute w-[9.62%] top-[0.75rem] right-[2.4%] left-[87.98%] max-w-full overflow-hidden h-[1.25rem]" alt="" />
-    		</div>
-    		<div class="absolute top-[21.25rem] left-[6.063rem] w-[13rem] h-[2.744rem] shrink-0">
-      			<div class="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-[3.43px] bg-white border-darkslategray border-solid border-[1.4px] box-border" />
-      			<b class="absolute h-[31.21%] w-[81.83%] top-[34.4%] left-[5.94%] tracking-[0.07px] leading-[0.858rem] inline-block">Cesena</b>
-      			<img class="absolute w-[9.62%] top-[0.75rem] right-[2.4%] left-[87.98%] max-w-full overflow-hidden h-[1.25rem]" alt="" />
-    		</div>
-    		<div class="absolute top-[3.375rem] left-[-0.437rem] w-[25.125rem] h-[5.063rem] overflow-hidden shrink-0 text-center text-[2.25rem] text-black">
-      			<b class="absolute top-[1.063rem] left-[0.438rem] inline-block w-[25.125rem] shrink-0">Seleziona le tue zone</b>
-                <img :src="arrowLeft" class="absolute top-[1.5rem] left-[1.5rem] w-8 h-8 cursor-pointer" @click="onBackClick" />
-    		</div>
-    		<div class="absolute top-[47.625rem] left-[3.063rem] w-[18.938rem] h-[4rem] shrink-0 text-center text-[1.125rem] text-white">
-      			<div class="absolute top-[0rem] left-[4.438rem] shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border w-[10.063rem] h-[4rem] cursor-pointer" @click="onRectangleClick" />
-      			<b class="absolute top-[1.375rem] left-[6.938rem] tracking-[0.1px] leading-[1.25rem] inline-block w-[5.063rem] h-[1.25rem]">Avanti</b>
+  	<div class="min-h-screen w-full flex items-center justify-center bg-whitesmoke font-urbanist">
+    		<div class="w-full md:w-1/3 flex flex-col gap-6 p-5 relative">
+                
+                <!-- Header with Back Arrow and Title -->
+      			<div class="flex items-center gap-4 mb-4 relative">
+                    <img 
+                        :src="arrowLeft" 
+                        class="w-8 h-8 cursor-pointer hover:opacity-70 transition-opacity" 
+                        @click="onBackClick" 
+                        alt="Back"
+                    />
+					<b class="text-[2rem] leading-tight text-black">Seleziona le tue zone</b>
+      			</div>
+      			
+                <!-- Multiselect Component -->
+                <div class="relative w-full">
+                    <div 
+                        class="w-full min-h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border p-2 flex flex-wrap gap-2 items-center cursor-text"
+                        @click="inputRef?.focus()"
+                    >
+                        <!-- Selected Tags -->
+                        <div 
+                            v-for="zone in selectedZones" 
+                            :key="zone"
+                            class="bg-darkslategray text-white px-3 py-1 rounded-[15px] flex items-center gap-2 text-[0.875rem] font-bold"
+                        >
+                            <span>{{ zone }}</span>
+                            <span 
+                                @click.stop="removeZone(zone)" 
+                                class="cursor-pointer hover:text-gray-300 font-bold"
+                            >×</span>
+                        </div>
+
+                        <!-- Search Input -->
+                        <input 
+                            ref="inputRef"
+                            v-model="searchQuery"
+                            @focus="handleInputFocus"
+                            @blur="handleInputBlur"
+                            class="flex-1 bg-transparent outline-none min-w-[100px] text-[0.875rem] text-dimgray font-bold placeholder-dimgray h-full py-1"
+                            placeholder="Cerca una zona..."
+                            type="text" 
+                        />
+                    </div>
+
+                    <!-- Dropdown Menu -->
+                    <div 
+                        v-if="isDropdownOpen && filteredZones.length > 0"
+                        class="absolute top-[105%] left-0 w-full bg-white border-darkslategray border-solid border-[2px] rounded-[5px] box-border z-10 max-h-[200px] overflow-y-auto shadow-lg"
+                    >
+                        <div 
+                            v-for="zone in filteredZones" 
+                            :key="zone"
+                            class="px-4 py-3 hover:bg-whitesmoke cursor-pointer text-dimgray font-bold text-[0.875rem]"
+                            @mousedown.prevent="selectZone(zone)"
+                        >
+                            {{ zone }}
+                        </div>
+                    </div>
+                    <div v-if="isDropdownOpen && filteredZones.length === 0 && searchQuery" class="absolute top-[105%] left-0 w-full bg-white border-darkslategray border-solid border-[2px] rounded-[5px] box-border z-10 px-4 py-3 text-dimgray text-[0.875rem]">
+                        Nessun risultato trovato
+                    </div>
+                </div>
+
+                <!-- Spacer to push button down if needed, or just margin -->
+      			
+                <!-- Next Button -->
+      			<div class="w-full h-[4rem] mt-auto">
+					<button 
+                        class="w-full h-full shadow-[0px_4px_4px_3px_rgba(0,_0,_0,_0.25)] rounded-[5px] bg-darkslategray border-darkslategray border-solid border-[2px] box-border cursor-pointer flex items-center justify-center font-bold tracking-[0.1px] leading-[1.25rem] text-[1.125rem] text-white hover:opacity-90 transition-opacity" 
+                        @click="onNextClick"
+                    >
+						Avanti
+					</button>
+      			</div>
+
     		</div>
   	</div>
 </template>

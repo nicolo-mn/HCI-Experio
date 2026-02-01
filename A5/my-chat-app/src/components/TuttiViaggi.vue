@@ -3,11 +3,27 @@ import { useRouter } from 'vue-router'
 import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane-fill.svg'
 import personIcon from '../assets/icons-all/person.svg'
+import arrowLeft from '../assets/icons-all/arrow-left.svg'
 
 const router = useRouter()
 
-function onMilanContainerClick() {
-  router.push('/bacheca-viaggio-singolo')
+const cities = [
+  { name: 'Chicago', path: null },
+  { name: 'Dublin', path: null },
+  { name: 'Rome', path: null },
+  { name: 'Kyoto', path: null },
+  { name: 'Milan', path: '/bacheca-viaggio-singolo' },
+  { name: 'Tokyo', path: null },
+  { name: 'New York', path: null },
+  { name: 'Paris', path: null },
+  { name: 'London', path: null },
+  { name: 'Berlin', path: null },
+]
+
+function onCityClick(path) {
+  if (path) {
+    router.push(path)
+  }
 }
 
 function goToHome() {
@@ -24,61 +40,42 @@ function goToProfile() {
 </script>
 
 <template>
-  <div class="w-full min-h-screen bg-whitesmoke overflow-y-auto">
-    <div class="w-1/3 min-w-[25.125rem] mx-auto h-[61.875rem] relative bg-whitesmoke text-left text-[2.5rem] text-black font-urbanist shadow-2xl">
-      <div class="absolute top-[9.625rem] left-[0.5rem] w-[24.125rem] h-[50.438rem]">
-        <div class="absolute top-[6.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Chicago</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[32.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Dublin</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[13rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Rome</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[39rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Kyoto</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[45.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden cursor-pointer" @click="onMilanContainerClick">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Milan</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[19.5rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Tokyo</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[26rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">New York</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-        <div class="absolute top-[0rem] left-[0rem] shadow-[0px_4px_4px_6px_#1a5e63] rounded-num-10 bg-goldenrod w-[24.125rem] h-[4.938rem] overflow-hidden">
-          <b class="absolute top-[0.875rem] left-[1.688rem] inline-block w-[16.375rem] h-[3.25rem]">Paris</b>
-          <img class="absolute top-[1.375rem] left-[20.625rem] w-[1.875rem] h-[1.875rem]" alt="" />
-        </div>
-      </div>
-      <img class="absolute top-[50.125rem] left-[0rem] w-[25.125rem] h-[4.625rem]" alt="" />
-      <div class="absolute top-[3.375rem] left-[0rem] w-[25.125rem] h-[3.938rem] overflow-hidden text-center">
-        <b class="absolute top-[0.625rem] left-[-0.625rem] inline-block w-[16.375rem] h-[2.75rem] shrink-0">I tuoi viaggi</b>
-        <img class="absolute w-[8.71%] top-[calc(50%_-_12.5px)] right-[6.97%] left-[84.33%] max-w-full overflow-hidden h-[2.188rem] cursor-pointer shrink-0" alt="" @click="onMilanContainerClick" />
-      </div>
-      <div class="absolute top-[0rem] left-[0rem] w-[25.125rem] h-[3.375rem] overflow-hidden" />
-
-      <!-- Fixed Navbar -->
-      <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-1/3 min-w-[25.125rem] h-[4.188rem] bg-darkslategray border-t border-gray-300 flex justify-around items-center z-50">
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToHome">
-          <img :src="houseIcon" alt="Home" class="w-full h-full object-contain filter brightness-0 invert" />
-        </div>
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToTrips">
-          <img :src="planeIcon" alt="Plane" class="w-full h-full object-contain filter brightness-0 invert" />
-        </div>
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer" @click="goToProfile">
-          <img :src="personIcon" alt="Profile" class="w-full h-full object-contain filter brightness-0 invert" />
-        </div>
-      </div>
+  <!-- Main container: fixed height (screen), flex column -->
+  <div class="w-full h-screen bg-whitesmoke flex flex-col items-center font-urbanist overflow-hidden">
+      
+    <!-- Header: Fixed at top (part of flex layout, not scrolling) -->
+    <div class="w-full md:w-1/3 shrink-0 flex items-end px-5 py-4 mt-4 bg-whitesmoke z-10">
+        <b class="text-[2.5rem] leading-none text-black">I tuoi viaggi</b>
     </div>
+
+    <!-- Scrollable Cities List -->
+    <div class="w-full md:w-1/3 flex-1 overflow-y-auto flex flex-col gap-6 px-5 pb-[6rem] pt-4">
+        <div 
+            v-for="city in cities" 
+            :key="city.name"
+            class="relative w-full h-[5rem] shrink-0 rounded-[10px] bg-goldenrod shadow-[0px_4px_4px_6px_#1a5e63] flex items-center justify-between px-6 cursor-pointer hover:opacity-90 transition-opacity"
+            @click="onCityClick(city.path)"
+        >
+            <span class="text-[2rem] font-bold text-black">{{ city.name }}</span>
+            <!-- Icon: Arrow Left flipped vertically (180deg rotation to point right) -->
+            <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain transform rotate-180" alt="Go" />
+        </div>
+    </div>
+
+    <!-- Fixed Navbar -->
+    <div class="fixed bottom-0 left-0 w-full h-[4.188rem] bg-[#1a5e63] border-t border-gray-300 flex justify-center z-50">
+        <div class="w-full md:w-1/3 flex justify-around items-center h-full">
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-80" @click="goToHome">
+                <img :src="houseIcon" alt="Home" class="w-full h-full object-contain filter brightness-0 invert" />
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-80" @click="goToTrips">
+                <img :src="planeIcon" alt="Plane" class="w-full h-full object-contain filter brightness-0 invert" />
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-80" @click="goToProfile">
+                <img :src="personIcon" alt="Profile" class="w-full h-full object-contain filter brightness-0 invert" />
+            </div>
+        </div>
+    </div>
+
   </div>
 </template>
