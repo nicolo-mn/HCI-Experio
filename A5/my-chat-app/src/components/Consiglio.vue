@@ -1,13 +1,35 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { computed, onMounted, ref } from 'vue'
+import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import locationIcon from '../assets/icons-all/location.svg'
 import binIcon from '../assets/icons-all/bin.svg'
 
 const router = useRouter()
+const route = useRoute()
+
+const advice = ref(null)
+
+onMounted(() => {
+    store.init()
+    const id = parseInt(route.query.id)
+    if (id) {
+        advice.value = store.state.advices.find(a => a.id === id)
+    }
+})
 
 function goBack() {
     router.back()
+}
+
+function onDelete() {
+    // Optional: Implement delete logic
+    if (confirm("Vuoi eliminare questo consiglio?")) {
+        // store.deleteAdvice(advice.value.id) // Need to implement this in store
+        alert("Funzionalità di eliminazione non ancora attiva.")
+        router.back()
+    }
 }
 </script>
 
@@ -22,11 +44,13 @@ function goBack() {
          <b class="text-[2.5rem] leading-none text-black">Consiglio</b>
       </div>
       
-      <!-- Content Area: Center the card vertically and horizontally -->
+      <!-- Content Area -->
       <div class="flex-1 flex flex-col items-center justify-center w-full gap-4">
           
+          <div v-if="!advice" class="text-center text-xl">Caricamento o Consiglio non trovato...</div>
+
           <!-- Slider Area: Arrow Left + Card + Arrow Right -->
-          <div class="flex items-center justify-center w-full gap-2">
+          <div v-else class="flex items-center justify-center w-full gap-2">
               <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Previous" />
               
               <!-- Card -->
@@ -36,13 +60,14 @@ function goBack() {
                   <!-- Card Content -->
                   <div class="relative w-full h-full flex flex-col items-center p-4">
                       <!-- Image -->
-                      <img src="https://via.placeholder.com/150" class="w-[17.263rem] h-[10.794rem] object-cover rounded-[8.53px] mt-2 bg-black/10" alt="Castle" />
+                      <img v-if="advice.image" :src="advice.image" class="w-[17.263rem] h-[10.794rem] object-cover rounded-[8.53px] mt-2 bg-black/10" alt="Image" />
+                       <div v-else class="w-[17.263rem] h-[10.794rem] bg-black/10 rounded-[8.53px] mt-2 flex items-center justify-center">No Image</div>
                       
                       <!-- Title and Description -->
-                      <div class="mt-4 flex flex-col items-center text-center w-full gap-2">
-                          <b class="text-[1.365rem]">Karlsruhe Castle</b>
-                          <div class="text-[1.104rem] leading-tight px-2">
-                              Si tratta di un castello molto affascinante con all’interno un museo ed un grande parco attorno, perfetto per te che sei appassionata di passeggiate!!!
+                      <div class="mt-4 flex flex-col items-center text-center w-full gap-2 overflow-hidden">
+                          <b class="text-[1.365rem] truncate w-full px-2">{{ advice.title }}</b>
+                          <div class="text-[1.104rem] leading-tight px-2 h-[8rem] overflow-y-auto">
+                              {{ advice.description }}
                           </div>
                       </div>
                       
@@ -50,9 +75,9 @@ function goBack() {
                       <div class="mt-auto w-full flex items-center justify-between px-2 pb-2">
                            <div class="flex items-center gap-1">
                                <img :src="locationIcon" class="w-[1rem] h-[1rem]" alt="Location" />
-                               <span class="text-[1.1rem]">Karlsruhe</span>
+                               <span class="text-[1.1rem]">{{ advice.location }}</span>
                            </div>
-                           <span class="text-[1.1rem] font-medium underline">@Paola</span>
+                           <span class="text-[1.1rem] font-medium underline">@{{ advice.sender }}</span>
                       </div>
                   </div>
               </div>
@@ -63,8 +88,8 @@ function goBack() {
       </div>
 
        <!-- Bottom Action: Delete Button -->
-       <div class="shrink-0 w-full mb-20 flex justify-center">
-            <button class="w-1/2 h-[3.125rem] bg-red-500 rounded-[5px] flex items-center justify-center shadow-md active:scale-95 transition-transform">
+       <div class="shrink-0 w-full mb-20 flex justify-center" v-if="advice">
+            <button class="w-1/2 h-[3.125rem] bg-red-500 rounded-[5px] flex items-center justify-center shadow-md active:scale-95 transition-transform" @click="onDelete">
                  <img :src="binIcon" class="w-6 h-6 object-contain filter brightness-0 invert" alt="Delete" />
             </button>
        </div>

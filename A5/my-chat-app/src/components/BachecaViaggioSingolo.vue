@@ -1,5 +1,7 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { store } from "../services/store"
 import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane-fill.svg'
 import personIcon from '../assets/icons-all/person.svg'
@@ -7,23 +9,18 @@ import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import positionPinIcon from '../assets/icons-all/location.svg'
 
 const router = useRouter()
+const route = useRoute()
 
-const cards = [
-    { 
-        id: 1, 
-        title: 'Duomo di Milano', 
-        location: 'Milan', 
-        user: '@Giovanni',
-        image: '' 
-    },
-    { 
-        id: 2, 
-        title: 'Galleria Vittorio Emanuele II', 
-        location: 'Milan', 
-        user: '@Ludovica',
-        image: '' 
+const currentLocation = ref('Viaggio')
+const relevantAdvices = ref([])
+
+onMounted(() => {
+    store.init()
+    if (route.query.location) {
+        currentLocation.value = route.query.location
+        relevantAdvices.value = store.getAdvicesByLocation(route.query.location)
     }
-]
+})
 
 function onBackClick() {
     router.back()
@@ -41,8 +38,12 @@ function goToProfile() {
     router.push('/profilo')
 }
 
-function goToConsiglio() {
-    router.push('/consiglio')
+function goToConsiglio(id) {
+    if (id) {
+         router.push({ path: '/consiglio', query: { id: id } })
+    } else {
+         router.push('/consiglio')
+    }
 }
 </script>
 
@@ -54,29 +55,29 @@ function goToConsiglio() {
       <div class="shrink-0 flex items-center justify-between px-5 py-4 mt-4 bg-whitesmoke z-10">
         <div class="flex items-center gap-4">
              <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Back" @click="onBackClick" />
-             <b class="text-[2.5rem] leading-none text-black">Milan</b>
-        </div>
-        <!-- Right side icons placeholder if needed, or empty to match spacing -->
-        <div class="flex gap-2">
-            <!-- Placeholders matching previous layout if strictly needed, or removed for cleaner look -->
+             <b class="text-[2.5rem] leading-none text-black">{{ currentLocation }}</b>
         </div>
       </div>
 
       <!-- Notice Board Container -->
       <div class="flex-1 w-full px-4 pb-[6rem]">
-          <div class="w-full bg-[#8B4513] border-[6px] border-solid border-[#662c00] p-1">
+          <div class="w-full bg-[#8B4513] border-[6px] border-solid border-[#662c00] p-1 h-full min-h-[400px]">
             
+            <div v-if="relevantAdvices.length === 0" class="text-white w-full text-center mt-10 italic text-xl">
+                Nessun consiglio trovato per {{ currentLocation }}.
+            </div>
+
             <!-- Grid Layout for 2 columns -->
             <div class="grid grid-cols-2 gap-x-1 gap-y-4 place-items-center">
                 
-                <div v-for="card in cards" :key="card.id"
+                <div v-for="card in relevantAdvices" :key="card.id"
                      class="min-w-[9.375rem] w-[9.375rem] h-[11.813rem] rounded-[10px] bg-goldenrod shadow-[0px_0px_4px_4px_#662c00] p-2 flex flex-col items-center gap-1 cursor-pointer hover:opacity-95 transition-opacity shrink-0 relative"
-                     @click="goToConsiglio">
+                     @click="goToConsiglio(card.id)">
                      
                     <!-- Image Placeholder -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
-                        <!-- Using a placeholder or empty src as per original, but maintaining structure -->
-                        <img class="w-full h-full object-cover" alt="" />
+                        <img v-if="card.image" :src="card.image" class="w-full h-full object-cover" alt="Image" />
+                        <span v-else>Foto</span>
                     </div>
                     
                     <!-- Location -->
@@ -86,10 +87,10 @@ function goToConsiglio() {
                     </div>
 
                     <!-- Title -->
-                    <div class="text-[0.9rem] font-bold leading-tight text-center w-full px-1 min-h-[2.5rem] flex items-center justify-center">{{ card.title }}</div>
+                    <div class="text-[0.9rem] font-bold leading-tight text-center w-full px-1 min-h-[2.5rem] flex items-center justify-center line-clamp-2">{{ card.title }}</div>
                     
-                    <!-- User Tag -->
-                    <div class="text-[0.7rem] underline mt-auto mb-1 w-full text-center">{{ card.user }}</div>
+                    <!-- User Tag (Sender) -->
+                    <div class="text-[0.7rem] underline mt-auto mb-1 w-full text-center">@{{ card.sender }}</div>
                 </div>
 
             </div>

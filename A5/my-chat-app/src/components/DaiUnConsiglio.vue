@@ -1,12 +1,37 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { reactive } from 'vue'
+import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import imageIcon from '../assets/icons-all/image.svg'
 
 const router = useRouter()
 
+const form = reactive({
+    title: '',
+    description: ''
+})
+
 function onPublishClick() {
-    router.push('/home')
+    if (!form.title || !form.description) {
+        alert("Inserisci titolo e descrizione")
+        return
+    }
+
+    try {
+        store.init() // Ensure store is ready
+        // We assume we are advising "Paola" based on the page context
+        store.createAdvice({
+            title: form.title,
+            description: form.description,
+            receiver: 'Paola',
+            image: '' // Placeholder for now
+        })
+        alert("Consiglio pubblicato!")
+        router.push('/home')
+    } catch (e) {
+        alert(e.message) // e.g., "Must be logged in"
+    }
 }
 
 function onBackClick() {
@@ -32,6 +57,7 @@ function onBackClick() {
                 <!-- Title Input -->
                 <div class="w-full">
                     <input 
+                        v-model="form.title"
                         class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border pl-[1.5rem] font-bold placeholder-dimgray outline-none text-[0.875rem] text-dimgray" 
                         placeholder="Titolo" 
                         type="text" 
@@ -41,6 +67,7 @@ function onBackClick() {
                 <!-- Description Textarea -->
                 <div class="w-full">
                     <textarea 
+                        v-model="form.description"
                         class="w-full h-[9.875rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border p-[1rem] font-bold placeholder-dimgray outline-none resize-none font-urbanist text-[0.875rem] text-dimgray" 
                         placeholder="Descrizione"
                     ></textarea>

@@ -15,8 +15,11 @@ import Gamification from './components/Gamification.vue'
 import Notifiche from './components/Notifiche.vue'
 import Chat from './components/Chat.vue'
 
+import Login from './components/Login.vue'
+
 const routes = [
-    { path: '/', component: SignUp },
+    { path: '/', component: Login },
+    { path: '/signup', component: SignUp },
     { path: '/le-tue-zone', component: LeTueZone },
     { path: '/home', component: Home },
     { path: '/tutti-viaggi', component: TuttiViaggi },

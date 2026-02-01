@@ -1,17 +1,39 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { reactive } from 'vue'
+import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 
 const router = useRouter()
+
+const form = reactive({
+    location: '',
+    arrival: '',
+    departure: ''
+})
 
 function goBack() {
     router.back()
 }
 
 function onSave() {
-    // Logic to save can go here
-    console.log("Salva clicked")
-    router.back()
+    if (!form.location || !form.arrival || !form.departure) {
+        alert("Inserisci tutti i campi")
+        return
+    }
+
+    try {
+        store.init()
+        store.createTrip({
+            location: form.location,
+            arrival: form.arrival,
+            departure: form.departure
+        })
+        alert("Viaggio creato!")
+        router.back()
+    } catch (e) {
+        alert(e.message) // e.g. "Must be logged in"
+    }
 }
 
 function onCancel() {
@@ -41,6 +63,7 @@ function onCancel() {
                <div class="flex flex-col gap-2">
                   <label class="text-[1.25rem] font-bold text-black tracking-wide">Luogo</label>
                   <input 
+                      v-model="form.location"
                       type="text" 
                       placeholder="Inserisci luogo"
                       class="w-full p-4 rounded-[10px] border-2 border-[#1a5e63] bg-white text-lg focus:outline-none focus:ring-2 focus:ring-[#1a5e63]"
@@ -55,6 +78,7 @@ function onCancel() {
                             Arrivo
                         </label>
                         <input 
+                            v-model="form.arrival"
                             type="date"
                             class="w-full p-3 rounded-[10px] border-2 border-[#1a5e63] bg-white text-base focus:outline-none"
                         />
@@ -69,6 +93,7 @@ function onCancel() {
                             Partenza
                         </label>
                         <input 
+                            v-model="form.departure"
                             type="date"
                             class="w-full p-3 rounded-[10px] border-2 border-[#1a5e63] bg-white text-base focus:outline-none"
                         />

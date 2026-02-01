@@ -1,5 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { ref, onMounted, computed } from 'vue'
+import { store } from "../services/store"
 import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane-fill.svg'
 import personIcon from '../assets/icons-all/person.svg'
@@ -7,23 +9,19 @@ import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import plusIcon from '../assets/icons-all/plus.svg'
 
 const router = useRouter()
+const trips = ref([])
+const user = computed(() => store.state.currentUser)
 
-const cities = [
-  { name: 'Chicago', path: null },
-  { name: 'Dublin', path: null },
-  { name: 'Rome', path: null },
-  { name: 'Kyoto', path: null },
-  { name: 'Milan', path: '/bacheca-viaggio-singolo' },
-  { name: 'Tokyo', path: null },
-  { name: 'New York', path: null },
-  { name: 'Paris', path: null },
-  { name: 'London', path: null },
-  { name: 'Berlin', path: null },
-]
+onMounted(() => {
+    store.init()
+    if (user.value) {
+        trips.value = store.getUserTrips(user.value.username)
+    }
+})
 
-function onCityClick(path) {
-  // Always navigate to BachecaViaggioSingolo for now, regardless of the specific path
-  router.push('/bacheca-viaggio-singolo')
+function onTripClick(location) {
+  // Navigate to BachecaViaggioSingolo with location query
+  router.push({ path: '/bacheca-viaggio-singolo', query: { location: location } })
 }
 
 function goToHome() {
@@ -57,13 +55,18 @@ function goToNuovoViaggio() {
 
     <!-- Scrollable Cities List -->
     <div class="w-full md:w-1/3 flex-1 overflow-y-auto flex flex-col gap-6 px-5 pb-[6rem] pt-4">
+        
+        <div v-if="trips.length === 0" class="text-center text-gray-500 italic mt-10">
+            Nessun viaggio programmato.
+        </div>
+
         <div 
-            v-for="city in cities" 
-            :key="city.name"
+            v-for="trip in trips" 
+            :key="trip.id"
             class="relative w-full h-[5rem] shrink-0 rounded-[10px] bg-goldenrod shadow-[0px_4px_4px_6px_#1a5e63] flex items-center justify-between px-6 cursor-pointer hover:opacity-90 transition-opacity"
-            @click="onCityClick(city.path)"
+            @click="onTripClick(trip.location)"
         >
-            <span class="text-[2rem] font-bold text-black">{{ city.name }}</span>
+            <span class="text-[2rem] font-bold text-black">{{ trip.location }}</span>
             <!-- Icon: Arrow Left flipped vertically (180deg rotation to point right) -->
             <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain transform rotate-180" alt="Go" />
         </div>
