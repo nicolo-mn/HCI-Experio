@@ -6,6 +6,7 @@ import gianniImg from '../assets/icons-all/gianni.svg'
 import suitcaseIcon from '../assets/icons-all/suitcase.svg'
 import houseIcon from '../assets/icons-all/house-fill.svg'
 import planeIcon from '../assets/icons-all/plane.svg'
+import calendarIcon from '../assets/icons-all/calendar.svg'
 import personIcon from '../assets/icons-all/person.svg'
 import { useRouter } from 'vue-router'
 
@@ -37,6 +38,13 @@ function getAvatar(avatarName) {
     if (avatarName === 'paola') return paolaImg;
     if (avatarName === 'gianni') return gianniImg;
     return personIcon; // default
+}
+
+function formatDate(dateString) {
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-');
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
 }
 
 function onGroupContainerClick() {
@@ -86,6 +94,14 @@ function goToProfile() {
                         <div class="flex items-center gap-2 mt-1">
                             <img class="w-6 h-6" :src="suitcaseIcon" alt="Location" />
                             <span class="text-[1.5rem] font-bold">{{ item.trip.location }}</span>
+                        </div>
+
+                        <!-- Dates -->
+                        <div class="flex items-center gap-2 mt-1">
+                            <img class="w-6 h-6" :src="calendarIcon" alt="Dates" />
+                            <span class="text-[1.25rem] font-bold">
+                                {{ formatDate(item.trip.arrival) }} - {{ formatDate(item.trip.departure) }}
+                            </span>
                         </div>
                     </div>
                 </div>
