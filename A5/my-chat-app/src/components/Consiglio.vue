@@ -5,6 +5,7 @@ import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import locationIcon from '../assets/icons-all/location.svg'
 import binIcon from '../assets/icons-all/bin.svg'
+import chatIcon from '../assets/icons-all/chat.svg'
 
 const router = useRouter()
 const route = useRoute()
@@ -22,7 +23,28 @@ const advice = computed(() => {
 })
 
 const adviceList = computed(() => {
-    if (!currentUser.value || !advice.value) return []
+    if (!advice.value) return []
+    
+    // Check context from route
+    const type = route.query.type
+    if (type === 'received') {
+        return store.state.advices
+            .filter(a => a.receiver === advice.value.receiver)
+            .sort((a, b) => b.timestamp - a.timestamp)
+    }
+    if (type === 'sent') {
+        return store.state.advices
+            .filter(a => a.sender === advice.value.sender)
+            .sort((a, b) => b.timestamp - a.timestamp)
+    }
+
+    if (type === 'trip' && route.query.location) {
+        return store.state.advices
+            .filter(a => a.location === route.query.location)
+            .sort((a, b) => b.timestamp - a.timestamp)
+    }
+
+    if (!currentUser.value) return []
     const me = currentUser.value.username
     
     // If I am the sender, show sent advices
@@ -72,8 +94,32 @@ function goBack() {
 }
 
 function onDelete() {
+    if (!advice.value) return
+    
     if (confirm("Vuoi eliminare questo consiglio?")) {
-        alert("Funzionalità di eliminazione non ancora attiva.")
+        // Capture next/prev before deletion because advice becomes null after deletion
+        const next = nextId.value
+        const prev = prevId.value
+        
+        store.deleteAdvice(advice.value.id)
+        
+        if (next) {
+            goToAdvice(next)
+        } else if (prev) {
+            goToAdvice(prev)
+        } else {
+            router.back()
+        }
+    }
+}
+
+const isMe = computed(() => {
+    return currentUser.value && advice.value && currentUser.value.username === advice.value.sender
+})
+
+function goToChat() {
+    if (advice.value && advice.value.sender && !isMe.value) {
+        router.push(`/chat/${advice.value.sender}`)
     }
 }
 </script>
@@ -129,7 +175,13 @@ function onDelete() {
                                <img :src="locationIcon" class="w-[1rem] h-[1rem]" alt="Location" />
                                <span class="text-[1.1rem]">{{ advice.location }}</span>
                            </div>
-                           <span class="text-[1.1rem] font-medium underline">@{{ advice.sender }}</span>
+                           <div class="flex items-center gap-2" 
+                                :class="{ 'cursor-pointer hover:scale-105 transition-transform': !isMe }"
+                                @click="!isMe && goToChat()"
+                           >
+                               <img v-if="!isMe" :src="chatIcon" class="w-[1.5rem] h-[1.5rem]" alt="Chat" />
+                               <span class="text-[1.1rem] font-medium underline">@{{ advice.sender }}</span>
+                           </div>
                       </div>
                   </div>
               </div>

@@ -6,8 +6,7 @@ import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane.svg'
 import personIcon from '../assets/icons-all/person-fill.svg'
 import notificationsIcon from '../assets/icons-all/notifications.svg'
-import chiaraImg from '../assets/icons-all/chiara.svg'
-import positionPinIcon from '../assets/icons-all/location.svg' 
+import positionPinIcon from '../assets/icons-all/location.svg'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import logoutIcon from '../assets/icons-all/logout.svg'
 import gamificationCupIcon from '../assets/icons-all/gamification-cup.svg'
@@ -30,11 +29,6 @@ onMounted(() => {
     if (user.value) {
         receivedAdvices.value = store.getReceivedAdvices(user.value.username)
         sentAdvices.value = store.getSentAdvices(user.value.username)
-    } else {
-        // Handle guest/not logged in state? For now, we seed or redirect.
-        // If seeded via signup, we are good. If direct load, init() handles seeding but not logging in a user by default
-        // unless we forced it in store.js.
-        // Let's create a dummy user display if none exists
     }
 })
 
@@ -70,9 +64,11 @@ function goToConsigliDati() {
     router.push('/consigli-dati')
 }
 
-function goToConsiglio(id) {
+function goToConsiglio(id, type) {
     if (id) {
-        router.push({ path: '/consiglio', query: { id: id } })
+        const query = { id: id }
+        if (type) query.type = type
+        router.push({ path: '/consiglio', query: query })
     } else {
         router.push('/consiglio')
     }
@@ -88,7 +84,7 @@ function goToConsiglio(id) {
         <!-- Header: Avatar, Name, Actions -->
         <div class="flex items-center justify-between px-2">
             <div class="flex items-center gap-4">
-                <img :src="chiaraImg" class="w-[3.25rem] h-[3.25rem] rounded-full object-cover shadow-sm" alt="Avatar" />
+                <img :src="store.resolveAvatar(user ? user.username : '')" class="w-[3.25rem] h-[3.25rem] rounded-full object-cover shadow-sm border-[1px] border-black/10" alt="Avatar" />
                 <span class="text-[1.875rem] font-bold text-black">{{ user ? user.name : 'Ospite' }}</span>
             </div>
             <div class="flex items-center gap-2">
@@ -105,6 +101,17 @@ function goToConsiglio(id) {
         <!-- Bio -->
         <div class="text-[1.25rem] font-medium leading-tight text-black mt-1 px-2">
             {{ user ? user.description : 'Registrati per vedere il tuo profilo!' }}
+        </div>
+
+        <!-- Zones Chips -->
+        <div v-if="user && user.zones && user.zones.length > 0" class="flex flex-wrap gap-2 mt-1 px-2">
+            <div 
+                v-for="zone in user.zones" 
+                :key="zone"
+                class="bg-darkslategray text-white px-3 py-1 rounded-[15px] flex items-center text-[0.875rem] font-bold"
+            >
+                {{ zone }}
+            </div>
         </div>
 
         <!-- Bio Separator -->
@@ -129,7 +136,7 @@ function goToConsiglio(id) {
                     v-for="advice in receivedAdvices" 
                     :key="advice.id"
                     class="min-w-[9.375rem] w-[9.375rem] h-[11.813rem] rounded-[10px] bg-goldenrod shadow-[0px_0px_4px_4px_#662c00] p-2 flex flex-col items-center gap-1 cursor-pointer hover:opacity-95 transition-opacity shrink-0 relative"
-                    @click="goToConsiglio(advice.id)"
+                    @click="goToConsiglio(advice.id, 'received')"
                 >
                     <!-- Image -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
@@ -146,8 +153,7 @@ function goToConsiglio(id) {
                     <!-- Title -->
                     <div class="text-[0.9rem] font-bold leading-tight text-center line-clamp-2 w-full">{{ advice.title }}</div>
                     
-                    <!-- Sender Tag (From whom?) -->
-                    <div class="text-[0.7rem] underline mt-auto mb-1">@{{ advice.sender }}</div>
+
                 </div>
 
             </div>
@@ -156,7 +162,7 @@ function goToConsiglio(id) {
         <!-- Section: Consigli donati (Sent Advices) -->
         <div class="flex flex-col gap-1 mt-2">
              <div class="flex items-center gap-2 mb-1 px-2 cursor-pointer hover:opacity-80" @click="goToConsigliDati">
-                 <span class="text-[1.5rem] font-semibold text-black">Consigli donati</span>
+                 <span class="text-[1.5rem] font-semibold text-black">Consigli dati</span>
                  <img :src="arrowLeft" class="w-[1.2rem] h-[1.2rem] object-contain transform rotate-180" alt="Go" />
             </div>
 
@@ -171,7 +177,7 @@ function goToConsiglio(id) {
                     v-for="advice in sentAdvices" 
                     :key="advice.id"
                     class="min-w-[9.375rem] w-[9.375rem] h-[11.813rem] rounded-[10px] bg-goldenrod shadow-[0px_0px_4px_4px_#662c00] p-2 flex flex-col items-center gap-1 cursor-pointer hover:opacity-95 transition-opacity shrink-0 relative"
-                    @click="goToConsiglio(advice.id)"
+                    @click="goToConsiglio(advice.id, 'sent')"
                 >
                     <!-- Image -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
@@ -188,8 +194,7 @@ function goToConsiglio(id) {
                     <!-- Title -->
                     <div class="text-[0.9rem] font-bold leading-tight text-center line-clamp-2 w-full">{{ advice.title }}</div>
                     
-                    <!-- Receiver Tag (To whom?) -->
-                    <div class="text-[0.7rem] underline mt-auto mb-1">@{{ advice.receiver }}</div>
+
                 </div>
                 
             </div>

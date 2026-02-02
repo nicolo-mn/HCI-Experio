@@ -4,6 +4,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { store } from '../services/store.js'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import sendIcon from '../assets/icons-all/send.svg'
+import binIcon from '../assets/icons-all/bin.svg'
 
 const router = useRouter()
 const route = useRoute()
@@ -24,6 +25,13 @@ function sendMessage() {
     store.sendMessage(messageText.value, username.value)
     messageText.value = ''
     scrollToBottom()
+}
+
+function deleteChat() {
+    if (confirm(`Sei sicuro di voler eliminare la chat con ${username.value}?`)) {
+        store.deleteChat(username.value)
+        router.push('/lista-chat')
+    }
 }
 
 function scrollToBottom() {
@@ -52,9 +60,7 @@ watch(conversationMessages, scrollToBottom, { deep: true })
         </div>
         <!-- Icons/Avatar placeholder -->
          <div class="flex items-center gap-2">
-            <!-- Placeholders for actions like call/video -->
-            <div class="w-[1.875rem] h-[1.875rem] bg-gray-200 rounded-full" /> 
-            <div class="w-[1.875rem] h-[1.875rem] bg-gray-200 rounded-full" />
+            <img :src="binIcon" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer filter brightness-0" alt="Delete Chat" @click="deleteChat" />
          </div>
       </div>
       

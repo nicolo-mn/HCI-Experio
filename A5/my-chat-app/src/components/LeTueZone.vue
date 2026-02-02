@@ -1,11 +1,12 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { store } from '../services/store.js';
 import { useRouter } from "vue-router";
 import arrowLeft from '../assets/icons-all/arrow-left.svg';
 
 const router = useRouter();
 
+// State
 // State
 const availableZones = ref([
     'Parigi', 'Cesena', 'Roma', 'Milano', 'Londra', 'New York', 'Tokyo', 'Berlino', 
@@ -15,6 +16,14 @@ const selectedZones = ref([]);
 const searchQuery = ref('');
 const isDropdownOpen = ref(false);
 const inputRef = ref(null);
+
+onMounted(() => {
+    store.init();
+    const user = store.state.currentUser;
+    if (user && user.zones) {
+        selectedZones.value = [...user.zones];
+    }
+});
 
 // Computed
 const filteredZones = computed(() => {

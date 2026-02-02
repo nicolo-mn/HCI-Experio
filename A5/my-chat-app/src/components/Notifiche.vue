@@ -1,12 +1,20 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
+import { store } from '../services/store.js'
 
 const router = useRouter()
 
 function onBackClick() {
     router.back()
 }
+
+const notifications = ref([
+    { id: 1, sender: 'Paola', title: 'Paola', message: 'ti ha dato un nuovo consiglio' },
+    { id: 2, sender: 'Giovanni', title: 'Giovanni', message: 'ti ha dato un nuovo consiglio' },
+    { id: 3, sender: 'Ludovica', title: 'Ludovica', message: 'ti ha dato un nuovo consiglio' }
+])
 </script>
 
 <template>
@@ -22,44 +30,18 @@ function onBackClick() {
       
       <!-- Content -->
       <div class="flex-1 overflow-y-auto w-full pb-[5rem]">
-        <!-- Notif 1 -->
-        <div class="relative w-full border-black border-solid border-b-[1px] box-border p-4 flex items-start gap-4 hover:bg-black/5 transition-colors cursor-pointer">
-             <div class="rounded-full bg-gainsboro w-[3rem] h-[3rem] shrink-0" />
-             <div class="flex-1">
-                <span class="block">
-                    <b class="font-urbanist">Paola </b>
-                    <span class="text-[0.9rem] text-dimgray">ti ha dato un nuovo consiglio</span>
-                </span>
-                <span class="text-[0.8rem] text-dimgray block mt-1">1h</span>
-             </div>
-             <div class="rounded-[4.2px] w-[3rem] h-[1.8rem] bg-gray-300 shrink-0" />
-        </div>
-
-        <!-- Notif 2 -->
-        <div class="relative w-full border-black border-solid border-b-[1px] box-border p-4 flex items-start gap-4 hover:bg-black/5 transition-colors cursor-pointer">
-             <div class="rounded-full bg-gainsboro w-[3rem] h-[3rem] shrink-0" />
-             <div class="flex-1">
-                <span class="block">
-                    <b class="font-urbanist">Marco </b>
-                    <span class="text-[0.9rem] text-dimgray">ti ha dato un nuovo consiglio</span>
-                </span>
-                <span class="text-[0.8rem] text-dimgray block mt-1">5h</span>
-             </div>
-             <div class="rounded-[4.2px] w-[3rem] h-[1.8rem] bg-gray-300 shrink-0" />
-        </div>
-
-         <!-- Notif 3 -->
-        <div class="relative w-full border-black border-solid border-b-[1px] box-border p-4 flex items-start gap-4 hover:bg-black/5 transition-colors cursor-pointer">
-             <div class="rounded-full bg-gainsboro w-[3rem] h-[3rem] shrink-0" />
-             <div class="flex-1">
-                <span class="block">
-                     <b class="font-urbanist">Ludovica </b>
-                    <span class="text-[0.9rem] text-dimgray">ti ha dato un nuovo consiglio</span>
-                </span>
-                <span class="text-[0.8rem] text-dimgray block mt-1">1d</span>
-             </div>
-             <div class="rounded-[4.2px] w-[3rem] h-[1.8rem] bg-gray-300 shrink-0" />
-        </div>
+        <div 
+            v-for="notif in notifications" 
+            :key="notif.id"
+            class="w-full h-[5rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" 
+          >
+             <!-- Avatar -->
+             <img :src="store.resolveAvatar(notif.sender || 'System')" class="absolute top-1/2 -translate-y-1/2 left-[1rem] w-[2.9rem] h-[2.9rem] object-cover rounded-full bg-gainsboro border-[1px] border-black/10" alt="Avatar" />
+             
+             <div class="absolute top-[1rem] left-[4.5rem] font-medium text-[1rem]">{{ notif.title }}</div>
+             <div class="absolute top-[2.5rem] left-[4.5rem] text-[0.8rem] text-gray-600 truncate w-[13rem]">{{ notif.message }}</div>
+             
+          </div>
       </div>
       
     </div>

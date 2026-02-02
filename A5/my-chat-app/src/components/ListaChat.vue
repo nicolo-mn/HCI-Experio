@@ -37,6 +37,9 @@ function goToProfile() {
 function goToChat(username) {
     router.push('/chat/' + username)
 }
+function goToChat(username) {
+    router.push('/chat/' + username)
+}
 </script>
 
 <template>
@@ -57,10 +60,16 @@ function goToChat(username) {
             class="w-full h-[4.438rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" 
             @click="goToChat(user)"
           >
+             <!-- Avatar -->
+             <img :src="store.resolveAvatar(user)" class="absolute top-1/2 -translate-y-1/2 left-[1rem] w-[2.9rem] h-[2.9rem] object-cover rounded-full bg-gainsboro border-[1px] border-black/10" alt="Avatar" />
+             
+             <!-- Username -->
              <div class="absolute top-1/2 -translate-y-1/2 left-[4.5rem] font-medium text-[1.125rem]">{{ user }}</div>
-             <div class="absolute top-1/2 -translate-y-1/2 left-[1rem] rounded-full bg-gainsboro w-[2.5rem] h-[2.5rem]" />
-             <!-- Online status indicator placeholder -->
-             <div class="absolute top-1/2 -translate-y-1/2 right-[1rem] w-[1rem] h-[1rem] bg-gray-300 rounded-full" /> 
+             
+             <!-- Right Arrow -->
+             <div class="absolute top-1/2 -translate-y-1/2 right-[1rem] w-[1.5rem] h-[1.5rem]">
+                 <img :src="arrowLeft" class="w-full h-full object-contain rotate-180 opacity-50" alt="Go" />
+             </div>
           </div>
           
           <div v-if="activeChats.length === 0" class="p-5 text-center text-gray-500">

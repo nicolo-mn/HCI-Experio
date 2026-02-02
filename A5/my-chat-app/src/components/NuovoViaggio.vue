@@ -12,6 +12,11 @@ const form = reactive({
     departure: ''
 })
 
+const availableZones = [
+    'Parigi', 'Cesena', 'Roma', 'Milano', 'Londra', 'New York', 'Tokyo', 'Berlino', 
+    'Madrid', 'Barcellona', 'Amsterdam', 'Vienna'
+]
+
 function goBack() {
     router.back()
 }
@@ -62,12 +67,13 @@ function onCancel() {
               <!-- Luogo Field -->
                <div class="flex flex-col gap-2">
                   <label class="text-[1.25rem] font-bold text-black tracking-wide">Luogo</label>
-                  <input 
+                  <select 
                       v-model="form.location"
-                      type="text" 
-                      placeholder="Inserisci luogo"
                       class="w-full p-4 rounded-[10px] border-2 border-[#1a5e63] bg-white text-lg focus:outline-none focus:ring-2 focus:ring-[#1a5e63]"
-                  />
+                  >
+                        <option value="" disabled selected>Seleziona luogo</option>
+                        <option v-for="zone in availableZones" :key="zone" :value="zone">{{ zone }}</option>
+                  </select>
               </div>
 
                <!-- Dates Row -->

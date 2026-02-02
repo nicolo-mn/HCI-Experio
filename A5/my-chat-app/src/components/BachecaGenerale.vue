@@ -1,5 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { store } from "../services/store"
 import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane.svg'
 import personIcon from '../assets/icons-all/person-fill.svg'
@@ -8,13 +10,15 @@ import positionPinIcon from '../assets/icons-all/location.svg'
 
 const router = useRouter()
 
-const cards = [
-    { id: 1, title: 'Castello di Karlsruhe', location: 'Karlsruhe', user: '@Marco' },
-    { id: 2, title: 'Castello di Karlsruhe', location: 'Karlsruhe', user: '@Paola' },
-    { id: 3, title: 'Duomo di Milano', location: 'Milano', user: '@Giovanni' },
-    { id: 4, title: 'Galleria V. Emanuele', location: 'Milano', user: '@Ludovica' },
-    { id: 5, title: 'Muro di Berlino', location: 'Germania', user: '@Ernst' }
-]
+const advices = ref([])
+const currentUser = computed(() => store.state.currentUser)
+
+onMounted(() => {
+    store.init()
+    if (currentUser.value) {
+        advices.value = store.getReceivedAdvices(currentUser.value.username)
+    }
+})
 
 function onBackClick() {
     router.back()
@@ -32,8 +36,10 @@ function goToProfile() {
     router.push('/profilo')
 }
 
-function goToConsiglio() {
-    router.push('/consiglio')
+function goToConsiglio(id) {
+    if (id) {
+        router.push({ path: '/consiglio', query: { id: id, type: 'received' } })
+    }
 }
 </script>
 
@@ -56,26 +62,27 @@ function goToConsiglio() {
             <!-- Grid Layout for 2 columns -->
             <div class="grid grid-cols-2 gap-x-1 gap-y-4 place-items-center">
                 
-                <div v-for="card in cards" :key="card.id"
+                <div v-for="advice in advices" :key="advice.id"
                      class="min-w-[9.375rem] w-[9.375rem] h-[11.813rem] rounded-[10px] bg-goldenrod shadow-[0px_0px_4px_4px_#662c00] p-2 flex flex-col items-center gap-1 cursor-pointer hover:opacity-95 transition-opacity shrink-0 relative"
-                     @click="goToConsiglio">
+                     @click="goToConsiglio(advice.id)">
                      
                     <!-- Image Placeholder -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
-                        <img class="w-full h-full object-cover" alt="" />
+                        <img v-if="advice.image" :src="advice.image" class="w-full h-full object-cover" alt="Image" />
+                        <span v-else>Foto</span>
                     </div>
                     
                     <!-- Location -->
-                    <div class="flex items-center gap-1">
+                    <div class="flex items-center gap-1 w-full justify-start px-1">
                         <img :src="positionPinIcon" class="w-[0.8rem] h-[0.8rem]" alt="Pin" />
-                        <span class="text-[0.8rem] text-black">{{ card.location }}</span>
+                        <span class="text-[0.8rem] text-black truncate">{{ advice.location }}</span>
                     </div>
 
                     <!-- Title -->
-                    <div class="text-[0.9rem] font-bold leading-tight text-center">{{ card.title }}</div>
+                    <div class="text-[0.9rem] font-bold leading-tight text-center line-clamp-2 w-full">{{ advice.title }}</div>
                     
                     <!-- User Tag -->
-                    <div class="text-[0.7rem] underline mt-auto mb-1">{{ card.user }}</div>
+                    <div class="text-[0.7rem] underline mt-auto mb-1">@{{ advice.sender }}</div>
                 </div>
 
             </div>

@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { store } from '../services/store.js';
 import paolaImg from '../assets/icons-all/paola.svg'
 import gianniImg from '../assets/icons-all/gianni.svg'
+import ludovicaImg from '../assets/icons-all/ludovica.svg'
 import suitcaseIcon from '../assets/icons-all/suitcase.svg'
 import houseIcon from '../assets/icons-all/house-fill.svg'
 import planeIcon from '../assets/icons-all/plane.svg'
@@ -18,8 +19,10 @@ const suggestedUsers = computed(() => {
     // Assuming if no zones selected, show nothing.
     const myZones = store.state.currentUser?.zones || [];
     
-    // Filter trips that match my zones
+    // Filter trips that match my zones AND exclude myself
+    const currentUser = store.state.currentUser;
     const relevantTrips = store.state.trips.filter(trip => 
+        trip.user !== currentUser?.username && // Exclude myself
         myZones.some(zone => zone.toLowerCase() === trip.location.toLowerCase())
     );
 
@@ -34,11 +37,7 @@ const suggestedUsers = computed(() => {
     });
 });
 
-function getAvatar(avatarName) {
-    if (avatarName === 'paola') return paolaImg;
-    if (avatarName === 'gianni') return gianniImg;
-    return personIcon; // default
-}
+// function getAvatar removed
 
 function formatDate(dateString) {
     if (!dateString) return '';
@@ -47,8 +46,18 @@ function formatDate(dateString) {
     return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
 }
 
-function onGroupContainerClick() {
-		router.push('/dai-un-consiglio')
+function onGroupContainerClick(item) {
+    if (item && item.user) {
+        const query = { 
+            receiver: item.user.username,
+            location: item.trip.location,
+            arrival: item.trip.arrival,
+            departure: item.trip.departure
+        }
+        router.push({ path: '/dai-un-consiglio', query: query })
+    } else {
+        router.push('/dai-un-consiglio')
+    }
 }
 
 function goToHome() {
@@ -84,7 +93,7 @@ function goToProfile() {
                 
                 <div class="flex items-center gap-4">
                     <!-- Avatar -->
-                    <img class="w-[6.5rem] h-[6.5rem] rounded-full object-cover shrink-0" :src="getAvatar(item.user.avatar)" :alt="item.user.name" />
+                    <img class="w-[6.5rem] h-[6.5rem] rounded-full object-cover shrink-0 border-[3px] border-white/30" :src="store.resolveAvatar(item.user.username)" :alt="item.user.name" />
                     
                     <div class="flex flex-col">
                         <!-- Name -->
@@ -115,7 +124,7 @@ function goToProfile() {
                 <div class="w-full flex justify-center mt-2">
                     <button 
                         class="w-[11.5rem] h-[2.8rem] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] rounded-[10px] bg-darkslategray border-dimgray border-solid border-[2px] box-border text-white font-urbanist font-bold text-[1rem] hover:opacity-90 transition-opacity cursor-pointer"
-                        @click="onGroupContainerClick"
+                        @click="onGroupContainerClick(item)"
                     >
                         Consiglia
                     </button>

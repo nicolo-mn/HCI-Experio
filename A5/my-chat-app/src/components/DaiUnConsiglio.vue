@@ -1,16 +1,58 @@
 <script setup>
-import { useRouter } from 'vue-router'
-import { reactive } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { reactive, computed, ref } from 'vue'
 import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import imageIcon from '../assets/icons-all/image.svg'
 
 const router = useRouter()
+const route = useRoute()
+
+const receiver = computed(() => route.query.receiver || 'Utente')
+const location = computed(() => route.query.location || '')
+const arrival = computed(() => route.query.arrival || '')
+const departure = computed(() => route.query.departure || '')
+
+const subHeader = computed(() => {
+    if (location.value) {
+        if (arrival.value && departure.value) {
+            return `${location.value}, ${formatDate(arrival.value)} - ${formatDate(departure.value)}`
+        }
+        return location.value
+    }
+    return ''
+})
+
+function formatDate(dateString) {
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-');
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
+}
 
 const form = reactive({
     title: '',
-    description: ''
+    description: '',
+    image: null
 })
+
+const fileInputRef = ref(null)
+
+function triggerFileInput() {
+    fileInputRef.value?.click()
+}
+
+function onFileChange(event) {
+    const file = event.target.files[0]
+    if (file) {
+        // Read file as Base64/DataURL
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            form.image = e.target.result
+        }
+        reader.readAsDataURL(file)
+    }
+}
 
 function onPublishClick() {
     if (!form.title || !form.description) {
@@ -20,12 +62,12 @@ function onPublishClick() {
 
     try {
         store.init() // Ensure store is ready
-        // We assume we are advising "Paola" based on the page context
         store.createAdvice({
             title: form.title,
             description: form.description,
-            receiver: 'Paola',
-            image: '' // Placeholder for now
+            receiver: receiver.value,
+            location: location.value, // Save location from context
+            image: form.image || '' 
         })
         alert("Consiglio pubblicato!")
         router.push('/home')
@@ -44,14 +86,20 @@ function onBackClick() {
     		<div class="w-full md:w-1/3 flex flex-col gap-6 p-5 relative">
                 
                 <!-- Header -->
-      			<div class="flex items-center gap-4 mb-4 relative">
-                    <img 
-                        :src="arrowLeft" 
-                        class="w-8 h-8 cursor-pointer hover:opacity-70 transition-opacity" 
-                        @click="onBackClick" 
-                        alt="Back"
-                    />
-					<b class="text-[2.5rem] leading-tight text-black">Consiglia a Paola</b>
+      			<div class="flex flex-col gap-1 mb-4 relative">
+                    <div class="flex items-center gap-4">
+                        <img 
+                            :src="arrowLeft" 
+                            class="w-8 h-8 cursor-pointer hover:opacity-70 transition-opacity" 
+                            @click="onBackClick" 
+                            alt="Back"
+                        />
+                        <b class="text-[2.5rem] leading-tight text-black">Consiglia a {{ receiver }}</b>
+                    </div>
+                    <!-- Subheader: Context Info -->
+                    <div v-if="subHeader" class="text-dimgray text-[1.125rem] font-medium ml-12">
+                        su: {{ subHeader }}
+                    </div>
       			</div>
 
                 <!-- Title Input -->
@@ -74,9 +122,25 @@ function onBackClick() {
                 </div>
 
                 <!-- Add Images Section -->
-                <div class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border flex items-center px-[1.5rem] cursor-pointer hover:bg-gray-50 transition-colors gap-4">
-                    <span class="font-bold text-dimgray text-[0.875rem] flex-1">Aggiungi Immagini</span>
-                    <img :src="imageIcon" class="w-6 h-6 object-contain" alt="Add Image" />
+                <div 
+                    class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border flex items-center px-[1.5rem] cursor-pointer hover:bg-gray-50 transition-colors gap-4 relative overflow-hidden"
+                    @click="triggerFileInput"
+                >
+                    <span v-if="!form.image" class="font-bold text-dimgray text-[0.875rem] flex-1">Aggiungi Immagini</span>
+                    <span v-else class="font-bold text-dimgray text-[0.875rem] flex-1">Immagine selezionata</span>
+                    
+                    <img v-if="!form.image" :src="imageIcon" class="w-6 h-6 object-contain" alt="Add Image" />
+                    
+                    <!-- Preview -->
+                    <img v-if="form.image" :src="form.image" class="h-full w-auto object-cover absolute right-0 top-0" alt="Preview" />
+                    
+                    <input 
+                        ref="fileInputRef"
+                        type="file" 
+                        accept="image/*" 
+                        class="hidden" 
+                        @change="onFileChange"
+                    />
                 </div>
       			
                 <!-- Publish Button -->

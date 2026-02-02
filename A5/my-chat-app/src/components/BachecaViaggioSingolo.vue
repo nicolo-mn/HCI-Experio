@@ -1,12 +1,13 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { store } from "../services/store"
 import houseIcon from '../assets/icons-all/house.svg'
 import planeIcon from '../assets/icons-all/plane-fill.svg'
 import personIcon from '../assets/icons-all/person.svg'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import positionPinIcon from '../assets/icons-all/location.svg'
+import calendarIcon from '../assets/icons-all/calendar.svg'
 
 const router = useRouter()
 const route = useRoute()
@@ -20,6 +21,14 @@ onMounted(() => {
         currentLocation.value = route.query.location
         relevantAdvices.value = store.getAdvicesByLocation(route.query.location)
     }
+})
+
+const tripDetails = computed(() => {
+    if (!store.state.currentUser) return null
+    return store.state.trips.find(t => 
+        t.user === store.state.currentUser.username && 
+        t.location === currentLocation.value
+    )
 })
 
 function onBackClick() {
@@ -40,7 +49,14 @@ function goToProfile() {
 
 function goToConsiglio(id) {
     if (id) {
-         router.push({ path: '/consiglio', query: { id: id } })
+         router.push({ 
+            path: '/consiglio', 
+            query: { 
+                id: id,
+                type: 'trip', // Match the param name expected by Consiglio
+                location: currentLocation.value // Pass the specific location
+            } 
+        })
     } else {
          router.push('/consiglio')
     }
@@ -53,9 +69,17 @@ function goToConsiglio(id) {
       
       <!-- Header -->
       <div class="shrink-0 flex items-center justify-between px-5 py-4 mt-4 bg-whitesmoke z-10">
-        <div class="flex items-center gap-4">
-             <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Back" @click="onBackClick" />
-             <b class="text-[2.5rem] leading-none text-black">{{ currentLocation }}</b>
+        <div class="flex flex-col items-start gap-1">
+             <div class="flex items-center gap-4">
+                 <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Back" @click="onBackClick" />
+                 <b class="text-[2.5rem] leading-none text-black">{{ currentLocation }}</b>
+             </div>
+             <div v-if="tripDetails" class="ml-[3.5rem] flex items-center gap-2 opacity-70">
+                <img :src="calendarIcon" class="w-[1.25rem] h-[1.25rem] object-contain" alt="Calendar" />
+                <div class="text-[1.125rem] font-medium italic">
+                    {{ tripDetails.arrival }} - {{ tripDetails.departure }}
+                </div>
+             </div>
         </div>
       </div>
 
