@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted } from 'vue'
 import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import locationIcon from '../assets/icons-all/location.svg'
@@ -9,26 +9,71 @@ import binIcon from '../assets/icons-all/bin.svg'
 const router = useRouter()
 const route = useRoute()
 
-const advice = ref(null)
-
 onMounted(() => {
     store.init()
-    const id = parseInt(route.query.id)
-    if (id) {
-        advice.value = store.state.advices.find(a => a.id === id)
+})
+
+const currentId = computed(() => parseInt(route.query.id))
+const currentUser = computed(() => store.state.currentUser)
+
+const advice = computed(() => {
+    if (!store.state.advices) return null
+    return store.state.advices.find(a => a.id === currentId.value) || null
+})
+
+const adviceList = computed(() => {
+    if (!currentUser.value || !advice.value) return []
+    const me = currentUser.value.username
+    
+    // If I am the sender, show sent advices
+    if (advice.value.sender === me) {
+        return store.state.advices
+            .filter(a => a.sender === me)
+            .sort((a, b) => b.timestamp - a.timestamp)
+    }
+    // If I am the receiver, show received advices
+    else {
+        return store.state.advices
+            .filter(a => a.receiver === me)
+            .sort((a, b) => b.timestamp - a.timestamp)
     }
 })
+
+const currentIndex = computed(() => {
+    if (!advice.value) return -1
+    return adviceList.value.findIndex(a => a.id === advice.value.id)
+})
+
+const prevId = computed(() => {
+    // List is sorted DESC by timestamp (Newest first)
+    // So "Previous" visual item (Left) could be interpreted as "Newer" (index - 1)
+    if (currentIndex.value > 0) {
+        return adviceList.value[currentIndex.value - 1].id
+    }
+    return null
+})
+
+const nextId = computed(() => {
+    // "Next" visual item (Right) could be interpreted as "Older" (index + 1)
+    if (currentIndex.value !== -1 && currentIndex.value < adviceList.value.length - 1) {
+        return adviceList.value[currentIndex.value + 1].id
+    }
+    return null
+})
+
+function goToAdvice(id) {
+    if (id) {
+        router.replace({ query: { ...route.query, id } })
+    }
+}
 
 function goBack() {
     router.back()
 }
 
 function onDelete() {
-    // Optional: Implement delete logic
     if (confirm("Vuoi eliminare questo consiglio?")) {
-        // store.deleteAdvice(advice.value.id) // Need to implement this in store
         alert("Funzionalità di eliminazione non ancora attiva.")
-        router.back()
     }
 }
 </script>
@@ -51,7 +96,14 @@ function onDelete() {
 
           <!-- Slider Area: Arrow Left + Card + Arrow Right -->
           <div v-else class="flex items-center justify-center w-full gap-2">
-              <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" alt="Previous" />
+              <img 
+                v-if="prevId"
+                :src="arrowLeft" 
+                class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer" 
+                alt="Previous" 
+                @click="goToAdvice(prevId)"
+              />
+              <div v-else class="w-[1.875rem] h-[1.875rem]" /> <!-- Spacer -->
               
               <!-- Card -->
               <div class="relative w-[20.056rem] h-[26.656rem] shrink-0">
@@ -82,7 +134,14 @@ function onDelete() {
                   </div>
               </div>
               
-              <img :src="arrowLeft" class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer rotate-180" alt="Next" />
+              <img 
+                v-if="nextId"
+                :src="arrowLeft" 
+                class="w-[1.875rem] h-[1.875rem] object-contain cursor-pointer rotate-180" 
+                alt="Next" 
+                @click="goToAdvice(nextId)"
+              />
+              <div v-else class="w-[1.875rem] h-[1.875rem]" /> <!-- Spacer -->
           </div>
 
       </div>
