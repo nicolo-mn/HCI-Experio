@@ -77,7 +77,7 @@ function goToConsiglio(id) {
              <div v-if="tripDetails" class="ml-[3.5rem] flex items-center gap-2 opacity-70">
                 <img :src="calendarIcon" class="w-[1.25rem] h-[1.25rem] object-contain" alt="Calendar" />
                 <div class="text-[1.125rem] font-medium italic">
-                    {{ tripDetails.arrival }} - {{ tripDetails.departure }}
+                    da {{ tripDetails.arrival }} a {{ tripDetails.departure }}
                 </div>
              </div>
         </div>
