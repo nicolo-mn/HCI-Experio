@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { computed } from 'vue'
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import { store } from '../services/store.js'
 
@@ -10,11 +10,21 @@ function onBackClick() {
     router.back()
 }
 
-const notifications = ref([
-    { id: 1, sender: 'Paola', title: 'Paola', message: 'ti ha dato un nuovo consiglio' },
-    { id: 2, sender: 'Giovanni', title: 'Giovanni', message: 'ti ha dato un nuovo consiglio' },
-    { id: 3, sender: 'Ludovica', title: 'Ludovica', message: 'ti ha dato un nuovo consiglio' }
-])
+const notifications = computed(() => {
+    const currentUser = store.state.currentUser
+    if (!currentUser) return []
+
+    // Get received advices and map to notification format
+    const received = store.getReceivedAdvices(currentUser.username)
+    
+    // Sort by timestamp descending (newest first)
+    return received.sort((a, b) => b.timestamp - a.timestamp).map(advice => ({
+        id: advice.id,
+        sender: advice.sender,
+        title: advice.sender,
+        message: 'ti ha dato un nuovo consiglio'
+    }))
+})
 </script>
 
 <template>
