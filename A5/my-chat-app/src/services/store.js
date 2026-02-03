@@ -437,11 +437,13 @@ export const store = reactive({
         if (type === 'given') {
             if (sentCount >= 1) unlock('first-given', 'Primo Consiglio Dato')
             if (sentCount >= 50) unlock('50-given', '50 Consigli Dati')
+            if (sentCount >= 100) unlock('100-given', '100 Consigli Dati')
         }
 
         if (type === 'received') {
             if (receivedCount >= 1) unlock('first-received', 'Primo Consiglio Ricevuto')
             if (receivedCount >= 50) unlock('50-received', '50 Consigli Ricevuti')
+            if (receivedCount >= 100) unlock('100-received', '100 Consigli Ricevuti')
         }
     },
 

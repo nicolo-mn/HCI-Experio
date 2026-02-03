@@ -4,9 +4,11 @@ import { computed, onMounted, ref } from 'vue'
 import { store } from "../services/store"
 import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import medalBronze from '../assets/icons-all/medal-bronze.svg'
+import medalSilver from '../assets/icons-all/medal-silver.svg'
 import medalGold from '../assets/icons-all/medal-gold.svg'
+import awardBronze from '../assets/icons-all/award-bronze.svg'
 import awardSilver from '../assets/icons-all/award-silver.svg'
-import trophyCup from '../assets/icons-all/trophy-cup.svg'
+import awardGold from '../assets/icons-all/award-gold.svg'
 
 const router = useRouter()
 const user = computed(() => store.state.currentUser)
@@ -28,25 +30,37 @@ const milestones = computed(() => [
         id: 'first-given',
         title: 'Primo Consiglio Dato',
         unlocked: sentCount.value >= 1,
-        image: medalBronze
+        image: awardBronze
     },
     {
         id: '50-given',
         title: '50 Consigli Dati',
         unlocked: sentCount.value >= 50,
-        image: medalGold
+        image: awardSilver
+    },
+    {
+        id: '100-given',
+        title: '100 Consigli Dati',
+        unlocked: sentCount.value >= 100,
+        image: awardGold
     },
     {
         id: 'first-received',
         title: 'Primo Consiglio Ricevuto',
         unlocked: receivedCount.value >= 1,
-        image: awardSilver
+        image: medalBronze
     },
     {
         id: '50-received',
         title: '50 Consigli Ricevuti',
         unlocked: receivedCount.value >= 50,
-        image: trophyCup
+        image: medalSilver
+    },
+    {
+        id: '100-received',
+        title: '100 Consigli Ricevuti',
+        unlocked: receivedCount.value >= 100,
+        image: medalGold
     }
 ])
 
