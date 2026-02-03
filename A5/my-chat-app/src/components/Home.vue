@@ -21,10 +21,22 @@ const suggestedUsers = computed(() => {
     
     // Filter trips that match my zones AND exclude myself
     const currentUser = store.state.currentUser;
-    const relevantTrips = store.state.trips.filter(trip => 
-        trip.user !== currentUser?.username && // Exclude myself
-        myZones.some(zone => zone.toLowerCase() === trip.location.toLowerCase())
-    );
+    const relevantTrips = store.state.trips.filter(trip => {
+        // Exclude myself
+        if (trip.user === currentUser?.username) return false;
+        
+        // Match my zones
+        const matchesZone = myZones.some(zone => zone.toLowerCase() === trip.location.toLowerCase());
+        if (!matchesZone) return false;
+
+        // Exclude if already advised
+        const alreadyAdvised = store.state.advices.some(a => 
+            a.sender === currentUser.username &&
+            a.receiver === trip.user &&
+            a.location === trip.location
+        );
+        return !alreadyAdvised;
+    });
 
     // Map to include user details
     return relevantTrips.map(trip => {
