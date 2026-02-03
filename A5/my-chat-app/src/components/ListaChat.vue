@@ -37,9 +37,7 @@ function goToProfile() {
 function goToChat(username) {
     router.push('/chat/' + username)
 }
-function goToChat(username) {
-    router.push('/chat/' + username)
-}
+
 </script>
 
 <template>
