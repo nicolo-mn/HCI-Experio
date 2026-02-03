@@ -231,32 +231,7 @@ const SEED_DATA = {
             user: 'Paola'
         }
     ],
-    messages: [
-        {
-            id: 1,
-            text: 'Ciao, quanto tempo ci vuole\nper visitare tutto?',
-            sender: 'Paola',
-            receiver: 'Giovanni',
-            isMine: false,
-            timestamp: Date.now() - 100000
-        },
-        {
-            id: 2,
-            text: 'Circa 2 ore! Secondo me è bellissimo la mattina',
-            sender: 'Giovanni',
-            receiver: 'Paola',
-            isMine: false,
-            timestamp: Date.now() - 50000
-        },
-        {
-            id: 3,
-            text: 'Grazie mille!',
-            sender: 'Paola',
-            receiver: 'Giovanni',
-            isMine: true,
-            timestamp: Date.now()
-        }
-    ]
+    messages: []
 }
 
 export const store = reactive({
