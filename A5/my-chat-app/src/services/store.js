@@ -109,7 +109,7 @@ const SEED_DATA = {
         {
             id: 3,
             title: 'Castello di Karlsruhe',
-            description: 'Si tratta di un castello molto affascinante con all’interno un museo ed un grande parco attorno, perfetto per te che sei appassionata di passeggiate!!!',
+            description: 'Si tratta di un castello molto affascinante con all’interno un museo ed un grande parco attorno.',
             location: 'Karlsruhe',
             sender: 'Paola', // Sent by Paola (Zone Karlsruhe)
             receiver: 'Giovanni', // Received by Giovanni (Trip to Karlsruhe)
