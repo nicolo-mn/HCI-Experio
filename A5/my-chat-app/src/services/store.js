@@ -6,6 +6,10 @@ import muroImg from '../assets/img-all/muro-berlino.jpg'
 import paolaIcon from '../assets/icons-all/paola.svg'
 import gianniIcon from '../assets/icons-all/gianni.svg'
 import ludovicaIcon from '../assets/icons-all/ludovica.svg'
+import alexIcon from '../assets/icons-all/alex.svg'
+import laraIcon from '../assets/icons-all/lara.svg'
+import janetIcon from '../assets/icons-all/janet.svg'
+import michaelIcon from '../assets/icons-all/michael.svg'
 import ernstIcon from '../assets/img-all/ernst.png' // Ernst is png in Profilo, checking usage
 import defaultIcon from '../assets/icons-all/person-fill.svg'
 
@@ -18,15 +22,15 @@ const SEED_DATA = {
             username: 'Paola',
             name: 'Paola',
             email: 'paola@example.com',
-            description: 'Amo viaggiare e scoprire nuovi posti!',
-            avatar: 'paola', // referencing local asset name if possible, or we handle avatars later
+            description: 'Amo viaggiare e scoprire nuovi posti! Appassionata di arte rinascimentale e cucina locale. Cerco sempre le migliori caffetterie in città.',
+            avatar: 'paola',
             zones: ['Milano', 'Roma', 'Karlsruhe']
         },
         {
             username: 'Giovanni',
             name: 'Giovanni',
             email: 'giovanni@example.com',
-            description: 'Appassionato di architettura.',
+            description: 'Appassionato di architettura moderna e jazz. Mi piace perdermi tra i vicoli delle città storiche e disegnare schizzi urbani.',
             avatar: 'gianni',
             zones: ['Londra', 'Milano', 'Venezia']
         },
@@ -34,7 +38,7 @@ const SEED_DATA = {
             username: 'Ludovica',
             name: 'Ludovica',
             email: 'ludovica@example.com',
-            description: 'Food lover.',
+            description: 'Food lover sempre a caccia di mercati locali e spezie rare. Organizzo tour gastronomici per amici nel tempo libero.',
             avatar: 'ludovica',
             zones: ['Copenhagen', 'Stoccolma', 'Oslo']
         },
@@ -42,9 +46,41 @@ const SEED_DATA = {
             username: 'Ernst',
             name: 'Ernst',
             email: 'ernst@example.com',
-            description: 'Food lover.',
+            description: 'Sommelier e amante del cinema d\'autore. Viaggio per festival cinematografici e degustazioni di vini nelle capitali europee.',
             avatar: 'ernst',
             zones: ['Karlsruhe', 'Berlino']
+        },
+        {
+            username: 'Alex',
+            name: 'Alex',
+            email: 'alex@example.com',
+            description: 'Graphic Designer freelance. Cerco ispirazione nei musei di design contemporaneo e nei quartieri creativi delle grandi metropoli.',
+            avatar: 'alex',
+            zones: ['Milano']
+        },
+        {
+            username: 'Lara',
+            name: 'Lara',
+            email: 'lara@example.com',
+            description: 'Studentessa di architettura con un amore per il gotico e il barocco. Il mio sogno è visitare tutte le cattedrali d\'Europa.',
+            avatar: 'lara',
+            zones: ['Venezia']
+        },
+        {
+            username: 'Janet',
+            name: 'Janet',
+            email: 'janet@example.com',
+            description: 'Fotografa di strada. Mi piace catturare l\'essenza delle città all\'alba e al tramonto. Sempre con la macchina fotografica al collo.',
+            avatar: 'janet',
+            zones: ['Londra']
+        },
+        {
+            username: 'Michael',
+            name: 'Michael',
+            email: 'michael@example.com',
+            description: 'Laureato in Storia. Amo visitare musei, rovine antiche e biblioteche storiche. Un libro e un biglietto aereo sono tutto ciò che mi serve.',
+            avatar: 'michael',
+            zones: ['Milano', 'Londra']
         }
     ],
     currentUser: null, // Will be set on login/signup
@@ -129,6 +165,69 @@ const SEED_DATA = {
             arrival: '2024-03-10',
             departure: '2024-03-20',
             user: 'Ludovica'
+        },
+        {
+            id: 5,
+            location: 'Londra',
+            arrival: '2024-04-01',
+            departure: '2024-04-05',
+            user: 'Alex'
+        },
+        {
+            id: 6,
+            location: 'Milano',
+            arrival: '2024-04-10',
+            departure: '2024-04-15',
+            user: 'Lara'
+        },
+        {
+            id: 7,
+            location: 'Venezia',
+            arrival: '2024-05-01',
+            departure: '2024-05-05',
+            user: 'Janet'
+        },
+        {
+            id: 8,
+            location: 'Londra',
+            arrival: '2024-05-10',
+            departure: '2024-05-15',
+            user: 'Michael'
+        },
+        {
+            id: 9,
+            location: 'Venezia',
+            arrival: '2024-09-01',
+            departure: '2024-09-05',
+            user: 'Ludovica'
+        },
+        {
+            id: 10,
+            location: 'Londra',
+            arrival: '2024-09-10',
+            departure: '2024-09-15',
+            user: 'Ernst'
+        },
+        {
+            id: 11,
+            location: 'Milano',
+            arrival: '2024-10-01',
+            departure: '2024-10-05',
+            user: 'Paola'
+        },
+        {
+            id: 12,
+            location: 'Venezia',
+            arrival: '2024-10-10',
+            departure: '2024-10-15',
+            user: 'Ernst'
+        },
+        {
+            id: 13,
+            location: 'Londra',
+            arrival: '2024-11-01',
+            departure: '2024-11-05',
+            user: 'Paola'
         }
     ],
     messages: [
@@ -457,6 +556,10 @@ export const store = reactive({
         if (user.avatar === 'gianni') return gianniIcon
         if (user.avatar === 'ludovica') return ludovicaIcon
         if (user.avatar === 'ernst') return ernstIcon
+        if (user.avatar === 'alex') return alexIcon
+        if (user.avatar === 'lara') return laraIcon
+        if (user.avatar === 'janet') return janetIcon
+        if (user.avatar === 'michael') return michaelIcon
 
         // If avatar looks like a data URL (uploaded image), return it directly
         if (user.avatar && user.avatar.startsWith('data:image')) {
