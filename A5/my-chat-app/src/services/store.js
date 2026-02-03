@@ -85,16 +85,17 @@ const SEED_DATA = {
     ],
     currentUser: null, // Will be set on login/signup
     advices: [
-        {
-            id: 1,
-            title: 'Duomo di Milano',
-            description: 'Una visita imperdibile! Salite sulle terrazze.',
-            location: 'Milano',
-            sender: 'Giovanni',
-            receiver: 'Ludovica', // Received by Ludovica (Trip to Milano)
-            image: duomoImg,
-            timestamp: Date.now()
-        },
+        // This should be removed 
+        // {
+        //     id: 1,
+        //     title: 'Duomo di Milano',
+        //     description: 'Una visita imperdibile! Salite sulle terrazze.',
+        //     location: 'Milano',
+        //     sender: 'Giovanni',
+        //     receiver: 'Ludovica', // Received by Ludovica (Trip to Milano)
+        //     image: duomoImg,
+        //     timestamp: Date.now()
+        // },
         {
             id: 2,
             title: 'Galleria Vittorio Emanuele II',
