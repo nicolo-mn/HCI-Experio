@@ -30,7 +30,7 @@ function sendMessage() {
 function deleteChat() {
     if (confirm(`Sei sicuro di voler eliminare la chat con ${username.value}?`)) {
         store.deleteChat(username.value)
-        router.push('/lista-chat')
+        router.push('/profilo')
     }
 }
 
