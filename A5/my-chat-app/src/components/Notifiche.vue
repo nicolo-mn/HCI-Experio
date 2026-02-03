@@ -10,6 +10,10 @@ function onBackClick() {
     router.back()
 }
 
+function goToAdvice(id) {
+    router.push({ path: '/consiglio', query: { id: id, type: 'received' } })
+}
+
 const notifications = computed(() => {
     const currentUser = store.state.currentUser
     if (!currentUser) return []
@@ -43,7 +47,8 @@ const notifications = computed(() => {
         <div 
             v-for="notif in notifications" 
             :key="notif.id"
-            class="w-full h-[5rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors" 
+            class="w-full h-[5rem] border-black border-solid border-b-[1px] box-border relative cursor-pointer hover:bg-black/5 transition-colors"
+            @click="goToAdvice(notif.id)"
           >
              <!-- Avatar -->
              <img :src="store.resolveAvatar(notif.sender || 'System')" class="absolute top-1/2 -translate-y-1/2 left-[1rem] w-[2.9rem] h-[2.9rem] object-cover rounded-full bg-gainsboro border-[1px] border-black/10" alt="Avatar" />
