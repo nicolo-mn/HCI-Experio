@@ -126,7 +126,7 @@ function onBackClick() {
                     class="w-full h-[4rem] rounded-[5px] bg-white border-darkslategray border-solid border-[2px] box-border flex items-center px-[1.5rem] cursor-pointer hover:bg-gray-50 transition-colors gap-4 relative overflow-hidden"
                     @click="triggerFileInput"
                 >
-                    <span v-if="!form.image" class="font-bold text-dimgray text-[0.875rem] flex-1">Aggiungi Immagini</span>
+                    <span v-if="!form.image" class="font-bold text-dimgray text-[0.875rem] flex-1">Aggiungi un'immagine</span>
                     <span v-else class="font-bold text-dimgray text-[0.875rem] flex-1">Immagine selezionata</span>
                     
                     <img v-if="!form.image" :src="imageIcon" class="w-6 h-6 object-contain" alt="Add Image" />

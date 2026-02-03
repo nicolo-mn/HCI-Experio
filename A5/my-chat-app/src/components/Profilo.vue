@@ -182,7 +182,7 @@ function goToConsiglio(id, type) {
                     <!-- Image -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
                        <img v-if="advice.image" :src="advice.image" class="w-full h-full object-cover" alt="Image" />
-                       <span v-else>Foto</span>
+                       <span v-else class="text-[0.7rem]">Nessuna foto</span>
                     </div>
                     
                     <!-- Location -->
