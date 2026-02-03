@@ -11,6 +11,7 @@ import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import logoutIcon from '../assets/icons-all/logout.svg'
 import gamificationCupIcon from '../assets/icons-all/gamification-cup.svg'
 import chatIcon from '../assets/icons-all/chat.svg'
+import noImage from '../assets/img-all/no-image.png'
 
 const router = useRouter()
 
@@ -140,8 +141,7 @@ function goToConsiglio(id, type) {
                 >
                     <!-- Image -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
-                        <img v-if="advice.image" :src="advice.image" class="w-full h-full object-cover" alt="Image" />
-                        <span v-else>Foto</span>
+                        <img :src="advice.image || noImage" class="w-full h-full object-cover" alt="Image" />
                     </div>
                     
                     <!-- Location -->
@@ -181,8 +181,7 @@ function goToConsiglio(id, type) {
                 >
                     <!-- Image -->
                     <div class="w-[7.856rem] h-[4.913rem] bg-black/10 rounded-[4.2px] mb-1 flex items-center justify-center text-black/20 font-bold overflow-hidden">
-                       <img v-if="advice.image" :src="advice.image" class="w-full h-full object-cover" alt="Image" />
-                       <span v-else class="text-[0.7rem]">Nessuna foto</span>
+                       <img :src="advice.image || noImage" class="w-full h-full object-cover" alt="Image" />
                     </div>
                     
                     <!-- Location -->

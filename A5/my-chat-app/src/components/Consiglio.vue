@@ -6,6 +6,7 @@ import arrowLeft from '../assets/icons-all/arrow-left.svg'
 import locationIcon from '../assets/icons-all/location.svg'
 import binIcon from '../assets/icons-all/bin.svg'
 import chatIcon from '../assets/icons-all/chat.svg'
+import noImage from '../assets/img-all/no-image.png'
 
 const router = useRouter()
 const route = useRoute()
@@ -158,8 +159,7 @@ function goToChat() {
                   <!-- Card Content -->
                   <div class="relative w-full h-full flex flex-col items-center p-4">
                       <!-- Image -->
-                      <img v-if="advice.image" :src="advice.image" class="w-[17.263rem] h-[10.794rem] object-cover rounded-[8.53px] mt-2 bg-black/10" alt="Image" />
-                       <div v-else class="w-[17.263rem] h-[10.794rem] bg-black/10 rounded-[8.53px] mt-2 flex items-center justify-center">No Image</div>
+                      <img :src="advice.image || noImage" class="w-[17.263rem] h-[10.794rem] object-cover rounded-[8.53px] mt-2 bg-black/10" alt="Image" />
                       
                       <!-- Title and Description -->
                       <div class="mt-4 flex flex-col items-center text-center w-full gap-2 overflow-hidden">
