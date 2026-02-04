@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'A5/experio/**' # Only runs when you change code in that folder
+      - 'A5/experio/**'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
