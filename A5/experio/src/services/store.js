@@ -13,7 +13,7 @@ import michaelIcon from '../assets/icons-all/michael.svg'
 import ernstIcon from '../assets/img-all/ernst.png' // Ernst is png in Profilo, checking usage
 import defaultIcon from '../assets/icons-all/person-fill.svg'
 
-const STORE_KEY = 'hci_app_store_v14'
+const STORE_KEY = 'hci_app_store_v15'
 
 // Initial seed data
 const SEED_DATA = {
@@ -27,9 +27,9 @@ const SEED_DATA = {
             zones: ['Milano', 'Roma', 'Karlsruhe']
         },
         {
-            username: 'Giovanni',
-            name: 'Giovanni',
-            email: 'giovanni@example.com',
+            username: 'Gigi',
+            name: 'Gigi',
+            email: 'gigi@example.com',
             description: 'Appassionato di architettura moderna e jazz. Mi piace perdermi tra i vicoli delle città storiche e disegnare schizzi urbani.',
             avatar: 'gianni',
             zones: ['Cesena', 'Milano']
@@ -91,7 +91,7 @@ const SEED_DATA = {
         //     title: 'Duomo di Milano',
         //     description: 'Una visita imperdibile! Salite sulle terrazze.',
         //     location: 'Milano',
-        //     sender: 'Giovanni',
+        //     sender: 'Gigi',
         //     receiver: 'Ludovica', // Received by Ludovica (Trip to Milano)
         //     image: duomoImg,
         //     timestamp: Date.now()
@@ -112,7 +112,7 @@ const SEED_DATA = {
             description: 'Si tratta di un castello molto affascinante con all’interno un museo ed un grande parco attorno.',
             location: 'Karlsruhe',
             sender: 'Paola', // Sent by Paola (Zone Karlsruhe)
-            receiver: 'Giovanni', // Received by Giovanni (Trip to Karlsruhe)
+            receiver: 'Gigi', // Received by Gigi (Trip to Karlsruhe)
             image: castelloImg,
             timestamp: Date.now()
         },
@@ -122,7 +122,7 @@ const SEED_DATA = {
             description: 'Pezzo di storia da vedere assolutamente.',
             location: 'Berlino',
             sender: 'Ernst',
-            receiver: 'Giovanni', // Received by Giovanni (Trip to Berlin)
+            receiver: 'Gigi', // Received by Gigi (Trip to Berlin)
             image: muroImg,
             timestamp: Date.now()
         },
@@ -132,7 +132,7 @@ const SEED_DATA = {
             description: 'Super magico!',
             location: 'Copenhagen',
             sender: 'Ernst',
-            receiver: 'Paola', // Received by Giovanni (Trip to Berlin)
+            receiver: 'Paola', // Received by Gigi (Trip to Berlin)
             image: muroImg,
             timestamp: Date.now()
         },
@@ -151,14 +151,14 @@ const SEED_DATA = {
             location: 'Berlino',
             arrival: '2024-01-10',
             departure: '2024-01-15',
-            user: 'Giovanni'
+            user: 'Gigi'
         },
         {
             id: 3,
             location: 'Karlsruhe',
             arrival: '2024-02-01',
             departure: '2024-02-05',
-            user: 'Giovanni'
+            user: 'Gigi'
         },
         {
             id: 4,
