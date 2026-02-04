@@ -20,6 +20,7 @@ onMounted(() => {
     if (route.query.location) {
         currentLocation.value = route.query.location
         relevantAdvices.value = store.getAdvicesByLocation(route.query.location)
+            .filter(advice => !store.state.currentUser || advice.sender !== store.state.currentUser.username)
     }
 })
 
