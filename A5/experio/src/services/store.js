@@ -13,7 +13,7 @@ import michaelIcon from '../assets/icons-all/michael.svg'
 import ernstIcon from '../assets/img-all/ernst.png' // Ernst is png in Profilo, checking usage
 import defaultIcon from '../assets/icons-all/person-fill.svg'
 
-const STORE_KEY = 'hci_app_store_v11'
+const STORE_KEY = 'hci_app_store_v14'
 
 // Initial seed data
 const SEED_DATA = {
@@ -32,7 +32,7 @@ const SEED_DATA = {
             email: 'giovanni@example.com',
             description: 'Appassionato di architettura moderna e jazz. Mi piace perdermi tra i vicoli delle città storiche e disegnare schizzi urbani.',
             avatar: 'gianni',
-            zones: ['Londra', 'Milano', 'Venezia']
+            zones: ['Cesena', 'Milano']
         },
         {
             username: 'Ludovica',
@@ -169,42 +169,42 @@ const SEED_DATA = {
         },
         {
             id: 5,
-            location: 'Londra',
+            location: 'Cesena',
+            arrival: '2024-05-01',
+            departure: '2024-05-05',
+            user: 'Janet'
+        },
+        {
+            id: 6,
+            location: 'Cesena',
             arrival: '2024-04-01',
             departure: '2024-04-05',
             user: 'Alex'
         },
         {
-            id: 6,
+            id: 7,
             location: 'Milano',
             arrival: '2024-04-10',
             departure: '2024-04-15',
             user: 'Lara'
         },
         {
-            id: 7,
-            location: 'Venezia',
-            arrival: '2024-05-01',
-            departure: '2024-05-05',
-            user: 'Janet'
-        },
-        {
             id: 8,
-            location: 'Londra',
+            location: 'Milano',
             arrival: '2024-05-10',
             departure: '2024-05-15',
             user: 'Michael'
         },
         {
             id: 9,
-            location: 'Venezia',
+            location: 'Cesena',
             arrival: '2024-09-01',
             departure: '2024-09-05',
             user: 'Ludovica'
         },
         {
             id: 10,
-            location: 'Londra',
+            location: 'Milano',
             arrival: '2024-09-10',
             departure: '2024-09-15',
             user: 'Ernst'
@@ -218,14 +218,14 @@ const SEED_DATA = {
         },
         {
             id: 12,
-            location: 'Venezia',
+            location: 'Cesena',
             arrival: '2024-10-10',
             departure: '2024-10-15',
             user: 'Ernst'
         },
         {
             id: 13,
-            location: 'Londra',
+            location: 'Cesena',
             arrival: '2024-11-01',
             departure: '2024-11-05',
             user: 'Paola'
