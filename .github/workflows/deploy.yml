@@ -11,6 +11,11 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: A5/experio
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,17 +24,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: A5/experio/package-lock.json
 
       - name: Install and Build
         run: |
-          cd A5/experio
           npm install
           npm run build
+          touch dist/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: A5/experio/dist # The folder the action should push
-          branch: gh-pages # The branch the action will create/update
+          folder: A5/experio/dist 
+          branch: gh-pages
