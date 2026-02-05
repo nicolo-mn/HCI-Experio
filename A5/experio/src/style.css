@@ -1,0 +1,32 @@
+/* 1. Font Imports MUST be at the very top (Line 1 & 2) */
+@import url('https://fonts.googleapis.com/css2?family=Twinkle+Star:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap');
+
+/* 2. Tailwind Import */
+@import "tailwindcss";
+
+/* 3. Theme Configuration */
+@theme {
+	--color-whitesmoke: #faf9f6;
+	--color-goldenrod: #f4d36e;
+	--color-black: #000;
+	--color-darkslategray: #1a5e63;
+	--color-dimgray: #565656;
+	--color-white: #fff;
+
+	--font-twinkle-star: "Twinkle Star", cursive;
+	--font-urbanist: "Urbanist", sans-serif;
+}
+
+/* 4. Base Styles */
+@layer base {
+	body {
+		@apply leading-[normal] m-0;
+	}
+
+	*,
+	*::before,
+	*::after {
+		border-width: 0;
+	}
+}
